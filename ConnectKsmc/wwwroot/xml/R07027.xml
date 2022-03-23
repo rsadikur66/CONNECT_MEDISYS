@@ -1,0 +1,30 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="R07027" msprop:BaseTable.0="T07027">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="T_PAT_NO" msprop:BaseColumn="T_PAT_NO" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="PAT_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="SEX_DESC" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="DOCTOR_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="CLINIC_DESC" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="CLINIC_SPECIALITY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="APP_DESC" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_CLINIC_SPCLTY" msprop:BaseColumn="T_CLINIC_SPCLTY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_CLINIC_CODE" msprop:BaseColumn="T_CLINIC_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_CLINIC_DOC_CODE" msprop:BaseColumn="T_CLINIC_DOC_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_REQUEST_NO" msprop:BaseColumn="T_REQUEST_NO" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_REQUEST_DATE" msprop:BaseColumn="T_REQUEST_DATE" msprop:OraDbType="106" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="T_REQUEST_TIME" msprop:BaseColumn="T_REQUEST_TIME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_APPT_DATE" msprop:BaseColumn="T_APPT_DATE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="USER_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,716 @@
+<!--<common formCode="T30023" (permissionLoaded)="setPermission($event)" (saveClicked)="onSaveClicked()" (clearClicked)="onClearClicked()" [isNextVisible]="true" (nextClicked)="onNextClicked()">-->
+<common formCode="T30023" (permissionLoaded)="setPermission($event)" (saveClicked)="onSaveClicked()" (newClicked)="onNewClicked()" (nextClicked)="onNextClicked('1')" [isNewVisible]="true" [isNextVisible]="true" [isEnterVisible]="true" [isExecuteVisible]="true" (enterClicked)="onBtnEnterClick()" (executeClicked)="onBtnExecuteClick()" [isSaveVisible]="isSaveEnable" (printClicked)="onBtnPrintClick()" (clearClicked)="onBtnClearClick()" [isPrintVisible]="true" >
+  <p-scrollPanel styleClass="scroll">
+    <div class="content" style="width: 100%;padding:5px">
+      <form [formGroup]="userForm">
+        <div class="ui-g">
+          <div class="ui-g-2">
+            <fieldset style="border-radius:5px;border:1px solid dashed">
+              <legend id="lblDecisionSupport" style="color: black; background: #e17d7d; border-radius: 3px; box-shadow: 2px 2px #c8c8c8; ">Patient Type</legend>
+              <table style="margin: 0 auto;">
+                <tr>
+                  <td style="width:80px;">
+                    <label id="lblDisch" for="chkDisch"></label>
+                    <p-radioButton name="chkPatType" value="1" formControlName="chkPatType" inputId="chkDisch"></p-radioButton>
+                  </td>
+                  <td style="width:60px;">
+                    <label id="lblER" for="chkER"></label>
+                    <p-radioButton name="chkPatType" value="3" formControlName="chkPatType" inputId="chkER"></p-radioButton>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="width:80px;">
+                    <label id="lblOPD" for="chkOPD"></label>
+                    <p-radioButton name="chkPatType" value="2" formControlName="chkPatType" inputId="chkOPD"></p-radioButton>
+                  </td>
+                  <td style="width:60px;">
+                    <label id="lblAKU" for="chkAKU"></label>
+                    <p-radioButton name="chkPatType" value="4" formControlName="chkPatType" inputId="chkAKU"></p-radioButton>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="2" style="width:140px;">
+                    <label id="lblPC" for="chkPC"></label>
+                    <p-radioButton name="chkPatType" value="5" formControlName="chkPatType" inputId="chkPC"></p-radioButton>
+                  </td>
+                </tr>
+              </table>
+            </fieldset>
+          </div>
+          <div class="ui-g-10">
+            <table style="margin: 0 auto;">
+              <tr>
+                <td style="width:5%">
+                  <label id="lblPat" for="txtPatNo"></label>
+                </td>
+                <td style="width:7%">
+                  <input type="text" style="width:100%;" formControlName="txtPatNo" pInputText />
+                  <!--<input type="text" style="display:none" formControlName="chkPatType" pInputText />-->
+                </td>
+                <td style="width:19%">
+                  <input type="text" style="width:100%" formControlName="txtPatName" pInputText readonly="readonly" />
+                </td>
+                <td style="width:5%">
+                  <label id="lblSex"></label>
+                </td>
+                <td style="width:6%">
+                  <input type="text" style="width:100%" formControlName="txtSex" pInputText readonly="readonly" />
+                </td>
+                <td style="width:2%">
+                  <label id="lblY"></label>
+                </td>
+                <td style="width:3%">
+                  <input type="text" style="width:100%" formControlName="txtAge" pInputText readonly="readonly" />
+                </td>
+                <td style="width:4%">
+                  <label id="lblWeight"></label>
+                </td>
+                <td style="width:3%">
+                  <input type="text" style="width:100%" formControlName="txtWeight" pInputText />
+                </td>
+                <td style="width:4%">
+                  <label id="lblHeight"></label>
+                </td>
+                <td style="width:3%">
+                  <input type="text" style="width:100%" formControlName="txtHeight" pInputText />
+                </td>
+                <td style="width:5%">
+                  <label id="lblNtnlty"></label>
+                </td>
+                <td style="width:11%">
+                  <input type="text" style="width:100%" formControlName="txtNationality" pInputText readonly="readonly" />
+                </td>
+                <td style="width:5%">
+                  <label id="lblApptNo"></label>
+                </td>
+                <td style="width:10%">
+                  <input type="text" style="width:100%;" formControlName="txtApptNo" pInputText />
+                </td>
+              </tr>
+              <tr>
+                <td style="width:5%">
+                  <label id="lblPhysician" for="txtDocCode"></label>
+                </td>
+                <td style="width:7%">
+                  <input type="text" style="width:100%;text-transform:uppercase" (blur)="onDocBlur()" (dblclick)="onDocDblClick()" formControlName="txtDocCode" pInputText />
+                </td>
+                <td style="width:19%">
+                  <input type="text" style="width:100%" formControlName="txtDocName" pInputText readonly="readonly" />
+                </td>
+                <td style="width:5%">
+                  <label id="lblLocation" for="txtLocation"></label>
+                </td>
+                <td style="width:6%">
+                  <input type="text" style="width:100%" (dblclick)="onLocationDblClick()" formControlName="txtLocation" pInputText />
+                </td>
+                <td style="width: 25%" colspan="6">
+                  <input type="text" style="width:100%" formControlName="txtLocationDesc" pInputText readonly="readonly" />
+                </td>
+                <td style="width:6%">
+                  <label id="lblSlipNo"></label>
+                </td>
+                <td style="width:5%">
+                  <input type="text" style="width:100%;" (dblclick)="onSlipDblClick()" formControlName="txtSlipNo" pInputText #slipNo />
+                </td>
+                <td style="width:5%">
+                  <label id="lblVisit"></label>
+                </td>
+                <td style="width:10%">
+                  <input type="text" style="width:100%;" formControlName="txtVisitNo" pInputText />
+                </td>
+              </tr>
+              <tr>
+                <td style="width:5%">
+                  <label id="lblSpclty" for="txtSpecialityCode"></label>
+                </td>
+                <td style="width:7%">
+                  <input type="text" style="width:100%" (blur)="onSpecialityBlur()" (dblclick)="onSpcltyDblClick()" formControlName="txtSpecialityCode" pInputText />
+                </td>
+                <td style="width: 19%">
+                  <input type="text" style="width:100%" formControlName="txtSpecialityDesc" pInputText readonly="readonly" />
+                </td>
+                <td style="width:5%">
+                  <label id="lblDiagonosis"></label>
+                </td>
+                <td colspan="7">
+                  <input type="text" style="width:100%" formControlName="txtDiagonosis" pInputText />
+                </td>
+                <td><label id="lblMobileNo"></label></td>
+                <td><input type="text" style="width:100%" formControlName="txtMobileNo" pInputText /></td>
+              </tr>
+              <tr>
+                <td style="width:5%">
+                  <label id="lblMainCode" for="txtICDCode"></label>
+                </td>
+                <td style="width:6%">
+                  <input type="text" style="width:100%;text-transform:uppercase" (blur)="onICD10Blur()" (dblclick)="onICD10DblClick()" formControlName="txtICDCode" pInputText />
+                </td>
+                <td style="width:19%">
+                  <input type="text" style="width:100%" formControlName="txtICDDEsc" pInputText readonly="readonly" />
+                </td>
+                <td colspan="3">
+                  <label id="lblMediDelivery" for="chk"></label>
+                </td>
+                <td style="text-align:center;border:1px solid gray;border-radius:3px" colspan="7">
+                  <p-radioButton name="chkDelType" value="05" formControlName="chkDelType" inputId="chkCourier"></p-radioButton>
+                  <label id="lblDel" for="chkCourier"></label>
+                  <p-radioButton name="chkDelType" value="01" formControlName="chkDelType" inputId="chkPharmacy"></p-radioButton>
+                  <label id="lblPhar" for="chkPharmacy"></label>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </form>
+      <div style="height: 310px; overflow-x: hidden; overflow-y: auto;margin:5px 0px 10px 0px ">
+        <p-table #dt62 [value]="medList" selectionmode="single">
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 40px; text-align: center "><label id="lblCopy">Copy</label></th>
+              <th style="width:350px;text-align:center"><label id="lblMedicationName">{{onLabelLoad('lblMedicationName')}}</label></th>
+              <th style="width:85px;text-align:center"><label id="lblMedSpclty"></label> </th>
+              <th style="width:150px;text-align:center"><label id="lblFrequency"></label></th>
+              <th style="width:120px;text-align:center"><label id="lblDuration"></label></th>
+              <th style="width:50px;text-align:center"><label id="lblDose"></label></th>
+              <th style="width:75px;text-align:center"><label id="lblUm"></label></th>
+              <th style="width:50px;text-align:center"><label id="lblOrderQty"></label></th>
+              <th style="width:120px;text-align:center"><label id="lblRemarks"></label></th>
+              <th style="width:85px;text-align:center"><label id="lblDate"></label></th>
+              <th style="width: 45px; text-align: center "><label id="lblTime">TM</label></th>
+              <th style="width: 55px; text-align: center"><label id="lblInactive"></label></th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+            <tr [pSelectableRow]="rowData">
+              <td style="width: 40px; text-align: center"><p-checkbox [disabled]="rowData.IS_PERMITTED!='0' && rowData.T_PAT_MEDICINE_SEQ == undefined" (onChange)="onCopyChange($event,rowIndex)" [(ngModel)]="rowData.T_COPY_PRS" [binary]="true"></p-checkbox></td>
+              <td style="width: 350px;" (dblclick)="rowData.IS_PERMITTED !='0' &&  onMedicineDblClick(rowIndex)"><span>{{rowData.T_OPD_REQ_ITEM}}</span></td>
+              <td style="width: 85px; text-align: center">
+                <input type="button" value="S" class="prsBtn1" (dblclick)="rowData.IS_PERMITTED !='0' &&  onMedicineSpecialityDblClick(rowIndex)" />
+                <input type="button" value="T" class="prsBtn1" (dblclick)="rowData.IS_PERMITTED !='0' &&  onMedicineTradeDblClick(rowIndex)" />
+                <input type="button" value="I" class="prsBtn1" (dblclick)="rowData.IS_PERMITTED !='0' &&  onInsDblClick(rowData,rowIndex)" />
+              </td>
+              <td style="width:150px;">
+                <p-dropdown [options]="frequencyList" optionLabel="FREQUENCY_DESC" [disabled]="rowData.IS_PERMITTED=='0'" (onChange)="onFrequencyOkClick(rowIndex)" [(ngModel)]="rowData.DOSE_TIME_DAILY_DESC" [filter]="true" optionValue="T_FREQUENCY_CODE" [style]="{width: '145px'}" [showClear]="true" placeholder="Select..."></p-dropdown>
+              </td>
+              <td style="width:120px;">
+                <p-dropdown [options]="durationList" optionLabel="DOSE_DURATION_DESC" [disabled]="rowData.IS_PERMITTED=='0'" (onChange)="onDurationOkClick(rowIndex)" [(ngModel)]="rowData.DOSE_DURATION_DESC" [filter]="true" optionValue="T_DOSE_DURATION_CODE" [style]="{width: '115px'}" [showClear]="true" placeholder="Select..."></p-dropdown>
+              </td>
+              <td style="width:55px;text-align:right">
+                <input type="text" [disabled]="rowData.IS_PERMITTED=='0'" [(ngModel)]="rowData.T_DOC_DOSE_UNIT" style="width:100%" (blur)="onDoseBlur(rowIndex)" [pKeyFilter]="pNum"/>
+              </td>
+              <td style="width:75px;" (dblclick)="rowData.IS_PERMITTED !='0' && onUMDblClick(rowIndex)">
+                <span>{{rowData.ISSUE_UM_DESC}}</span>
+              </td>
+              <td style="width:45px;text-align:right">
+                <input type="text" [disabled]="rowData.IS_PERMITTED=='0'" [(ngModel)]="rowData.T_QTY" style="width:100%" [pKeyFilter]="pNum"/>
+              </td>
+              <td style="width:120px;">
+                <input type="text" [disabled]="rowData.IS_PERMITTED=='0'" [(ngModel)]="rowData.T_REMARKS" style="width:100%" />
+              </td>
+              <td style="width:85px;text-align:center"><span>{{rowData.T_ENTRY_DATE|date:'dd/MM/yyyy'}}</span></td>
+              <td style="width: 45px; text-align: center "><span>{{rowData.T_ENTRY_TIME}}</span></td>
+              <td style="width: 55px; text-align: center "><p-checkbox [disabled]="rowData.IS_PERMITTED=='0'" [(ngModel)]="rowData.T_DRUG_INACTIVE_FLAG" value="1"></p-checkbox></td>
+          </ng-template>
+        </p-table>
+        <br />
+      </div>
+      <table>
+        <tr>
+          <td style="width: 105px; padding: 0px; text-align: center">
+            <p-checkbox inputId="chkAll" (onChange)="onCopyAllChange($event)" [binary]="true"></p-checkbox>     &nbsp;       <label id="lblCopyAll" for="chkAll">Copy All</label>
+          </td>
+          <td style="width: 350px; text-align: center">
+            <input type="button" class="prsBtn1" value="Copy" (click)="onCopyClicked()"/>
+            <input type="button" class="prsBtn1" value="Generic Info" (click)="getGenericInfo()" />
+            <input type="button" class="prsBtn1" value="Drug History" (click)="getDrugHistory()" />
+          </td>
+          <td style="width: 80px;"></td>
+          <td style="width: 150px;"></td>
+          <td style="width: 100px;" id="lblDispensed1"></td>
+          <td style="width: 50px;"></td>
+          <td style="width: 30px;"></td>
+          <td style="width: 15px;"></td>
+          <td style="width: 700px" colspan="2"><input type="text" style="width:100%;font-weight:bold" disabled="disabled" *ngIf="!isSaveEnable" value="Now you can edit Frequency/Duration/Dose/UM/Qty while Copying Prescription !!" /></td>
+        </tr>
+      </table>
+    </div>
+  </p-scrollPanel>
+</common>
+<p-dialog header="Doctor List" [(visible)]="docDisplay" [modal]="true" [style]="{width: '850px'}">
+  <p-table #dtDoc [value]="docList" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="docSelectedData" [pageLinks]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 100px;">{{onLabelLoad('lblDoctorCode')}}</th>
+        <th style="width: 300px;">{{onLabelLoad('lblDoctorName')}}</th>
+        <th style="width: 100px;">{{onLabelLoad('lblSpcltyCode')}}</th>
+        <th style="width: 200px;">{{onLabelLoad('lblSpcltyDesc')}}</th>
+        <th style="width: 100px;">{{onLabelLoad('lblStatus')}}</th>
+      </tr>
+      <tr>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblDoctorCode')}}" (input)="dtDoc.filter(getEventValue($event), 'HDM_DOC_CODE', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblDoctorName')}}" (input)="dtDoc.filter(getEventValue($event), 'DOCTOR', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblSpcltyCode')}}" (input)="dtDoc.filter(getEventValue($event), 'HDM_SPCLTY_CODE', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblSpcltyDesc')}}" (input)="dtDoc.filter(getEventValue($event), 'HDM_SPCLTY_DSCRPTN', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblStatus')}}" (input)="dtDoc.filter(getEventValue($event), 'STATUS', 'contains')" style="width: 100%;"></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr (dblclick)="onDoctorRowDblClick(rowData)" [pSelectableRow]="rowData">
+        <td>{{ rowData.HDM_DOC_CODE }}</td>
+        <td>{{ rowData.DOCTOR }}</td>
+        <td>{{ rowData.HDM_SPCLTY_CODE }}</td>
+        <td>{{ rowData.HDM_SPCLTY_DSCRPTN }}</td>
+        <td>{{ rowData.STATUS }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="onDocOkClick()" label="Ok"></button>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="docDisplay=false" label="Cancel"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Speciality List" [(visible)]="spcltyDisplay" [modal]="true" [style]="{width: '400px'}">
+  <p-table #dt2 [value]="spcltyList" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="spcltySelectedData" [pageLinks]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 100px;">{{onLabelLoad('lblSpecialityCode')}}</th>
+        <th style="width: 200px;">{{onLabelLoad('lblSpecialityName')}}</th>
+      </tr>
+      <tr>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblSpecialityCode')}}" (input)="dt2.filter(getEventValue($event), 'HDM_SPCLTY_CODE', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblSpecialityName')}}" (input)="dt2.filter(getEventValue($event), 'HDM_SPCLTY_DSCRPTN', 'contains')" style="width: 100%;"></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr (dblclick)="onSpcltyRowDblClick(rowData)" [pSelectableRow]="rowData">
+        <td>{{ rowData.HDM_SPCLTY_CODE }}</td>
+        <td>{{ rowData.HDM_SPCLTY_DSCRPTN }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="onSpcltyOkClick()" label="Ok"></button>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="spcltyDisplay=false" label="Cancel"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Location List" [(visible)]="locationDisplay" [modal]="true" [style]="{width: '400px'}">
+  <p-table #dt3 [value]="locationList" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="locationSelectedData" [pageLinks]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 100px;">{{onLabelLoad('lblLocationCode')}}</th>
+        <th style="width: 200px;">{{onLabelLoad('lblLocationName')}}</th>
+      </tr>
+      <tr>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblLocationCode')}}" (input)="dt3.filter(getEventValue($event), 'STK_LOC', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblLocationName')}}" (input)="dt3.filter(getEventValue($event), 'STK_LOC_DESC', 'contains')" style="width: 100%;"></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr (dblclick)="onLocationRowDblClick(rowData)" [pSelectableRow]="rowData">
+        <td>{{ rowData.STK_LOC }}</td>
+        <td>{{ rowData.STK_LOC_DESC }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="onLocationOkClick()" label="Ok"></button>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="locationDisplay=false" label="Cancel"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="ICD10 List" [(visible)]="icd10Display" [modal]="true" [style]="{width: '500px'}">
+  <p-table #dt4 [value]="icd10List" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="icd10SelectedData" [pageLinks]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 100px;">{{onLabelLoad('lblIcd10Code')}}</th>
+        <th style="width: 350px;">{{onLabelLoad('lblIcd10Name')}}</th>
+      </tr>
+      <tr>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblIcd10Code')}}" (input)="dt4.filter(getEventValue($event), 'ICD10_CODE', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblIcd10Code')}}" (input)="dt4.filter(getEventValue($event), 'LANG_NAME', 'contains')" style="width: 100%;"></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr (dblclick)="onICD10RowDblClick(rowData)" [pSelectableRow]="rowData">
+        <td>{{ rowData.CODE }}</td>
+        <td>{{ rowData.NAME }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="onICD10OkClick()" label="Ok"></button>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="icd10Display=false" label="Cancel"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Slip List" [(visible)]="slipDisplay" [modal]="true" [style]="{width: '750px'}">
+  <p-table #dt5 [value]="slipList" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="slipSelectedData" [pageLinks]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 100px;">{{onLabelLoad('lblSlipNo')}}</th>
+        <th style="width: 90px;">{{onLabelLoad('lblDate')}}</th>
+        <th style="width: 90px;">{{onLabelLoad('lblDoctorCode')}}</th>
+        <th style="width: 230px;">{{onLabelLoad('lblDoctorName')}}</th>
+        <th style="width: 70px;">{{onLabelLoad('lblLocation')}}</th>
+        <th style="width: 90px;">{{onLabelLoad('lblApptNo')}}</th>
+        <th style="width: 50px;">{{onLabelLoad('lblVisit')}}</th>
+      </tr>
+      <tr>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblSlipNo')}}" (input)="dt5.filter(getEventValue($event), 'PHM_PAT_MEDICINE_SEQ', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblDate')}}" (input)="dt5.filter(getEventValue($event), 'PHM_ENTRY_DATE', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblDoctorCode')}}" (input)="dt5.filter(getEventValue($event), 'PHM_ORGN_DOC', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblDoctorName')}}" (input)="dt5.filter(getEventValue($event), 'DOCTOR', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblLocation')}}" (input)="dt5.filter(getEventValue($event), 'T_PRESC_LOC', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblApptNo')}}" (input)="dt5.filter(getEventValue($event), 'APPT_NO', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblVisit')}}" (input)="dt5.filter(getEventValue($event), 'T_VISIT_NO', 'contains')" style="width: 100%;"></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr (dblclick)="onSlipRowDblClick(rowData,'2')" [pSelectableRow]="rowData">
+        <td>{{ rowData.PHM_PAT_MEDICINE_SEQ }}</td>
+        <td>{{ rowData.PHM_ENTRY_DATE |date:'dd-MMM-yyyy'}}</td>
+        <td>{{ rowData.PHM_ORGN_DOC }}</td>
+        <td>{{ rowData.DOCTOR }}</td>
+        <td>{{ rowData.T_PRESC_LOC }}</td>
+        <td>{{ rowData.APPT_NO }}</td>
+        <td>{{ rowData.T_VISIT_NO }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="onSlipOkClick()" label="Ok"></button>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="slipDisplay=false" label="Cancel"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Medicine List" [(visible)]="medicineDisplay" [modal]="true" [style]="{width: '850px'}">
+  <p-table #dt6 [value]="medicineList" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="medicineSelectedData" [pageLinks]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 400px;">{{onLabelLoad('lblDrug')}}</th>
+        <th style="width: 200px;">{{onLabelLoad('lblStrength')}}</th>
+        <th style="width: 100px;">{{onLabelLoad('lblForm')}}</th>
+        <th style="width: 100px;">{{onLabelLoad('lblRoute')}}</th>
+      </tr>
+      <tr>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblDrug')}}" (input)="dt6.filter(getEventValue($event), 'DRUG_NAME', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblStrength')}}" (input)="dt6.filter(getEventValue($event), 'T_STRENGTH', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblForm')}}" (input)="dt6.filter(getEventValue($event), 'FORM_CODE', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblRoute')}}" (input)="dt6.filter(getEventValue($event), 'ROUTE', 'contains')" style="width: 100%;"></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr (dblclick)="onMedicineRowDblClick(rowData)" [pSelectableRow]="rowData">
+        <td>{{ rowData.DRUG_NAME }}</td>
+        <td>{{ rowData.T_STRENGTH }}</td>
+        <td>{{ rowData.FORM_CODE }}</td>
+        <td>{{ rowData.ROUTE }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="onMedicineOkClick()" label="Ok"></button>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="medicineDisplay=false" label="Cancel"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Medicine List by Trade Name" [(visible)]="medicineTradeDisplay" [modal]="true" [style]="{width: '1200px'}">
+  <p-table #dt7 [value]="medicineTradeList" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="medicineTradeSelectedData" [pageLinks]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 480px;">{{onLabelLoad('lblDrug')}}</th>
+        <th style="width: 200px;">{{onLabelLoad('lblStrength')}}</th>
+        <th style="width: 400px;">{{onLabelLoad('lblGeneric')}}</th>
+        <th style="width: 70px;">{{onLabelLoad('lblStatus')}}</th>
+      </tr>
+      <tr>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblDrug')}}" (input)="dt7.filter(getEventValue($event), 'ITEM_DESC', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblStrength')}}" (input)="dt7.filter(getEventValue($event), 'T_STRENGTH', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblGeneric')}}" (input)="dt7.filter(getEventValue($event), 'GENERIC', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblStatus')}}" (input)="dt7.filter(getEventValue($event), 'STATUS', 'contains')" style="width: 100%;"></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr (dblclick)="onMedicineTradeRowDblClick(rowData)" [pSelectableRow]="rowData">
+        <td>{{ rowData.ITEM_DESC }}</td>
+        <td>{{ rowData.T_STRENGTH }}</td>
+        <td>{{ rowData.GENERIC }}</td>
+        <td>{{ rowData.STATUS }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="onMedicineTradeOkClick()" label="Ok"></button>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="medicineTradeDisplay=false" label="Cancel"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Medicine List by Speciality" [(visible)]="medicineSpecialityDisplay" [modal]="true" [style]="{width: '700px'}">
+  <p-table #dt8 [value]="medicineSpecialityList" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="medicineSpecialitySelectedData" [pageLinks]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 400px;">{{onLabelLoad('lblDrug')}}</th>
+        <th style="width: 200px;">{{onLabelLoad('lblStrength')}}</th>
+        <th style="width: 50px;">{{onLabelLoad('lblStatus')}}</th>
+      </tr>
+      <tr>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblDrug')}}" (input)="dt8.filter(getEventValue($event), 'ITEM_DESC', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblStrength')}}" (input)="dt8.filter(getEventValue($event), 'T_STRENGTH', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblStatus')}}" (input)="dt8.filter(getEventValue($event), 'STATUS', 'contains')" style="width: 100%;"></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr (dblclick)="onMedicineSpecialityRowDblClick(rowData)" [pSelectableRow]="rowData">
+        <td>{{ rowData.ITEM_DESC }}</td>
+        <td>{{ rowData.T_STRENGTH }}</td>
+        <td>{{ rowData.STATUS }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="onMedicineSpecialityOkClick()" label="Ok"></button>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="medicineSpecialityDisplay=false" label="Cancel"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="UM List" [(visible)]="umDisplay" [modal]="true" [style]="{width: '350px'}">
+  <p-table #dt11 [value]="umList" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="umSelectedData" [pageLinks]="5">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 80px;">{{onLabelLoad('lblCode')}}</th>
+        <th style="width: 200px;">{{onLabelLoad('lblName')}}</th>
+      </tr>
+      <tr>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblCode')}}" (input)="dt11.filter(getEventValue($event), 'T_UM', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblName')}}" (input)="dt11.filter(getEventValue($event), 'UM_SHORT_DESC', 'contains')" style="width: 100%;"></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr (dblclick)="onUMRowDblClick(rowData)" [pSelectableRow]="rowData">
+        <td>{{ rowData.T_UM }}</td>
+        <td>{{ rowData.UM_SHORT_DESC }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="onUMOkClick()" label="Ok"></button>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="umDisplay=false" label="Cancel"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Instructions" [(visible)]="insDisplay" [modal]="true" [style]="{width: '600px'}">
+  <form [formGroup]="insForm">
+    <table style="width:100%;margin:auto">
+      <tr>
+        <td style="width:150px;text-align:right">{{onLabelLoad('lblMorningDose')}}</td>
+        <td style="width:100px;"><input type="text" style="width:100%" formControlName="txtMorningIns" /></td>
+        <td style="width:300px;">
+          <p-dropdown inputId="ddlMorningIns" formControlName="ddlMorningIns" appendTo="body" [options]="morningList" optionLabel="NAME" [filter]="false" [resetFilterOnHide]="true" [style]="{'width':'100%'}" [showClear]="true"></p-dropdown>
+        </td>
+      </tr>
+      <tr>
+        <td style="width:150px;text-align:right">{{onLabelLoad('lblNoonDose')}}</td>
+        <td style="width:100px;"><input type="text" style="width:100%" formControlName="txtNoonIns" /></td>
+        <td style="width:300px;"><p-dropdown inputId="ddlNoonIns" appendTo="body" formControlName="ddlNoonIns" [options]="noonList" optionLabel="NAME" [filter]="false" [resetFilterOnHide]="true" [style]="{'width':'100%'}" [showClear]="true"></p-dropdown></td>
+      </tr>
+      <tr>
+        <td style="width:150px;text-align:right">{{onLabelLoad('lblNightDose')}}</td>
+        <td style="width:100px;"><input type="text" style="width:100%" formControlName="txtNightIns" /></td>
+        <td style="width:300px;"><p-dropdown inputId="ddlNightIns" appendTo="body" formControlName="ddlNightIns" [options]="nightList" optionLabel="NAME" [filter]="false" [resetFilterOnHide]="true" [style]="{'width':'100%'}" [showClear]="true"></p-dropdown></td>
+      </tr>
+    </table>
+  </form>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="onInsOkClick()" label="Ok"></button>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="insDisplay=false" label="Cancel"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Days Specification" [(visible)]="daysDisplay" [modal]="true" [style]="{width: '600px'}">
+  <form [formGroup]="daysForm">
+    <fieldset class="fldset">
+      <legend style="text-align: center"><label>{{onLabelLoad('lblDaySpec')}}</label></legend>
+      <span>
+        This Chart is Only for Twice Weekly,
+        Thrice Weekly, Four Times Weekly
+        and Five Times Weekly
+      </span>
+    </fieldset>
+    <fieldset class="fldset">
+      <legend style="text-align: center"><label>{{onLabelLoad('lblSetDays')}}</label></legend>
+      <table>
+        <tr>
+          <td>
+            <p-checkbox formControlName="chkSaturday" value="SATURDAY"></p-checkbox>
+          </td>
+          <td>
+            <label for="chkSaturday">{{onLabelLoad('lblSatur')}}</label>
+          </td>
+          <td colspan="4"></td>
+          <td>
+            <p-checkbox formControlName="chkTuesday" value="TUESDAY"></p-checkbox>
+          </td>
+          <td>
+            <label for="chkTuesday">{{onLabelLoad('lblTues')}}</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p-checkbox formControlName="chkSunday" value="SUNDAY"></p-checkbox>
+          </td>
+          <td>
+            <label id="lblSunday" for="chkSunday">{{onLabelLoad('lblSun')}}</label>
+          </td>
+          <td></td>
+          <td>
+            <p-checkbox formControlName="chkFriday" value="FRIDAY"></p-checkbox>
+          </td>
+          <td>
+            <label id="lblFriday" for="chkFriday">{{onLabelLoad('lblFri')}}</label>
+          </td>
+          <td></td>
+          <td>
+            <p-checkbox formControlName="chkWednesday" value="WEDNESDAY"></p-checkbox>
+          </td>
+          <td>
+            <label for="chkWednesday">{{onLabelLoad('lblWed')}}</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p-checkbox formControlName="chkMonday" value="MONDAY"></p-checkbox>
+          </td>
+          <td>
+            <label for="chkMonday">{{onLabelLoad('lblMon')}}</label>
+          </td>
+          <td colspan="4"></td>
+          <td>
+            <p-checkbox formControlName="chkThursday" value="THURSDAY"></p-checkbox>
+          </td>
+          <td>
+            <label for="chkThursday">{{onLabelLoad('lblThurs')}}</label>
+          </td>
+        </tr>
+      </table>
+    </fieldset>
+  </form>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="onDaysOkClick()" label="Ok"></button>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="daysDisplay=false" label="Cancel"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Generic Information" [(visible)]="genericDisplay" [modal]="true" [style]="{width: '600px'}">
+  <form [formGroup]="genericForm">
+    <table>
+      <tr>
+        <td style="width: 100%;text-align: center;font-weight: bold;height: 40px;" colspan="2"><label style="border: 2px solid #D9FF66;padding: 5px;border-radius: 5px;">Trade Info</label></td>
+      </tr>
+      <tr>
+        <td style="width:20%"><input type="text" style="width:100%" formControlName="txtTradeCode" (click)="onDrugMasterDblClick()" /></td>
+        <td style="width:80%"><input type="text" style="width:100%" formControlName="txtTradeDesc" /></td>
+      </tr>
+      <tr>
+        <td style="width: 100%;text-align: center;font-weight: bold;height: 40px;" colspan="2"><label style="border: 2px solid #D9FF66;padding: 5px;border-radius: 5px;">Corresponding Generic Info</label></td>
+      </tr>
+      <tr>
+        <td style="width:20%"><input type="text" style="width:100%" formControlName="txtGenCode" /></td>
+        <td style="width:80%"><input type="text" style="width:100%" formControlName="txtGenDesc" /></td>
+      </tr>
+    </table>
+  </form>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="genericDisplay=false" label="OK"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Drug Master List" [(visible)]="drugMasterDisplay" [modal]="true" [style]="{width: '700px'}">
+  <p-table #dt12 [value]="drugMasterList" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="drugMasterSelectedData" [pageLinks]="10">
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 550px;">{{onLabelLoad('lblTradeName')}}</th>
+        <th style="width: 100px;">{{onLabelLoad('lblDrugCode')}}</th>
+      </tr>
+      <tr>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblTradeName')}}" (input)="dt12.filter(getEventValue($event), 'PHM_ITEM_DSCRPTN', 'contains')" style="width: 100%;"></td>
+        <td><input pInputText type="text" placeholder="{{onLabelLoad('lblDrugCode')}}" (input)="dt12.filter(getEventValue($event), 'PHM_DRUG_MASTER_CODE', 'contains')" style="width: 100%;"></td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+      <tr (dblclick)="onDrugMasterRowDblClick(rowData)" [pSelectableRow]="rowData">
+        <td>{{ rowData.PHM_ITEM_DSCRPTN }}</td>
+        <td>{{ rowData.PHM_DRUG_MASTER_CODE }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="onDrugMasterOkClick()" label="Ok"></button>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="drugMasterDisplay=false" label="Cancel"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Drug Speciality Instructions" [(visible)]="medInsBool" [modal]="true" [style]="{width: '600px'}">
+  <table>
+    <tr>
+      <td style="width: 100%;text-align: center;font-weight: bold;">
+        {{medInsMsg}}
+      </td>
+    </tr>
+  </table>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="medInsBool=false" label="OK"></button>
+  </p-footer>
+</p-dialog>
+<p-dialog header="Drug History" [(visible)]="drugHistoryDisplay" [modal]="true" [style]="{width: '1300px'}">
+  <div style="width:100%;text-align:center;font-size:15px;padding:1px"><label>As Outpatient</label></div>
+  <div style="height: 240px; overflow-x: hidden; overflow-y: auto;margin:5px 0px 10px 0px ">
+    <p-table #dtOut [value]="medicineListAsOutPatient">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 400px; text-align: center">{{onLabelLoad('lblMedicationName')}}</th>
+          <th style="width: 200px; text-align: center">{{onLabelLoad('lblStrength')}}</th>
+          <th style="width:50px;text-align:center">{{onLabelLoad('lblOrderQty')}}</th>
+          <th style="width:85px;text-align:center">{{onLabelLoad('lblDate')}}</th>
+          <th style="width:50px;text-align:center">{{onLabelLoad('lblDose')}}</th>
+          <th style="width:150px;text-align:center">{{onLabelLoad('lblFrequency')}}</th>
+          <th style="width:120px;text-align:center">{{onLabelLoad('lblDuration')}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr>
+          <td>{{ rowData.T_OPD_REQ_ITEM}}</td>
+          <td>{{ rowData.T_REQUEST_STRENGTH }}</td>
+          <td>{{ rowData.T_QTY }}</td>
+          <td>{{ rowData.T_ENTRY_DATE|date:'dd-MM-yyyy' }}</td>
+          <td>{{ rowData.T_DOC_DOSE_UNIT }}</td>
+          <td>{{ rowData.DOSE_TIME_DAILY_DESC }}</td>
+          <td>{{ rowData.DOSE_DURATION_DESC }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <div style="width:100%;text-align:center;font-size:15px;padding:1px"><label>As Inpatient</label></div>
+  <div style="height: 240px; overflow-x: hidden; overflow-y: auto;margin:5px 0px 10px 0px ">
+    <p-table #dtIn [value]="medicineListAsInPatient">
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width:350px; text-align: center">{{onLabelLoad('lblMedicationName')}}</th>
+          <th style="width:90px;text-align:center">{{onLabelLoad('lblDate')}}</th>
+          <th style="width:50px; text-align: center">{{onLabelLoad('lblTime')}}</th>
+          <th style="width:140px;text-align:center">{{onLabelLoad('lblFrequency')}}</th>
+          <th style="width:110px;text-align:center">{{onLabelLoad('lblDuration')}}</th>
+          <th style="width:55px;text-align:right">Req.</th>
+          <th style="width:215px;text-align:left">{{onLabelLoad('lblPhysician')}}</th>
+          <th style="width:90px;text-align:center">{{onLabelLoad('lblStopDate')}}</th>
+          <th style="width:120px;text-align:center">{{onLabelLoad('lblRemarks')}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-rowData>
+        <tr>
+          <td>{{ rowData.T_OPD_REQ_ITEM}}</td>
+          <td>{{ rowData.T_ENTRY_DATE|date:'dd-MM-yyyy' }}</td>
+          <td>{{ rowData.T_ENTRY_TIME }}</td>
+          <td>{{ rowData.DOSE_TIME_DAILY_DESC }}</td>
+          <td>{{ rowData.DOSE_DURATION_DESC }}</td>
+          <td>{{ rowData.T_REQUEST_DOC }}</td>
+          <td>{{ rowData.DOC_NAME }}</td>
+          <td>{{ rowData.T_STOP_FRM|date:'dd-MM-yyyy' }}</td>
+          <td>{{ rowData.T_REMARKS }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+  <p-footer>
+    <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" (click)="drugHistoryDisplay=false" label="Ok"></button>
+  </p-footer>
+</p-dialog>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

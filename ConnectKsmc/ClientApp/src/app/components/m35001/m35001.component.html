@@ -1,0 +1,21 @@
+<common formCode="M35001" (languageChanged)="onLanguageChanged()" (transactionClicked)="onTransactionClicked()" (queryClicked)="onQueryClicked()"
+        (reportClicked)="onReportClicked()" (setupClicked)="onSetupClicked()" (securityClicked)="onSecurityClicked()">
+  <span class="heading">
+    <span>{{ option }}</span>
+    <img [src]="sanitizer.bypassSecurityTrustResourceUrl(navdir)" alt="navdir">
+  </span>
+  <div class="links">
+    <div>
+      <a *ngFor="let link of links | slice:0:18" href="{{ link.T_LINK_TEXT }}" (click)="onLinkClick($event)">{{ link.T_LINK_LABEL }}</a>
+    </div>
+    <div>
+      <a *ngFor="let link of links | slice:18:36" href="{{ link.T_LINK_TEXT }}" (click)="onLinkClick($event)">{{ link.T_LINK_LABEL }}</a>
+    </div>
+    <div>
+      <a *ngFor="let link of links | slice:36:54" href="{{ link.T_LINK_TEXT }}" (click)="onLinkClick($event)">{{ link.T_LINK_LABEL }}</a>
+    </div>
+    <div>
+      <a *ngFor="let link of links | slice:54:72" href="{{ link.T_LINK_TEXT }}" (click)="onLinkClick($event)">{{ link.T_LINK_LABEL }}</a>
+    </div>
+  </div>
+</common>

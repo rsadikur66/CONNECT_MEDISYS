@@ -1,0 +1,127 @@
+﻿.topbarBg {
+    background-image: linear-gradient(to left, #CA1D23 0%, #6D1215 100%);
+}
+
+.datePanel {
+    left: 10px;
+}
+
+.todayH {
+    margin-left: 12px;
+}
+
+.topbarSeparator {
+    left: 240px;
+}
+
+.language {
+    right: 10px;
+}
+
+.headerBgMenu {
+    left: 240px;
+}
+
+.logoMenu {
+    float: left;
+    margin: 4px 0 0 15px;
+}
+
+.titleMenu {
+    float: right;
+}
+
+    .titleMenu span {
+        padding-right: 250px;
+    }
+
+.headerBgPage {
+    left: 38px;
+}
+
+.logoPage {
+    float: left;
+    margin: 9px 0 0 15px;
+}
+
+.titlePage {
+    float: right;
+}
+
+    .titlePage span {
+        padding-right: 50px;
+    }
+
+.user {
+    float: left;
+}
+
+    .user img {
+        margin: 6px 0 0 9px;
+    }
+
+.userPage {
+    margin: 10px 0 0 20px;
+}
+
+.userNameMenu {
+    float: left;
+    padding-left: 5px;
+}
+
+.userNamePage {
+    float: left;
+    padding-left: 5px;
+}
+
+.sidePanelBg {
+    left: 0;
+}
+
+.optionsMenu {
+    float: left;
+    margin: 26px 0 0 7px;
+}
+
+.optionsPage {
+    margin: 5px 0 0 1px;
+}
+
+.buttonMenu {
+    background-position: 3px 3px !important;
+    padding: 0 0 0 50px;
+}
+
+    .buttonMenu:enabled:active {
+        background-position: 4px 4px !important;
+        padding: 2px 0 0 51px;
+    }
+
+.containerMenu {
+    left: 255px;
+    right: 15px;
+}
+
+.containerPage {
+    left: 52px;
+    right: 15px;
+}
+
+.heading {
+    margin: 10px 0 0 20px;
+}
+
+.links div {
+    float: left;
+    margin-right: 9px;
+}
+
+.p-dropdown .p-dropdown-clear-icon {
+    left: initial !important;
+    right: 1.5rem !important;
+}
+
+.p-dropdown.p-dropdown-clearable .p-dropdown-label {
+    padding-left: 5px !important;
+    padding-right: 1.429rem;
+}

@@ -1,0 +1,76 @@
+legend {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+}
+fieldset {
+  border-radius: 8px;
+}
+#table2 td:nth-child(even) {
+  padding-right: 100px;
+}
+.legend2{
+    text-align: center;color: blue;font-weight: bold;font-size: smaller;
+}
+.leftPart{
+    width: 59%;
+    float: left;
+}
+.rightPart{
+    width: 40%;
+    float: left;
+    margin-top: -19px;
+}
+tr td label{
+    font-size: 12px;
+    font-weight: bold;
+}
+.vl {
+    border-left: 1px solid gray;
+    height: 400px;
+    float: left;
+  }
+  #table3 legend{
+      font-size: smaller;
+  }
+  #table4{
+      float: left;
+      margin-left: 6%;
+      border-spacing: 5px;
+      font-size: smaller;
+      font-weight: bold;
+  }
+  .checkBoxes{
+      text-align: left;
+  }
+  #txtSD,#txtWeek,#txtPara{
+      margin-right: 50%;
+  }
+  #txtUpperLimb2{
+    width: 50px;
+    margin-left: -40%;
+  }
+#txtTemperature,#txtUpperLimb1,#txtHeight,#txtPulse,#txtRespiration,#txtSpo2
+{
+    width: 50px;
+}
+#lblVisitTd{
+    width:50px;
+}
+#txtOpArrivalDate{
+    width: 81%;
+    float: left;
+}
+#txtOpArrivalNo{
+    width: 61%;
+    float: left;
+}
+#txtPatType{
+    text-align: center;
+}
+#lblYear,#lblMonth{
+    float: left;
+}
+#txtMonth{
+    float: right;
+}

@@ -1,0 +1,102 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace ConnectKsmcDAL.Transaction
+{
+    public class T07026DAL : CommonDAL
+    {
+        public string GetAssignDoctor(string T_USER_CODE)
+        {
+            return QueryString($"SELECT T_DOC_CODE FROM T35001 WHERE T_USER_CODE = '{T_USER_CODE}'");
+        }
+
+        public IEnumerable<dynamic> GetAllDoctors(string T_CLINIC_CODE, string T_APPT_DATE, string LANGUAGE)
+        {
+            if (LANGUAGE == "1")
+            {
+                if (T_CLINIC_CODE == null && T_APPT_DATE == null)
+                    return QueryList<dynamic>(@"SELECT TRIM(REGEXP_REPLACE(T_NAME_GIVEN_ARB||' '||T_NAME_FATHER_ARB||' '||T_NAME_FAMILY_ARB, '[[:space:]]{2,}', ' ')) NAME, T_EMP_NO CODE FROM T02029, T02039, T07002
+                        WHERE T02029.T_EMP_NO = T02039.T_DOC_CODE AND T02039.T_DOC_CODE = T07002.T_CLINIC_DOC_CODE GROUP BY T_NAME_GIVEN_ARB||' '||T_NAME_FATHER_ARB||' '||T_NAME_FAMILY_ARB, T_EMP_NO ORDER BY 1");
+                return QueryList<dynamic>($@"SELECT TRIM(REGEXP_REPLACE(T_NAME_GIVEN_ARB||' '||T_NAME_FATHER_ARB||' '||T_NAME_FAMILY_ARB, '[[:space:]]{{2,}}', ' ')) NAME, T_EMP_NO CODE
+                    FROM T02029, T02039, T07003 WHERE T_CLINIC_CODE = NVL('{T_CLINIC_CODE}', T_CLINIC_CODE) AND T_APPT_DATE = NVL(TO_DATE('{T_APPT_DATE}', 'DD/MM/YYYY'), T_APPT_DATE) AND T02029.T_EMP_NO = T02039.T_DOC_CODE
+                    AND T02039.T_DOC_CODE = T07003.T_CLINIC_DOC_CODE GROUP BY T_NAME_GIVEN_ARB||' '||T_NAME_FATHER_ARB||' '||T_NAME_FAMILY_ARB, T_EMP_NO ORDER BY 1");
+            }
+            else
+            {
+                if (T_CLINIC_CODE == null && T_APPT_DATE == null)
+                    return QueryList<dynamic>(@"SELECT TRIM(REGEXP_REPLACE(T_NAME_GIVEN||' '||T_NAME_FATHER||' '||T_NAME_FAMILY, '[[:space:]]{2,}', ' ')) NAME, T_EMP_NO CODE FROM T02029, T02039, T07002
+                        WHERE T02029.T_EMP_NO = T02039.T_DOC_CODE AND T02039.T_DOC_CODE = T07002.T_CLINIC_DOC_CODE GROUP BY T_NAME_GIVEN||' '||T_NAME_FATHER||' '||T_NAME_FAMILY, T_EMP_NO ORDER BY 1");
+                return QueryList<dynamic>($@"SELECT TRIM(REGEXP_REPLACE(T_NAME_GIVEN||' '||T_NAME_FATHER||' '||T_NAME_FAMILY, '[[:space:]]{{2,}}', ' ')) NAME, T_EMP_NO CODE
+                    FROM T02029, T02039, T07003 WHERE T_CLINIC_CODE = NVL('{T_CLINIC_CODE}', T_CLINIC_CODE) AND T_APPT_DATE = NVL(TO_DATE('{T_APPT_DATE}', 'DD/MM/YYYY'), T_APPT_DATE) AND T02029.T_EMP_NO = T02039.T_DOC_CODE
+                    AND T02039.T_DOC_CODE = T07003.T_CLINIC_DOC_CODE GROUP BY T_NAME_GIVEN||' '||T_NAME_FATHER||' '||T_NAME_FAMILY, T_EMP_NO ORDER BY 1");
+            }
+        }
+
+        public IEnumerable<dynamic> GetAllClinics(string T_CLINIC_DOC_CODE, string T_JOB_CODE, string LANGUAGE)
+        {
+            if (T_CLINIC_DOC_CODE == null)
+                return QueryList<dynamic>($@"SELECT T07001.T_CLINIC_CODE CODE, T07001.T_CLINIC_NAME_LANG{LANGUAGE} NAME, T07001.T_CLINIC_HOSP_CODE FROM T07001, T07017 WHERE T07001.T_CLINIC_CODE = T07017.T_CLINIC_CODE
+                    AND T_JOB_CODE = '{T_JOB_CODE}' AND T07001.T_ACTIVE_FLAG = '1' AND T07001.T_BOOKING_CLINIC IS NULL GROUP BY T07001.T_CLINIC_CODE, T07001.T_CLINIC_NAME_LANG{LANGUAGE}, T07001.T_CLINIC_HOSP_CODE ORDER BY 2");
+            return QueryList<dynamic>($@"SELECT T07001.T_CLINIC_CODE CODE, T07001.T_CLINIC_NAME_LANG{LANGUAGE} NAME, T07002.T_SCHEDULE_RULE_NO RULE, T07001.T_CLINIC_HOSP_CODE FROM T07001, T07017, T07002
+                WHERE T07001.T_CLINIC_CODE = T07017. T_CLINIC_CODE AND T07001.T_CLINIC_CODE = T07002.T_CLINIC_CODE AND T07002.T_CLINIC_DOC_CODE = '{T_CLINIC_DOC_CODE}' AND T_JOB_CODE = '{T_JOB_CODE}'
+                AND T07001.T_ACTIVE_FLAG = '1' AND T07002.T_ACTIVE_FLAG = '1' GROUP BY T07001.T_CLINIC_CODE, T07001.T_CLINIC_NAME_LANG{LANGUAGE}, T07002.T_SCHEDULE_RULE_NO, T07001.T_CLINIC_HOSP_CODE ORDER BY 2");
+        }
+
+        public IEnumerable<dynamic> GetAllApptTypes(string LANGUAGE)
+        {
+            return QueryList<dynamic>($"SELECT T_APPT_TYPE CODE, T_LANG{LANGUAGE}_NAME NAME FROM T07006 WHERE T_DENTAL_FLAG IS NULL ORDER BY 2");
+        }
+
+        public IEnumerable<dynamic> GetAllArrivalStatus(string LANGUAGE)
+        {
+            return QueryList<dynamic>($"SELECT T_APPT_STATUS CODE, T_LANG{LANGUAGE}_NAME NAME FROM T07007 WHERE T_ACTIVE IS NULL ORDER BY 2");
+        }
+
+        public IEnumerable<dynamic> GetAllICD10()
+        {
+            return QueryList<dynamic>($"SELECT ICD10_CODE CODE, LANG_NAME NAME FROM V06102 ORDER BY 2");
+        }
+
+        public IEnumerable<dynamic> GetAllDocArrivalStatus(string LANGUAGE)
+        {
+            return QueryList<dynamic>($"SELECT T_APPT_STATUS CODE, T_LANG{LANGUAGE}_NAME NAME FROM T07007 WHERE T_ACTIVE IS NOT NULL ORDER BY 2");
+        }
+
+        public bool IsDocOnVacation(string T_APPT_DOC_CODE, string APPT_DATE)
+        {
+            return QueryList<dynamic>($"SELECT T_APPT_DOC_CODE FROM T07015 WHERE T_APPT_DOC_CODE = '{T_APPT_DOC_CODE}' AND TO_DATE('{APPT_DATE}', 'DD/MM/YYYY') BETWEEN T_ABS_FRM_DATE AND T_ABS_TO_DATE").Any();
+        }
+
+        public IEnumerable<dynamic> GetAllAppointments(string T_CLINIC_DOC_CODE, string T_CLINIC_CODE, string T_SCHEDULE_RULE_NO, string T_APPT_DATE, string LANGUAGE)
+        {
+            return QueryList<dynamic>($@"SELECT T07003.T_PAT_NO, TRIM(REGEXP_REPLACE(T_FIRST_LANG{LANGUAGE}_NAME||' '||T_FATHER_LANG{LANGUAGE}_NAME||' '||T_FAMILY_LANG{LANGUAGE}_NAME, '[[:space:]]{{2,}}', ' ')) PAT_NAME, T_X_PAT_TYPE, TRUNC(MONTHS_BETWEEN(SYSDATE, T_BIRTH_DATE) / 12, 0) AGE, T_NTNLTY_CODE,
+                T_LANG{LANGUAGE}_NAME GENDER, (SELECT UPPER(T_USER_NAME) FROM T01009 WHERE T_EMP_CODE = T07003.T_UPD_USER) APPT_ENTRY_USER, TO_CHAR(T07003.T_UPD_DATE, 'DD/MM/RRRR') APPT_ENTRY_DATE, T_APPT_TYPE, T_APPT_NO, T_VISIT_NO, T_ARRIVAL_STATUS, T_ARRIVAL_TIME, T_ICD10_MAIN_CODE, T_DOC_ARRIVAL_STATUS,
+                T_DIAGNOSIS, TO_CHAR(T_NXT_FLWUP, 'DD/MM/RRRR') T_NXT_FLWUP, T_FLWUP_TIME, T_SEEN_BY_DOC_TIME, T_OUT_TIME, T_REQUEST_NO, T_REMARKS, T_COMMENT, NVL(T_DOC_ARRIVAL_STATUS, 'X') IS_SAVED, CASE WHEN (TO_DATE('{T_APPT_DATE}', 'DD/MM/YYYY') = TRUNC(SYSDATE)) THEN 'N' ELSE 'Y' END IS_OLD
+                FROM T03001, T02006, T07003 WHERE T03001.T_PAT_NO = T07003.T_PAT_NO AND T_GENDER = T_SEX_CODE AND T_BLOCK_SLOT ='2' AND T07003.T_PAT_NO IS NOT NULL AND T_ARRIVAL_STATUS IS NOT NULL AND T_CLINIC_DOC_CODE = '{T_CLINIC_DOC_CODE}' AND T_CLINIC_CODE = '{T_CLINIC_CODE}'
+                AND T_SCHEDULE_RULE_NO = NVL('{T_SCHEDULE_RULE_NO.Replace("undefined", "")}', T_SCHEDULE_RULE_NO) AND T_APPT_DATE = TO_DATE('{T_APPT_DATE}', 'DD/MM/YYYY') ORDER BY T_APPT_TIME");
+        }
+
+        public string GetClinicType(string T_CLINIC_CODE, string T_SCHEDULE_RULE_NO)
+        {
+            return QueryString($"SELECT T_CLINIC_TYP FROM T07002 WHERE T_CLINIC_CODE = '{T_CLINIC_CODE}' AND T_SCHEDULE_RULE_NO = '{T_SCHEDULE_RULE_NO}'");
+        }
+
+        public IEnumerable<dynamic> GetFollowupAppointments(string T_CLINIC_DOC_CODE, string CLINIC_CODE)
+        {
+            return QueryList<dynamic>($@"SELECT TO_CHAR(APPT_DATE_G, 'DD/MM/RRRR') APPT_DATE_G, T_APPT_TIME, DAY_ENG, RULE_NO FROM V07019 WHERE APPT_DATE_G > TRUNC(SYSDATE) AND NVL(T_CLINIC_DOC_CODE, 'X') = NVL('{T_CLINIC_DOC_CODE}', 'X') AND CLINIC_CODE = '{CLINIC_CODE}'");
+        }
+
+        public bool CheckUserIsConsultant(string T_USER_CODE)
+        {
+            return QueryString($"SELECT A.T_DESIGNATION FROM T02039 A, T35001 B WHERE A.T_DOC_CODE = B.T_DOC_CODE AND B.T_USER_CODE = '{T_USER_CODE}'") == "2";
+        }
+
+        public IEnumerable<dynamic> GetFollowupAppointmentsByDays(string DAYS, string T_CLINIC_CODE)
+        {
+            return QueryList<dynamic>($@"SELECT COUNT(T_ADD_SLOT_FLAG) ADD_SLOT, T_SCHEDULE_RULE_NO, TO_CHAR(T_APPT_DATE, 'DD/MM/RRRR') T_APPT_DATE FROM T07003 WHERE T_APPT_DATE IN (SELECT MIN(T_APPT_DATE) FROM T07003 WHERE T_APPT_DATE >= TRUNC(SYSDATE) + {DAYS}
+                AND  T_CLINIC_CODE = '{T_CLINIC_CODE}') AND T_CLINIC_CODE = '{T_CLINIC_CODE}' AND T_SCHEDULE_RULE_NO IN (SELECT DISTINCT T_SCHEDULE_RULE_NO FROM T07003 WHERE T_APPT_DATE = TRUNC(SYSDATE) AND T_CLINIC_CODE = '{T_CLINIC_CODE}') GROUP BY T_SCHEDULE_RULE_NO, T_APPT_DATE");
+        }
+
+        //public string GetAppointmentCount()
+    }
+}

@@ -1,0 +1,386 @@
+<common formCode="T06209" (permissionLoaded)="setPermission($event)" (saveClicked)="onSaveClicked()" (newClicked)="onNewClicked()" (nextClicked)="onNextClicked()" [isNewVisible]="true" [isNextVisible]="true" [isClearVisible]="true" [isPrintVisible]="true" (clearClicked)="onClearClicked()" (printClicked)="onPrintClicked()">
+  <p-scrollPanel styleClass="scroll">
+    <div class="content" style="width:98% !important">
+      <form [formGroup]="userForm">
+        <table id="t1" style="text-align: center; margin: 10px auto;">
+          <tr>
+            <td style="width: 6%;"><label id="lblPatType" for="txtPatType"></label></td>
+            <td> <input type="text" id="txtPatType" formControlName="txtPatType" autofocus pInputText style="width: 100px" readonly="readonly" [(ngModel)]="obj.T_PAT_TYPE" /></td>
+            <td style="width: 4%;"><label id="lblPatNo" for="txtPatNo"></label></td>
+            <td><input type="text" id="txtPatNo" formControlName="txtPatNo" autofocus pInputText style="width: 100px" readonly="readonly"  (dblclick)="dblPatNo()" (blur)="OnBlurPatNo()" /></td>
+            <td colspan="5"> <input type="text" id="txtPatName" formControlName="txtPatName" autofocus pInputText style="width: 100%" readonly="readonly" /></td>
+            <td><label id="lblGender" for="txtGender"></label></td>
+            <td><input type="text" id="txtGender" formControlName="txtGender" autofocus pInputText style="width: 100px" readonly="readonly" /></td>
+            <td></td>
+            <td><label id="lblStatus" for="txtStatus"></label></td>
+            <td> <input type="text" id="txtStatus" formControlName="txtStatus" autofocus pInputText style="width: 100px" readonly="readonly" /></td>
+            <td><label id="lblAge" for="txtAge"></label></td>
+            <td> <input type="text" id="txtAge" formControlName="txtAge" autofocus pInputText style="width: 100px" readonly="readonly" /></td>
+            <td><input type="text"  autofocus pInputText style="width: 100px" readonly="readonly" /></td>
+            <td><label id="lblYear"></label></td>
+            <td> <input type="text" id="txtMonth" formControlName="txtMonth" autofocus pInputText style="width: 100px" readonly="readonly" /></td>
+            <td><label id="lblMonth" for="txtMonth"></label></td>
+          </tr>
+          <tr>
+            <td><label id="lblNationality" for="txtNationality"></label></td>
+            <td> <input type="text" id="txtNationality" formControlName="txtNationality" autofocus pInputText style="width: 100px" readonly="readonly" /></td>
+            <td><label id="lblDate" for="txtDate"></label></td>
+            <td> <input type="text" id="txtDate" formControlName="txtDate" autofocus pInputText style="width: 100px" readonly="readonly" /></td>
+            <td><label id="lblTime" for="txtTime"></label></td>
+            <td> <input type="text" id="txtTime" formControlName="txtTime" autofocus pInputText style="width: 100px" readonly="readonly" /></td>
+            <!--<td></td>-->
+            <td style="width: 60px;"><label id="lblDocCode" for="txtDocCode"></label></td>
+            <td colspan="3"> <input type="text" id="txtDocCode" formControlName="txtDocCode" autofocus pInputText style="width: 100%" readonly="readonly" (dblclick)="DocCodePopUp()" /> </td>
+            <td colspan="4"> <input type="text" id="txtDocName" formControlName="txtDocName" autofocus pInputText style="width: 100%" readonly="readonly" /> </td>
+            <td><label id="lblClinic" for="txtClinic"></label></td>
+            <td> <input type="text" id="txtClinic" formControlName="txtClinic" autofocus pInputText style="width: 100px" readonly="readonly" /></td>
+            <!-- <td> <input type="text" autofocus pInputText style="width: 100px" readonly="readonly" /></td> -->
+            <td colspan="4"> <input type="text" id="txtClinicName" formControlName="txtClinicName" autofocus pInputText style="width: 100%" readonly="readonly" /></td>
+          </tr>
+          <tr>
+            <td><label id="lblEpisodeNo" for="txtEpisodeNo"></label></td>
+            <td> <input type="text" id="txtEpisodeNo" formControlName="txtEpisodeNo" autofocus pInputText style="width: 100px" readonly="readonly" /></td>
+            <td></td>
+            <td colspan="2"> <label id="lblAdmissionNo" for="txtOpArrivalNo" [hidden]="txtadmissionHide"></label></td>
+            <td colspan="3"> <input type="text" id="txtOpArrivalNo" formControlName="txtOpArrivalNo" autofocus pInputText readonly="readonly" [hidden]="txtadmissionHide" /></td>
+            <!--<td></td>-->
+            <td style="width: 60px;"></td>
+            <td colspan="3"> <label id="lblAdmissionDate" for="txtOpArrivalDate" [hidden]="txtadmissionHide"></label> </td>
+            <td colspan="3"> <input type="text" id="txtOpArrivalDate" formControlName="txtOpArrivalDate" autofocus pInputText readonly="readonly" [hidden]="txtadmissionHide" /> </td>
+            <td></td>
+            <td id="lblVisitTd"><label id="lblVisitNo" for="txtVisitNo" [hidden]="txtVisitHide"></label></td>
+            <td colspan="2"> <input type="text" id="txtVisitNo" formControlName="txtVisitNo" autofocus pInputText style="width: 100%" readonly="readonly" [hidden]="txtVisitHide" /></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="content" style="width:98% !important">
+      <form [formGroup]="userForm">
+        <fieldset>
+          <legend>Risk Factor:</legend>
+          <table id="table2" style="text-align: center;">
+            <tr>
+              <td>
+                <p-checkbox inputId="chkDM" formControlName="chkChangeDM" [binary]="true" [(ngModel)]="DM_model"></p-checkbox>
+              </td>
+              <td> <label id="lblDM" for="chkDM"></label></td>
+              <td>
+                <p-checkbox inputId="chkHTN" formControlName="chkChangeHTM" [binary]="true" [(ngModel)]="HTN_model"></p-checkbox>
+              </td>
+              <td> <label id="lblHTN" for="chkHTN"></label></td>
+              <td>
+                <p-checkbox inputId="chkHyper" formControlName="chkChangeHyper" [binary]="true" [(ngModel)]="HYPER_model"></p-checkbox>
+              </td>
+              <td><label id="lblHYPERLIPIDEMIA" for="chkHyper"></label></td>
+              <td>
+
+                <p-checkbox inputId="chkHD" formControlName="chkChangeHD" [binary]="true" [(ngModel)]="HD_model"></p-checkbox>
+              </td>
+              <td><label id="lblHD" for="chkHD"></label></td>
+              <td>
+                <p-checkbox inputId="chkCVA" formControlName="chkChangeCVA" [binary]="true" [(ngModel)]="CVA_model"></p-checkbox>
+              </td>
+              <td><label id="lblCVA" for="chkCVA"></label></td>
+              <td>
+                <p-checkbox inputId="chkRenal" formControlName="chkChangeRenal" [binary]="true" [(ngModel)]="RENAL_model"></p-checkbox>
+              </td>
+              <td><label id="lblRENALFAILURE" for="chkRenal"></label></td>
+            </tr>
+          </table>
+        </fieldset>
+        <fieldset>
+          <legend class="legend2">Patient Vital Sign:</legend>
+          <div class="leftPart">
+            <table id="leftTable">
+              <tr>
+                <td><label id="lblWeight" for="txtWeight"></label></td>
+                <td><input type="text" id="txtWeight" formControlName="txtWeight" autofocus pInputText style="width: 50px" maxlength="7" /><span><label id="lblKg"></label></span></td>
+                <td></td>
+                <td></td>
+                <td><label id="lblHeight" for="txtHeight"></label></td>
+                <td><input type="text" id="txtHeight" formControlName="txtHeight" autofocus pInputText (blur)="HeightValidate($event)" maxlength="7" /><span><label id="lblMeter"></label></span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><label id="lblBmi" for="txtBmi"></label></td>
+                <td colspan="2"><input type="text" id="txtBmi" formControlName="txtBmi" autofocus pInputText style="width: 100px" (blur)="OnBlurSetBMIindex($event)" maxlength="7" /></td>
+                <!-- (mousedown)="PreTextBMI()" -->
+                <td></td>
+                <td><label id="lblBmiIndex" for="ddlBmiIndex"></label></td>
+                <td colspan="4"><p-dropdown inputId="ddlBmiIndex" formControlName="ddlBmiIndex" [options]="BmiIndexDropDownList" [autoDisplayFirst]="false" optionLabel="T_LANG2_NAME" optionValue="T_INDEX_CODE" [(ngModel)]="selectedBMIindexCode" [style]="{'width':'100%'}" appendTo="body"></p-dropdown></td>
+              </tr>
+              <tr>
+                <td><label id="lblLIMB" for="txtUpperLimb1"></label></td>
+                <td><input type="text" id="txtUpperLimb1" placeholder="sys" formControlName="txtUpperLimb1" autofocus pInputText (blur)="bpSystolicValidate($event)" maxlength="3" /></td>
+                <td><input type="text" id="txtUpperLimb2" placeholder="dia" formControlName="txtUpperLimb2" autofocus pInputText (blur)="bpDiastolicValidate($event)" maxlength="3" /></td>
+                <td></td>
+                <td><label id="lblBloodPressure" for="ddlBloodPressure"></label></td>
+                <td colspan="4"><p-dropdown inputId="ddlBloodPressure" formControlName="ddlBloodPressure" [options]="BPIndexDropDownList" [autoDisplayFirst]="false" optionValue="T_INDEX_CODE" optionLabel="T_LANG2_NAME" [(ngModel)]="selectedBPCode" [style]="{'width':'100%'}" appendTo="body"></p-dropdown></td>
+              </tr>
+              <tr>
+                <td><label id="lblTemperature" for="txtTemperature"></label></td>
+                <td><input type="text" id="txtTemperature" formControlName="txtTemperature" autofocus pInputText (blur)="temperatureValidation($event)" maxlength="7" /><span><label id="lblC"></label></span></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="4"><p-dropdown inputId="ddlTemp" formControlName="ddlTemp" [options]="TempDropDownList" [autoDisplayFirst]="false" optionLabel="T_LANG2_NAME" [style]="{'width':'100%'}" optionValue="T_INDEX_CODE" [(ngModel)]="selected_Temp_Code" appendTo="body"></p-dropdown></td>
+              </tr>
+              <tr>
+                <td><label id="lblPulse" for="txtPulse"></label></td>
+                <td><input type="text" id="txtPulse" formControlName="txtPulse" autofocus pInputText (blur)="PulseValidation($event)" maxlength="3" /></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="4"><p-dropdown inputId="ddlPulse" formControlName="ddlPulse" [options]="PulseDropDownList" [autoDisplayFirst]="false" [(ngModel)]="selected_PULSE_Code" optionLabel="T_LANG2_NAME" optionValue="T_INDEX_CODE" [style]="{'width':'100%'}" appendTo="body"></p-dropdown></td>
+              </tr>
+              <tr>
+                <td><label id="lblRespiration" for="txtRespiration"></label></td>
+                <td><input type="text" id="txtRespiration" formControlName="txtRespiration" autofocus pInputText (blur)="RespirationValidation($event)" maxlength="3"/></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="4"><p-dropdown inputId="ddlRespiration" formControlName="ddlRespiration" [options]="RRDropDownList" [autoDisplayFirst]="false" optionValue="T_INDEX_CODE" optionLabel="T_LANG2_NAME" [style]="{'width':'100%'}" [(ngModel)]="selected_RESPIRATION_Code" appendTo="body"></p-dropdown></td>
+              </tr>
+              <tr>
+                <td><label id="lblSpo2" for="txtSpo2"></label></td>
+                <td><input type="text" id="txtSpo2" formControlName="txtSpo2" autofocus pInputText maxlength="5" /></td>
+                <td></td>
+                <td></td>
+                <td><label id="lblHeadFlag" for="txtHeadFlag"></label></td>
+                <td colspan="4">
+                  <p-checkbox inputId="chkHeadFlag" formControlName="chkHeadFlag" [binary]="true" [(ngModel)]="obj.HaedFlagCheck" (onChange)="OnHeadFlagChange($event)"></p-checkbox>
+                </td>
+              </tr>
+              <tr>
+                <td><label id="lblHandCircumference" for="txtHandCircumference"></label></td>
+                <td><input type="text" id="txtHandCircumference" formControlName="txtHandCircumference" autofocus pInputText style="width: 50px" maxlength="5" /></td>
+                <td></td>
+                <td></td>
+                <td><label id="lblHeadCircum" for="txtHeadCircum"></label></td>
+                <td colspan="2"><input type="text" id="txtHeadCircum" formControlName="txtHeadCircum" [attr.disabled]="HeadFlagdisabled ? '' : null" autofocus pInputText style="width: 65px" maxlength="5"/></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><label id="lblGlucoseFasting" for="txtGlucose"></label></td>
+                <td><input type="text" id="txtGlucose" formControlName="txtGlucose" autofocus pInputText style="width: 50px" maxlength="5" /></td>
+                <td><label id="lblRandom" for="txtRandom"></label></td>
+                <td><input type="text" id="txtRandom" formControlName="txtRandom" autofocus pInputText style="width: 50px" (blur)="RandomValidation($event)" maxlength="7" /></td>
+                <td></td>
+                <td colspan="4"><p-dropdown inputId="ddlRandom" formControlName="ddlRandom" [options]="GLDropDownList" [autoDisplayFirst]="false" [(ngModel)]="selected_Random_Code" optionLabel="T_LANG2_NAME" optionValue="T_INDEX_CODE" [style]="{'width':'100%'}" appendTo="body"></p-dropdown></td>
+
+              </tr>
+              <tr>
+                <td><label id="lblMedicalHx" for="ddlMedicalHx"></label></td>
+                <td colspan="2"><p-dropdown inputId="ddlMedicalHx" formControlName="ddlMedicalHx" [options]="MedHxDropDownList" [autoDisplayFirst]="false" [(ngModel)]="selected_MedEx_Value" optionLabel="T_LANG2_NAME" [style]="{'width':'100px'}" (onChange)="OnChangeMedicalHx($event)" appendTo="body"></p-dropdown></td>
+                <td></td>
+                <td></td>
+                <td colspan="4"><input type="text" id="txtMedEx" formControlName="txtMedEx" autofocus pInputText style="width: 100%" (dblclick)="PopUpMedEx($event)" /></td>
+              </tr>
+              <tr>
+                <td><label id="lblNotes" for="txtNotes"></label></td>
+                <td colspan="8"><textarea id="txtNotes" formControlName="txtNotes" rows="4" cols="70" (dblclick)="PopUpMedEx($event)"></textarea></td>
+              </tr>
+            </table>
+          </div>
+          <div class="vl"></div>
+          <div class="rightPart">
+            <table id="table3" style="text-align: center;">
+              <fieldset>
+                <legend>Allergies:</legend>
+              <tr>
+                <td><label id="lblAllergy" for="chkAllergy"></label></td>
+                <td class="checkBoxes">
+                  <p-checkbox inputId="chkChangeAllergy" formControlName="chkChangeAllergy"  [binary]="true"  (onChange)="OnAllergyCheckBox($event)" ></p-checkbox>
+                  
+                </td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td><label id="lblAllergyDiet" for="ddlAllergyDiet"></label></td>
+                <td colspan="3"><p-dropdown inputId="ddlAllergyDiet" formControlName="ddlAllergyDiet" [options]="AllergyDietDropDownList" [autoDisplayFirst]="false" optionValue="T_INDEX_CODE" optionLabel="T_LANG2_NAME" [style]="{'width':'100%'}" [(ngModel)]="selectAllergyDiet" [disabled]="disableAllergy" appendTo="body"></p-dropdown></td>
+              </tr>
+              <tr>
+                <td><label id="lblAllergyMed" for="ddlAllergyMed">.</label></td>
+                <td colspan="3"><p-dropdown inputId="ddlAllergyMed" formControlName="ddlAllergyMed" [options]="AllergyMedDropDownList" [autoDisplayFirst]="false" optionValue="T_INDEX_CODE" optionLabel="T_LANG2_NAME" [style]="{'width':'100%'}" [disabled]="disableAllergy" [(ngModel)]="selectAllergyMed" appendTo="body"></p-dropdown></td>
+              </tr>
+              <tr>
+                <td><label id="lblOtherAllergy" for="txtOtherAllergy"></label></td>
+                <td colspan="3">
+                  <input type="text" id="txtOtherAllergy" formControlName="txtOtherAllergy" autofocus pInputText [attr.disabled]="disabled ? '' : null" style="width: 100%" />
+                </td>
+              </tr>
+        </fieldset>
+    <tr>
+      <td>
+        <table style="margin: 0px;">
+          <tr>
+            <td><label id="lblRecommendation" for="ddlRecommendation"></label></td>
+            <td colspan="3"><p-dropdown inputId="ddlRecommendation" formControlName="ddlRecommendation" [options]="RecommendationDropDownList" [autoDisplayFirst]="false" (onChange)="onChangeRecommendation($event)" optionLabel="T_INDEX_CODE" optionLabel="T_LANG2_NAME" [(ngModel)]="selected_Recommendation_Value" [style]="{'width':'100%'}"></p-dropdown></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td colspan="3"><input type="text" id="txtRecommendation" formControlName="txtRecommendation" autofocus pInputText style="width: 100%" (dblclick)="popUpForRecommText()" /></td>
+          </tr>
+          <tr>
+            <td><label id="lblSmoking" for="txtSmoking"></label></td>
+            <td><p-dropdown inputId="ddlSmoking" formControlName="ddlSmoking" [options]="SmokingDropDownList" [autoDisplayFirst]="false" optionValue="CODE" [disabled]="smokeDisable" optionLabel="NAME" [style]="{'width':'100%'}" appendTo="body" [(ngModel)]="selectSmoke" (onChange)="OnSmokingChange($event)"></p-dropdown></td>
+            <td><label id="lblSD" for="txtSD"></label></td>
+            <td><input type="text" id="txtSD" formControlName="txtSD" autofocus pInputText style="width: 50px" [attr.disabled]="smokeDisable ? '' : null" maxlength="8"/></td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <fieldset>
+      <legend>Pregnancy Information</legend>
+    <tr>
+      <td><label id="lblPregnant" for="ddlPregnant"></label></td>
+      <td colspan="2"><p-dropdown inputId="ddlPregnant" formControlName="ddlPregnant" [options]="PregnantDropDownList" [autoDisplayFirst]="false" [style]="{'width':'100px'}" optionLabel="NAME" optionValue="CODE" [disabled]="pregDisable" (onChange)="OnPregnancyChange($event)" [(ngModel)]="selectPregnant" appendTo="body"></p-dropdown></td>
+      <td></td>
+
+      <td><label id="lblWeek" for="txtWeek"></label></td>
+      <td><input type="text" id="txtWeek" formControlName="txtWeek" autofocus pInputText style="width: 50px" [attr.disabled]="pregDisable ? '' : null" maxlength="2"/></td>
+    </tr>
+    <tr>
+      <td><label id="lblLMPDate" for="txtLMP"></label></td>
+      <td colspan="2"><input type="text" id="txtLMP" formControlName="txtLMP" autofocus pInputText style="width: 104px" [attr.disabled]="pregDisable ? '' : null" maxlength="11"/></td>
+      <td><label>(DD/MM/YY)</label></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><label id="lblGravida" for="txtGravida"></label></td>
+      <td colspan="2"><input type="text" id="txtGravida" formControlName="txtGravida" autofocus pInputText style="width: 104px" [attr.disabled]="pregDisable ? '' : null" maxlength="2"/></td>
+      <td></td>
+      <!-- <td ><input type="text" id="txtPatNo" formControlName="txtPatNo" autofocus pInputText style="width: 50px" /></td>   -->
+      <td><label id="lblPara" for="txtPara"></label></td>
+      <td><input type="text" id="txtPara" formControlName="txtPara" autofocus pInputText style="width: 50px" [attr.disabled]="pregDisable ? '' : null" maxlength="2" /></td>
+    </tr>
+    <tr>
+      <td><label id="lblAbortion" for="txtAbortion"></label></td>
+      <td colspan="2"><input type="text" id="txtAbortion" formControlName="txtAbortion" autofocus pInputText style="width: 104px" [attr.disabled]="pregDisable ? '' : null" maxlength="2"/></td>
+      <td colspan="2"><label id="lblTetenus" for="chkTetenus"></label></td>
+      <td class="checkBoxes">
+        <p-checkbox inputId="chkTetenus" formControlName="chkChangeTetenus" [binary]="true" (onChange)="OnTetenusCheckBox($event)" [(ngModel)]="Tetenus_Flag" [disabled]="pregDisable"></p-checkbox>
+      </td>
+    </tr>
+    <tr>
+      <td><label id="lblLastDose" for="txtLastDose"></label></td>
+      <td colspan="2"><input type="text" id="txtLastDose" formControlName="txtLastDose" autofocus pInputText style="width: 104px" [attr.disabled]="pregDisable ? '' : null" maxlength="11" /></td>
+      <td></td>
+      <td><label id="lblLocation" for="ddlLocation"></label></td>
+      <td><p-dropdown inputId="ddlLocation" formControlName="ddlLocation" [options]="LocationDropDownlist" [autoDisplayFirst]="false" optionValue="CODE" optionLabel="NAME" [style]="{'width':'100px'}" [(ngModel)]="selected_Location_Code" appendTo="body"></p-dropdown></td>
+    </tr>
+    </fieldset>
+    </table>
+    </div>
+    <div>
+      <table id="table4">
+        <tr>
+          <td><label id="lblEnteredBy" for="txtEnteredBy"></label></td>
+          <td colspan="4"><input type="text" id="txtEnteredBy" formControlName="txtEnteredBy" autofocus pInputText style="width: 100%" /></td>
+          <td><label id="lblEntryDate" for="txtEntryDate"></label></td>
+          <td><input type="text" id="txtEntryDate" formControlName="txtEntryDate" autofocus pInputText style="width: 80px" /></td>
+          <td><label id="lblEntryTime" for="txtEntryTime"></label></td>
+          <td><input type="text" id="txtEntryTime" formControlName="txtEntryTime" autofocus pInputText style="width: 70px" /></td>
+          <td><label id="lblModifiedBy" for="txtModifiedBy"></label></td>
+          <td><input type="text" id="txtModifiedBy" formControlName="txtModifiedBy" autofocus pInputText style="width: 100%" /></td>
+          <td><label id="lblModifiedDate" for="txtModifiedDate"></label></td>
+          <td><input type="text" id="txtModifiedDate" formControlName="txtModifiedDate" autofocus pInputText style="width: 100px" /></td>
+        </tr>
+      </table>
+    </div>
+    </fieldset>
+    </form>
+    </div>
+  </p-scrollPanel>
+  <!-- patient Number PopUp start -->
+  <p-dialog id="PatNoPopUp" header="Patient List" [modal]="true" [(visible)]="PatNoPopupDisplay" [style]="{width: '50%'}" appendTobody="true">
+    <p-table #dt1 [value]="PatientPopUpDataList" [paginator]="true" [rows]="10" selectionMode="single">
+      <ng-template pTemplate="caption">
+        <div class="table-header">
+          Patient Search
+          <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" id="PatSearch" (input)="filterGlobalPatList()" [(ngModel)]="search" placeholder="Search..." />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th [style]="{width:'100px'}">{{userLang == '1' ? 'اسم المريض' : 'Pat Name'}}</th>
+          <th [style]="{width:'30px'}">{{userLang == '1' ? 'رقم المريض' : 'Pat No'}}</th>
+          <th [style]="{width:'30px'}">{{userLang == '1' ? 'نوع' : 'Type'}}</th>
+          <th [style]="{width:'30px'}">{{userLang == '1' ? 'موقع' : 'Location'}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-y>
+        <tr (dblclick)="onSelectPatPopup(y)" [pSelectableRow]="y">
+          <td> {{ y.PAT_NAME}} </td>
+          <td>{{ y.T_PAT_NO }}</td>
+          <td> {{ y.TYPE}} </td>
+          <td> {{ y.T_WARD_NO}} </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-dialog>  -->
+  <!-- patient Number PopUp End -->
+  <!-- Doctor PopUp start -->
+  <p-dialog id="DoctorPopUp" header="Doctor List" [modal]="true" [(visible)]="DoctorPopupDisplay" [style]="{width: '50%'}" appendTobody="true">
+    <p-table #dt1 [value]="DoctorPopUpDataList" [paginator]="true" [rows]="10" selectionMode="single">
+      <ng-template pTemplate="caption">
+        <div class="table-header">
+          Patient Search
+          <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="filterGlobalDoctorList()" [(ngModel)]="search" placeholder="Search..." />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th [style]="{width:'90px'}">{{userLang == '1' ? 'الشفرة' : 'CODE'}}</th>
+          <th [style]="{width:'430px'}">{{userLang == '1' ? 'اسم' : 'DOCTOR NAME'}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-y>
+        <tr (dblclick)="onSelectDoctorPopup(y)" [pSelectableRow]="y">
+          <td>{{ y.T_DOC_CODE }}</td>
+          <td>{{ y.DOCTOR_NAME}}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-dialog>
+  <!-- patient Number PopUp End -->
+  <!-- Recommendation PopUp Start -->
+  <p-dialog id="RecommendPopUp" header="Recommendations List" [modal]="true" [(visible)]="RecomPopupDisplay" [style]="{width: ''}" appendTobody="true">
+    <ng-template pTemplate="body">
+      <div class="table-header">
+        <textarea pInputText name="" id="txtPopRecom" cols="42" rows="04" autofocus [(ngModel)]="obj.Recom"></textarea>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <p-button (click)="clickRecomOK()" label="Ok" styleClass="p-button-success"></p-button>
+      <p-button (click)="clickPopUpCancel($event,'recom')" label="Cancel" styleClass="p-button-secondary"></p-button>
+      <p-button (click)="clickPopupSearch($event,'recom')" label="Search" styleClass="p-button-help"></p-button>
+    </ng-template>
+  </p-dialog>
+  <!-- Recommendation PopUp End -->
+  <!-- MedHx PopUp Start -->
+  <p-dialog id="MedHxPopUp" header="{{PopupHeader}}" [modal]="true" [(visible)]="MedHxPopupDisplay" [style]="{width: ''}" appendTobody="true">
+    <ng-template pTemplate="body">
+      <div class="table-header">
+        <textarea pInputText name="" id="txtPopMedHx" cols="30" rows="04" autofocus [(ngModel)]="obj.MedHx"></textarea>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="footer">
+      <p-button (click)="clickMedHxOK($event)" label="Ok" styleClass="p-button-success"></p-button>
+      <p-button (click)="clickPopUpCancel($event,'med')" label="Cancel" styleClass="p-button-secondary"></p-button>
+      <p-button (click)="clickPopupSearch($event,'med')" label="Search" styleClass="p-button-help"></p-button>
+    </ng-template>
+  </p-dialog>
+  <!-- MedHx PopUp End -->
+</common>

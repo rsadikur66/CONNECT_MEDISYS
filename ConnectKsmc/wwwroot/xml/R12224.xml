@@ -1,0 +1,20 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="R12224" msprop:BaseTable.0="T_1" msprop:ODPParserError="True">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="T_LANG2_NAME" msprop:BaseColumn="T_LANG2_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="VIRUS_CODE" msprop:BaseColumn="VIRUS_CODE" msprop:OraDbType="107" type="xs:decimal" minOccurs="0" />
+              <xs:element name="T_UNIT_NO" msprop:BaseColumn="T_UNIT_NO" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="RESULT_1" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="RESULT_2" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

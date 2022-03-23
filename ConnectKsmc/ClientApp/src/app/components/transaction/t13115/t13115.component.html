@@ -1,0 +1,218 @@
+<common formCode="T13115" (permissionLoaded)="setPermission($event)" (saveClicked)="onSaveClicked()" (clearClicked)="onClearClicked()" [isPrintVisible]="true" (printClicked)="onPrintClicked()">
+  <p-scrollPanel styleClass="scroll">
+    <div class="content">
+      <form [formGroup]="userForm">
+        <table border="0">
+          <tr>
+            <td>
+              <label id="lblRequestNo" for="txtRequestNo"></label>
+            </td>
+            <td>
+              <input type="text" id="txtRequestNo" formControlName="txtRequestNo" maxlength="10" autofocus pInputText pKeyFilter="pint" style="width: 100px" (blur)="onRequestNoBlur()" />
+            </td>
+            <td>
+              <label id="lblRequestDate" for="txtRequestDate"></label>
+            </td>
+            <td>
+              <input type="text" id="txtRequestDate" formControlName="txtRequestDate" pInputText style="width: 100px" readonly="readonly" /><span style="display: inline-block; width: 2px"></span>
+            </td>
+            <td>
+              <label id="lblRequestTime" for="txtRequestTime"></label>
+            </td>
+            <td>
+              <p-inputMask inputId="txtRequestTime" formControlName="txtRequestTime" mask="99:99" [style]="{'width': '120px'}" [readonly]="true"></p-inputMask>
+            </td>
+            <td>
+              <label id="lblGender" for="txtGender"></label>
+            </td>
+            <td>
+              <input type="text" id="txtGender" formControlName="txtGender" pInputText style="width: 100px" readonly="readonly" />
+            </td>
+
+          </tr>
+          <tr>
+            <td>
+              <label id="lblPatNo" for="txtPatNo"></label>
+            </td>
+            <td>
+              <input type="text" id="txtPatNo" formControlName="txtPatNo" pInputText style="width: 100px" readonly="readonly" />
+            </td>
+            <td colspan="3">
+              <input type="text" id="txtPatName" formControlName="txtPatName" pInputText style="width: 330px" readonly="readonly" />
+            </td>
+            <td>
+              <label id="lblYears" for="txtYears"></label>
+              <input type="text" id="txtYears" formControlName="txtYears" pInputText style="width: 31px" readonly="readonly" />
+              <label id="lblMonths" for="txtMonths"></label> <input type="text" id="txtMonths" formControlName="txtMonths" pInputText style="width: 31px" readonly="readonly" />
+            </td>
+
+
+            <td>
+              <label id="lblMStatus" for="txtMStatus"></label>
+            </td>
+            <td>
+              <input type="text" id="txtMStatus" formControlName="txtMStatus" pInputText style="width: 100px" readonly="readonly" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label id="lblPriority" for="ddlPriority">Priority</label>
+            </td>
+            <td>
+              <p-dropdown inputId="ddlPriority" formControlName="ddlPriority" [options]="priorities" optionLabel="PRIORITY_NAME" [resetFilterOnHide]="true"
+                          [style]="{'width':'100%'}" appendTo="body" [autoDisplayFirst]="false" [showClear]="true"></p-dropdown>
+
+            </td>
+
+            <td>
+              <label id="lblPatType" for="ddlPatType">PatType</label>
+            </td>
+            <td>
+              <p-dropdown inputId="ddlPatType" formControlName="ddlPatType" [options]="patientTypes" optionLabel="PATIENT_TYPE" [resetFilterOnHide]="true"
+                          [style]="{'width':'100%'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false" (onChange)="onPatTypeChange()"></p-dropdown>
+            </td>
+            <td></td>
+            <td><input type="text" id="txtEpisodeNo" formControlName="txtEpisodeNo" pInputText style="width: 120px" readonly="readonly" /></td>
+            <td>
+              <label id="lblNationality" for="txtNationality">Nationality</label>
+            </td>
+            <td>
+              <input type="text" id="txtNationality" formControlName="txtNationality" pInputText style="width: 100px" readonly="readonly" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label id="lblClinicData" for="txtClinicData">Clinic Data</label>
+            </td>
+            <td colspan="4">
+              <input type="text" id="txtClinicData" formControlName="txtClinicData" pInputText style="width:435px" />
+            </td>
+
+            <td>
+              <label id="lblSpecimenDate" for="txtTestToBeDone">Specimen Date</label>
+            </td>
+            <td>
+              <p-inputMask inputId="txtTestToBeDone" formControlName="txtTestToBeDone" mask="99/99/9999" slotChar="dd/mm/yyyy" [style]="{'width': '100px'}" (onBlur)="onTestToBeDone()"></p-inputMask>
+            </td>
+            <td><input type="text" id="txtTestDay" formControlName="txtTestDay" pInputText style="width: 100px" readonly="readonly" /> </td>
+          </tr>
+          <tr>
+            <td>
+              <label id="lblComments" for="txtComments">Comments</label>
+            </td>
+            <td colspan="4">
+              <input type="text" id="txtComments" formControlName="txtComments" pInputText style="width:435px" />
+            </td>
+
+            <td></td>
+            <td> </td>
+            <td> </td>
+          </tr>
+
+        </table>
+        <br />
+        <table>
+          <tr>
+            <td> <label id="lblWorkStation" for="txtComments">Lab Location</label></td>
+            <td>
+              <p-dropdown inputId="ddlWorkStation" formControlName="ddlWorkStation" [options]="workStation" optionLabel="NAME" [resetFilterOnHide]="true"
+                          [style]="{'width':'200px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false" (onChange)="onWorkStationChange()"></p-dropdown>
+            </td>
+            <td><label id="lblSearchTestByName" for="txtSearchTestByName">Search Test By Name</label></td>
+            <td>
+              <input type="text" id="txtSearchTestByName" formControlName="txtSearchTestByName" pInputText style="width:150px" />
+            </td>
+          </tr>
+        </table>
+      </form> 
+      <hr />
+        <div style="position:relative; width:100%;overflow:auto;">
+          <div style="position: relative; width: 30%; float: left;">
+            <p-table #dt1 [value]="labData" [scrollable]="true" scrollHeight="260px" [resizableColumns]="true">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="max-width:10%;"></th>
+                  <th style="width:90%;text-align:center"><label id="lblAnalysis">Analysis</label></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                <tr [pSelectableRow]="rowData" style="height:20px">
+                  <td pEditableColumn style="max-width: 10%;">
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-checkbox [(ngModel)]="rowData.IS_CHECKED" value="1"></p-checkbox>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                        <p-checkbox [(ngModel)]="rowData.IS_CHECKED" value="1"></p-checkbox>
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+                  <td style="width:90%;">{{ rowData.ANALYSIS_NAME }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <div style="position: relative; width: 5%; float: left; ">
+            <table border="0" style="vertical-align:middle;text-align:center">
+              <tr style="height:100px"><td></td></tr>
+              <tr>
+                <td><button (click)="onRightArrowClick()" style="height:10px;cursor:pointer;border:1px solid gray;border-radius:2px;height: 25px;width:40px"><b>>></b></button></td>
+              </tr>
+              <tr style="height:10px"><td></td></tr>
+              <tr>
+                <td><button (click)="onLeftArrowClick()" style="height:10px;cursor:pointer;border:1px solid gray;border-radius:2px;height: 25px;width:40px"><b><<</b></button></td>
+              </tr>
+            </table>
+          </div>
+          <div style="position: relative; width: 65%; float: left; ">
+            <p-table #dt [value]="RequestData" [paginator]="true" [rows]="12" selectionMode="single" [resizableColumns]="true" [scrollable]="true" scrollHeight="260px">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th colspan="2" style="width:22%;text-align:center;" >Worksation</th>
+                  
+                  <th colspan="2" style="text-align:center"><label id="lblAnalysis">Analysis</label></th>
+                  <th  style="text-align:center">TB Diagnosis</th>
+                  <th style="text-align:center">Comments</th>
+                  <th colspan="2" style="text-align:center">nature of or</th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+                <tr [pSelectableRow]="rowData" style="height:20px">
+                  <td style="width:5%;text-align:center" >{{ rowData.T_WS_CODE }}</td>
+                  <td style="width:17%;">{{ rowData.WS_NAME }}</td>
+                  <td style="width:5%;text-align:center" >{{ rowData.T_ANALYSIS_CODE }}</td>
+                  <td style="width:17%;">{{ rowData.ANALYSIS_NAME }}</td>
+                  <td pEditableColumn style="width:12%;">
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <p-dropdown [options]="diagList" [(ngModel)]="rowData.T_TB_DIAG1" [style]="{'width':'100%'}" (onChange)="onTextChange(rowIndex)"
+                                    [showClear]="true" placeholder="Select.." [resetFilterOnHide]="true"></p-dropdown>
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                        {{rowData.T_TB_DIAG1}}
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+                  <td pEditableColumn style="width:22%;">
+                    <p-cellEditor>
+                      <ng-template pTemplate="input">
+                        <input type="text" pInputText [(ngModel)]="rowData.T_ANALYSIS_LINE" />
+                      </ng-template>
+                      <ng-template pTemplate="output">
+                        {{rowData.COMMENT}}
+                      </ng-template>
+                    </p-cellEditor>
+                  </td>
+                  <td style="width:5%;" (dblclick)="onSiteDblClick(rowIndex)">{{ rowData.T_SPECIMEN_CODE }}</td>
+                  <td style="width:17%;">{{ rowData.SPECIMEN_NAME }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+
+          </div>
+        </div>
+      </div>
+    
+    
+   </p-scrollPanel>
+</common>

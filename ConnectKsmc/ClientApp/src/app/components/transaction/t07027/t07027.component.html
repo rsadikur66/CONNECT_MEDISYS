@@ -1,0 +1,211 @@
+<common formCode="T07027" (permissionLoaded)="setPermission($event)" (saveClicked)="onSaveClicked()" (newClicked)="onNewClicked()" (nextClicked)="onNextClicked()" [isNewVisible]="true" [isNextVisible]="true" [isClearVisible]="true" [isPrintVisible]="true" (clearClicked)="onClearClicked()" (printClicked)="onPrintClicked()">
+  <p-scrollPanel styleClass="scroll">
+    <div class="content" style="width:900px !important">
+      <form [formGroup]="userForm">
+        <table style="text-align: center; margin: 10px auto;">
+          <tr>
+            <td>
+              <label id="lblPatNo" for="txtPatNo">Pat No.</label>
+            </td>
+            <td>
+              <input type="text" id="txtPatNo" formControlName="txtPatNo" autofocus pInputText style="width: 100px" readonly="readonly" [(ngModel)]="obj.T_PAT_NO" />
+            </td>
+            <td>
+              <input type="text" id="txtPatName" formControlName="txtPatName" autofocus pInputText style="width: 100%" readonly="readonly" [(ngModel)]="obj.T_PAT_ENG_NAME" />
+            </td>
+            <td></td>
+            <td style="float: right;">
+              <input type="text" id="txtAge" formControlName="txtAge" autofocus pInputText style="width: 50px" readonly="readonly" [(ngModel)]="obj.T_AGE_YEARS" />
+            </td>
+            <td>
+              <label id="lblYears" for="txtAge">Yrs</label>
+            </td>
+            <td>
+              <input type="text" id="txtAgeM" formControlName="txtAgeM" autofocus pInputText style="width: 50px" readonly="readonly" [(ngModel)]="obj.T_AGE_MONTHS" />
+            </td>
+            <td style="float: left;">
+              <label id="lblMonth" for="txtAgeM">Mos</label>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label id="lblGender" for="txtGenderDesc">Gender</label>
+            </td>
+            <td>
+              <input type="text" id="txtGenderDesc" formControlName="txtGenderDesc" autofocus pInputText style="width: 100px" readonly="readonly" [(ngModel)]="obj.T_PAT_GENDER" />
+            </td>
+            <td>
+              <input type="text" id="txtPatNameArb" formControlName="txtPatNameArb" autofocus pInputText style="width: 100%" readonly="readonly" [(ngModel)]="obj.T_PAT_ARB_NAME" />
+            </td>
+            <td>
+              <label id="lblMrtlSt" for="txtMrtlSt">Marital Status</label>
+            </td>
+            <td>
+              <input type="text" id="txtMrtlSt" formControlName="txtMrtlSt" autofocus pInputText style="width: 100px" readonly="readonly" [(ngModel)]="obj.T_PAT_MRTLST" />
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>
+              <label id="lblId" for="txtId">ID</label>
+            </td>
+            <td>
+              <input type="text" id="txtId" formControlName="txtId" autofocus pInputText style="width: 100px" readonly="readonly" [(ngModel)]="obj.T_PAT_NTNLTY_ID" />
+            </td>
+            <td></td>
+            <td>
+              <label id="lblNationality" for="txtNationality">Nationality</label>
+            </td>
+            <td>
+              <input type="text" id="txtNationality" formControlName="txtNationality" autofocus pInputText style="width: 100px" readonly="readonly" [(ngModel)]="obj.T_PAT_NATIONALITY" />
+            </td>
+            <td></td>
+            <td>
+              <label id="lblMobileNo" for="txtMobileNo">Mobile No</label>
+            </td>
+            <td>
+              <input type="text" id="txtMobileNo" formControlName="txtMobileNo" autofocus pInputText style="width: 100px" readonly="readonly" [(ngModel)]="obj.T_PAT_MOBILE" />
+            </td>
+          </tr>
+        </table>
+        <br />
+        <table>
+          <tr>
+            <td><label id="lblReqNo" for="txtReqNo">Request No</label></td>
+            <td colspan="2">
+              <input type="text" id="txtReqNo" formControlName="txtReqNo" autofocus pInputText style="width: 125px" readonly="readonly" />
+            </td>
+            <td style="float: right;"><label id="lblReqTime" for="txtReqTime">Time</label></td>
+            <td>
+              <input type="text" id="txtReqTime" formControlName="txtReqTime" autofocus pInputText style="width: 100px" readonly="readonly" />
+            </td>
+            <td><label id="lblReqDate" for="txtReqDate">Req. Date</label></td>
+            <td>
+              <input type="text" id="txtReqDate" formControlName="txtReqDate" autofocus pInputText style="width: 100px" readonly="readonly" />
+            </td>
+          </tr>
+          <tr>
+            <td><label id="lblApptDate" for="txtApptDate">Appt Date</label></td>
+            <td colspan="2">              
+              <p-dropdown inputId="ddlApptDate" formControlName="ddlApptDate" [options]="AppDateDropDownList" [autoDisplayFirst]="false"   optionLabel="NAME"  [style]="{'width':'125px'}" appendTo="body"></p-dropdown>
+            </td>
+            <td style="float: right;"><label id="lblApptDateH" for="txtApptDateH">H</label></td>
+            <td>
+              <input type="text" id="txtApptDateH" formControlName="txtApptDateH" autofocus pInputText style="width: 100px" readonly="readonly" />
+            </td>
+            <td><label id="lblDay" for="txtDay">Appt Day</label></td>
+            <td>
+              <input type="text" id="txtDay" formControlName="txtDay" autofocus pInputText style="width: 100px" readonly="readonly" />
+            </td>
+          </tr>
+          <tr>
+            <td><label id="lblClinicSpclty" for="txtClncSpclty">Clinic Spclty</label></td>
+            <td>
+              <input type="text" id="txtClncSpclty" formControlName="txtClncSpclty" autofocus pInputText style="width: 125px" readonly="readonly" (dblclick)="dblClinicSpclty()" />
+            </td>
+            <td colspan="3">
+              <input type="text" id="txtClinicSpcltyName" formControlName="txtClinicSpcltyName" autofocus pInputText style="width: 100%" readonly="readonly" />
+            </td>
+          </tr>
+          <tr>
+            <td><label id="lblClncCode" for="txtClinicCode">Clinic Code</label></td>
+            <td>
+              <input type="text" id="txtClinicCode" formControlName="txtClinicCode" autofocus pInputText style="width: 125px" readonly="readonly" (dblclick)="dblClinic()" />
+            </td>
+            <td colspan="3">
+              <input type="text" id="txtClinicName" formControlName="txtClinicName" autofocus pInputText style="width: 100%" readonly="readonly" />
+            </td>
+          </tr>
+          <tr>
+            <td><label id="lblClncDocCode" for="txtClinicDoc">Clinic Doc Code</label></td>
+            <td>
+              <input type="text" id="txtClinicDoc" formControlName="txtClinicDoc" autofocus pInputText style="width: 125px" readonly="readonly" (dblclick)="dblClinicDoc()" />
+            </td>
+            <td colspan="3">
+              <input type="text" id="txtClinicDocName" formControlName="txtClinicDocName" autofocus pInputText style="width: 100%" readonly="readonly" />
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </p-scrollPanel>
+  <p-dialog id="pupUpUnit" header="Clinic Spclty List" [modal]="true" [(visible)]="ClinicSpcltypopupDisplay" [style]="{width: '570px'}" appendTobody="true">
+    <p-table #dt1 [value]="clinicSpecialityList" [paginator]="true" [rows]="10" selectionMode="single">
+      <ng-template pTemplate="caption">
+        <div class="table-header">
+          SPCLTY Search
+          <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="filterGlobal()" [(ngModel)]="search" placeholder="Search..." />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th [style]="{width:'90px'}">{{userLang == '1' ? 'الشفرة' : 'CODE'}}</th>
+          <th [style]="{width:'430px'}">{{userLang == '1' ? 'اسم' : 'NAME'}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-y>
+        <tr (dblclick)="onSelectSPCLTYPopup(y)" [pSelectableRow]="y">
+          <td>{{ y.T_SPCLTY_CODE }}</td>
+          <td>{{ y.T_SPCLTY_NAME }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-dialog>
+
+  <p-dialog id="pupUpUnit" header="Clinic List" [modal]="true" [(visible)]="ClinicPopupDisplay" [style]="{width: '570px'}" appendTobody="true">
+    <p-table #dt1 [value]="clinicList" [paginator]="true" [rows]="10" selectionMode="single">
+      <ng-template pTemplate="caption">
+        <div class="table-header">
+          CLINIC Search
+          <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="filterGlobalClinic()" [(ngModel)]="search" placeholder="Search..." />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th [style]="{width:'90px'}">{{userLang == '1' ? 'الشفرة' : 'CODE'}}</th>
+          <th [style]="{width:'430px'}">{{userLang == '1' ? 'اسم' : 'NAME'}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-y>
+        <tr (dblclick)="onSelectClinicPopup(y)" [pSelectableRow]="y">
+          <td>{{ y.T_CLINIC_CODE }}</td>
+          <td>{{ y.CLINIC_NAME }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-dialog>
+
+  <p-dialog id="pupUpUnit" header="Clinic Doc List" [modal]="true" [(visible)]="ClinicDocPopupDisplay" [style]="{width: '570px'}" appendTobody="true">
+    <p-table #dt1 [value]="clinicDocList" [paginator]="true" [rows]="10" selectionMode="single">
+      <ng-template pTemplate="caption">
+        <div class="table-header">
+          DOC Search
+          <span class="p-input-icon-right">
+            <i class="pi pi-search"></i>
+            <input pInputText type="text" (input)="filterGlobalClinicDoc()" [(ngModel)]="search" placeholder="Search..." />
+          </span>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th [style]="{width:'90px'}">{{userLang == '1' ? 'الشفرة' : 'CODE'}}</th>
+          <th [style]="{width:'430px'}">{{userLang == '1' ? 'اسم' : 'NAME'}}</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-y>
+        <tr (dblclick)="onSelectDocPopup(y)" [pSelectableRow]="y">
+          <td>{{ y.T_DOC_CODE }}</td>
+          <td>{{ y.DOC_NAME }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-dialog>
+</common>

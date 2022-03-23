@@ -1,0 +1,104 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:MainDataTable="R30014" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="R30014" msprop:BaseTable.0="V30112" msprop:BaseTable.4="T30036" msprop:BaseTable.2="T30009" msprop:BaseTable.1="T30014" msprop:BaseTable.3="T30010">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="T_MEDICINE_NAME" msprop:BaseColumn="T_MEDICINE_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_UPD_DATE" msprop:BaseColumn="T_UPD_DATE" msprop:OraDbType="106" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="T_UPD_USER" msprop:BaseColumn="T_UPD_USER" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_PAT_NO" msprop:BaseColumn="T_PAT_NO" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_WORK_STATION" msprop:BaseColumn="T_WORK_STATION" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_IOS_NUMBER" msprop:BaseColumn="T_IOS_NUMBER" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_SUB_NUMBER" msprop:BaseColumn="T_SUB_NUMBER" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_IOS_QTY" msprop:BaseColumn="T_IOS_QTY" msprop:OraDbType="107" type="xs:decimal" minOccurs="0" />
+              <xs:element name="T_PRIORITY_CODE" msprop:BaseColumn="T_PRIORITY_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_STATUS_CODE" msprop:BaseColumn="T_STATUS_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_ENTRY_DATE" msprop:BaseColumn="T_ENTRY_DATE" msprop:OraDbType="106" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="T_ENTRY_USER" msprop:BaseColumn="T_ENTRY_USER" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_ENTRY_TIME" msprop:BaseColumn="T_ENTRY_TIME" msprop:OraDbType="107" type="xs:decimal" minOccurs="0" />
+              <xs:element name="T_REMARKS" msprop:BaseColumn="T_REMARKS" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_COMPLTN_DATE" msprop:BaseColumn="T_COMPLTN_DATE" msprop:OraDbType="106" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="T_COMPLTN_TIME" msprop:BaseColumn="T_COMPLTN_TIME" msprop:OraDbType="107" type="xs:decimal" minOccurs="0" />
+              <xs:element name="T_COMPLTN_USER" msprop:BaseColumn="T_COMPLTN_USER" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_REMARKS_1" msprop:BaseColumn="T_REMARKS_1" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_REQUEST_ID" msprop:BaseColumn="T_REQUEST_ID" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_SCHED_CODE" msprop:BaseColumn="T_SCHED_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_DOSE_UNIT" msprop:BaseColumn="T_DOSE_UNIT" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_FREQUENCY" msprop:BaseColumn="T_FREQUENCY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_DOSE_OTHER_CNDTN" msprop:BaseColumn="T_DOSE_OTHER_CNDTN" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_DOSE_DURATION" msprop:BaseColumn="T_DOSE_DURATION" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_COMP_CODE" msprop:BaseColumn="T_COMP_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_RAD_LAB_SEQ_NO" msprop:BaseColumn="T_RAD_LAB_SEQ_NO" msprop:OraDbType="113" type="xs:long" minOccurs="0" />
+              <xs:element name="T_RESULT_CODE" msprop:BaseColumn="T_RESULT_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_STOP_FRM" msprop:BaseColumn="T_STOP_FRM" msprop:OraDbType="106" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="T_NURSING_STN" msprop:BaseColumn="T_NURSING_STN" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_ROOM_NO" msprop:BaseColumn="T_ROOM_NO" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_BED_NO" msprop:BaseColumn="T_BED_NO" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_EPISODE_NO" msprop:BaseColumn="T_EPISODE_NO" msprop:OraDbType="113" type="xs:long" minOccurs="0" />
+              <xs:element name="T_ADMIT_DOC" msprop:BaseColumn="T_ADMIT_DOC" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_REQUEST_DOC" msprop:BaseColumn="T_REQUEST_DOC" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_REQUEST_ROUTE" msprop:BaseColumn="T_REQUEST_ROUTE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_REQUEST_MFORM" msprop:BaseColumn="T_REQUEST_MFORM" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_REQUEST_SFORM" msprop:BaseColumn="T_REQUEST_SFORM" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_REQUEST_GCODE" msprop:BaseColumn="T_REQUEST_GCODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_REQUEST_STRENGTH" msprop:BaseColumn="T_REQUEST_STRENGTH" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_UM" msprop:BaseColumn="T_UM" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_PAT_MEDICINE_SEQ" msprop:BaseColumn="T_PAT_MEDICINE_SEQ" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_DRUG_INACTIVE_FLAG" msprop:BaseColumn="T_DRUG_INACTIVE_FLAG" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_MORNING_DOSE_UNIT" msprop:BaseColumn="T_MORNING_DOSE_UNIT" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_NOON_DOSE_UNIT" msprop:BaseColumn="T_NOON_DOSE_UNIT" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_NIGHT_DOSE_UNIT" msprop:BaseColumn="T_NIGHT_DOSE_UNIT" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_SATURDAY" msprop:BaseColumn="T_SATURDAY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_SUNDAY" msprop:BaseColumn="T_SUNDAY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_MONDAY" msprop:BaseColumn="T_MONDAY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_TUESDAY" msprop:BaseColumn="T_TUESDAY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_WEDNESDAY" msprop:BaseColumn="T_WEDNESDAY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_THURSDAY" msprop:BaseColumn="T_THURSDAY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_FRIDAY" msprop:BaseColumn="T_FRIDAY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_WARD_NO" msprop:BaseColumn="T_WARD_NO" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_ITEM_CODE" msprop:BaseColumn="T_ITEM_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_ISSUE_DATE" msprop:BaseColumn="T_ISSUE_DATE" msprop:OraDbType="106" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="T_DOSE_TIME_DAILY" msprop:BaseColumn="T_DOSE_TIME_DAILY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_QTY" msprop:BaseColumn="T_QTY" msprop:OraDbType="107" type="xs:decimal" minOccurs="0" />
+              <xs:element name="T_PRINT_LABEL_FLAG" msprop:BaseColumn="T_PRINT_LABEL_FLAG" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_QTY_REMAINING" msprop:BaseColumn="T_QTY_REMAINING" msprop:OraDbType="107" type="xs:decimal" minOccurs="0" />
+              <xs:element name="T_ISSUED_QTY" msprop:BaseColumn="T_ISSUED_QTY" msprop:OraDbType="107" type="xs:decimal" minOccurs="0" />
+              <xs:element name="T_DISPENSE_STATE" msprop:BaseColumn="T_DISPENSE_STATE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_MORNING_INSTRUCTION" msprop:BaseColumn="T_MORNING_INSTRUCTION" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_NOON_INSTRUCTION" msprop:BaseColumn="T_NOON_INSTRUCTION" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_NIGHT_INSTRUCTION" msprop:BaseColumn="T_NIGHT_INSTRUCTION" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_INF_RATE" msprop:BaseColumn="T_INF_RATE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_INF_DURATION" msprop:BaseColumn="T_INF_DURATION" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_SITE_CODE" msprop:BaseColumn="T_SITE_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_ISSUE_UM" msprop:BaseColumn="T_ISSUE_UM" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_LABEL_NOTES" msprop:BaseColumn="T_LABEL_NOTES" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_STK_LOC_CODE" msprop:BaseColumn="T_STK_LOC_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_DISPENSE_DURATION" msprop:BaseColumn="T_DISPENSE_DURATION" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_RECEIPT_CODE" msprop:BaseColumn="T_RECEIPT_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_MED_ID" msprop:BaseColumn="T_MED_ID" msprop:OraDbType="113" type="xs:long" minOccurs="0" />
+              <xs:element name="T_SATURDAY_NAME" msprop:BaseColumn="T_SATURDAY_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_SUNDAY_NAME" msprop:BaseColumn="T_SUNDAY_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_MONDAY_NAME" msprop:BaseColumn="T_MONDAY_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_TUESDAY_NAME" msprop:BaseColumn="T_TUESDAY_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_WEDNESDAY_NAME" msprop:BaseColumn="T_WEDNESDAY_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_THURSDAY_NAME" msprop:BaseColumn="T_THURSDAY_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_FRIDAY_NAME" msprop:BaseColumn="T_FRIDAY_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="PAT_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_PAT_MEDICINE_SEQ1" msprop:BaseColumn="T_PAT_MEDICINE_SEQ" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_FREQUENCY_NAME" msprop:BaseColumn="T_LANG2_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_DOSE_DURATION_NAME" msprop:BaseColumn="T_LANG2_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_UM_NAME" msprop:BaseColumn="T_UM_SHORT_DSCRPTN" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="ENTEREDDATE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="UPDATEDDATE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="ENTEREDBY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="UPDATEDBY" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

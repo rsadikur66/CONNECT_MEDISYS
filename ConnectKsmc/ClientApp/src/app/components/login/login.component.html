@@ -1,0 +1,144 @@
+<p-toast></p-toast>
+<div class="homeContainer">
+  <ngx-ui-loader></ngx-ui-loader>
+  <img src="images/Connect.png" alt="Connect" class="connect" />
+  <img src="images/Medisys.png" alt="Medisys" class="medisys" />
+  <div class="boxContainer">
+    <div class="floatLeft">
+      <span class="title">Hospital Information System</span>
+      <div class="rTable">
+        <div class="rTableRow">
+          <div class="rTableCell">
+            <div class="round">
+              <img class="tips" src="images/tips.png" alt="tips" />
+            </div>
+          </div>
+          <div class="rTableCell">
+            <span class="heading">User Tips</span>
+            <ul>
+              <li>Remember to Logout before leaving your workstation</li>
+              <li>If you are inactive for 15 minutes your session will be Logged Out!</li>
+            </ul>
+          </div>
+        </div>
+        <div class="rTableRow">
+          <div class="rTableCell">
+            <div class="round">
+              <img class="hospLogo" src="images/hosplogo.png" alt="hospital logo" />
+            </div>
+          </div>
+          <div class="rTableCell">
+            <span class="heading">Product License</span><br />
+            <span style="color:darkred;font-size:large">King Saud Medical City</span><br />
+            <span style="font-size:large">License Code: 1127-58</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="floatRight">
+      <div class="loginContainer">
+        <div class="floatLeft">
+          <img class="securityIcon" src="images/security.png" alt="security" />
+          <div class="inputPanel namePanel">
+            <img src="images/usericon.png" alt="user icon" />
+            <input #txtUserName type="text" placeholder="Employee ID" autofocus [(ngModel)]="userName" (focus)="onUserNameFocus()" (keyup.enter)="onUserNameKeyUp()" />
+          </div>
+          <div class="inputPanel passPanel">
+            <img src="images/passicon.png" alt="password icon" />
+            <input #txtPassword type="password" placeholder="Password" [(ngModel)]="password" (focus)="onPasswordFocus()" (keyup.enter)="onPasswordKeyUp()" />
+          </div>
+        </div>
+        <div class="floatRight">
+          <div class="floatLeft triangle"></div>
+          <div class="floatLeft line"></div>
+          <table>
+            <tr>
+              <td>
+                <button id="btn7" (click)="onBtn7Click()">7</button>
+              </td>
+              <td>
+                <button id="btn8" (click)="onBtn8Click()">8</button>
+              </td>
+              <td>
+                <button id="btn9" (click)="onBtn9Click()">9</button>
+              </td>
+              <td>
+                <button id="btnAC" (click)="onBtnACClick()">AC</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button id="btn4" (click)="onBtn4Click()">4</button>
+              </td>
+              <td>
+                <button id="btn5" (click)="onBtn5Click()">5</button>
+              </td>
+              <td>
+                <button id="btn6" (click)="onBtn6Click()">6</button>
+              </td>
+              <td>
+                <button id="btnBS" (click)="onBtnBSClick()">←</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <button id="btn1" (click)="onBtn1Click()">1</button>
+              </td>
+              <td>
+                <button id="btn2" (click)="onBtn2Click()">2</button>
+              </td>
+              <td>
+                <button id="btn3" (click)="onBtn3Click()">3</button>
+              </td>
+              <td rowspan="2">
+                <button id="btnEnter" (click)="onBtnEnterClick()">Enter</button>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <button id="btn0" (click)="onBtn0Click()">0</button>
+              </td>
+              <td>
+                <button id="btnDot" (click)="onBtnDotClick()">.</button>
+              </td>
+            </tr>
+          </table>
+          <div>
+            <button type="button" id="btnLogin" class="actionButton" (click)="onBtnLoginClick()"></button>
+            <button type="button" id="btnLogout" class="actionButton" (click)="onBtnLogoutClick()"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footerBox">
+    <div class="footerLeft">
+      Medical Systems Co. ltd. All Rights Reserved<br />
+      Version : 12.5.0
+    </div>
+    <div class="footerRight">
+      <span>Copyright : </span>This computer product is protected by copyright law and international treaties. Unauthorized reproduction or distribution of this programe or any portion of it may result in servere civil and criminal planalties and will be procsecuted to the maximum extent possible under the law.
+    </div>
+  </div>
+</div>
+<p-dialog [(visible)]="showImage" [style]="{height: '100vh', width: '100vw'}" [showHeader]="false" [modal]="true">
+  <div class="loginDialog">
+    <table style="text-align: center;">
+      <tr>
+        <td>
+          <img src="images/doctor.png" height="250" width="250" (click)="onDoctorImageClick()" />
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <span>DOCTOR</span>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="button" title="Logout" class="buttonPage logoutPage" (click)="showImage=false" style="display: inherit !important"></button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</p-dialog>

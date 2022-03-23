@@ -1,0 +1,70 @@
+﻿using System.Data;
+
+namespace ConnectKsmcDAL.Query
+{
+    public class Q11013DAL : CommonDAL
+    {
+        public dynamic GetOrderDetails(string lang,string siteCode,string fromDate,string toDate)
+        {
+            var query = $@"SELECT t11.T_ORDER_NO,t11.T_ORDER_DATE,t11.T_ORDER_TIME,t11.T_ORDER_STATUS,t11.T_PRIORITY, t11.T_PAT_NO,t11.T_REQUEST_DOC,t11.T_CLINIC_CODE,
+            t03.T_LANG{lang}_NAME NTNLTY,PAT_NAME(t01.T_PAT_NO, '{lang}') PAT_NAME,t06.T_LANG{lang}_NAME GENDER,t42.T_LANG{lang}_NAME LOCATION_NAME,
+            CASE WHEN t01.T_BIRTH_DATE IS NOT NULL THEN TRUNC(MONTHS_BETWEEN(SYSDATE , t01.T_BIRTH_DATE) / 12, 0) ELSE 0 END AGE_YRS,
+            CASE WHEN t01.T_BIRTH_DATE IS NOT NULL THEN TRUNC(MOD(MONTHS_BETWEEN(SYSDATE, t01.T_BIRTH_DATE), 12), 0) ELSE 0 END AGE_MOS,t13.T_TYPE_CODE,
+            t29.T_NAME_GIVEN ||'' || t29.T_NAME_FAMILY DOC_NAME,t11.T_ENTRY_DATE,(SELECT T_USER_NAME FROM T01009 WHERE T_EMP_CODE = t11.T_ENTRY_USER) ENTRY_USER
+            FROM T11011 t11,T03001 t01,T02006 t06,T02003 t03,T02029 t29,T02042 t42,T11012 t13
+            WHERE t11.T_PAT_NO =t01.T_PAT_NO   
+            and t11.T_ORDER_NO=t13.T_ORDER_NO
+            AND t01.T_GENDER=t06.T_SEX_CODE(+) 
+            AND t01.T_NTNLTY_CODE=t03.T_NTNLTY_CODE(+)
+            AND t11.T_REQUEST_DOC=t29.T_EMP_NO(+)
+            AND t11.T_CLINIC_CODE=t42.T_LOC_CODE(+)
+            --AND t11.T_SITE_CODE='{siteCode}' 
+            and t11.T_ORDER_DATE BETWEEN to_date('{fromDate}','dd/MM/yyyy') and to_date('{toDate}','dd/MM/yyyy')
+            ORDER BY TO_DATE(T_ORDER_DATE, 'dd/MM/yyyy') DESC"; 
+            return QueryList<dynamic>(query);
+        }
+
+        public object GetNextBlockData(string lang, string orderNo ,string siteCode)
+        {
+            var query = $@"SELECT T11011.T_ORDER_NO,T11011.T_ORDER_DATE,T11011.T_ORDER_TIME,T11011.T_ORDER_STATUS,T11011.T_PRIORITY, T11011.T_PAT_NO,T11011.T_REQUEST_DOC,T11011.T_CLINIC_CODE,
+            T02003.T_LANG{lang}_NAME NTNLTY,PAT_NAME(T03001.T_PAT_NO, '{lang}') PAT_NAME,T02006.T_LANG{lang}_NAME GENDER,T02042.T_LANG{lang}_NAME LOCATION_NAME,
+            CASE WHEN T03001.T_BIRTH_DATE IS NOT NULL THEN TRUNC(MONTHS_BETWEEN(SYSDATE , T03001.T_BIRTH_DATE) / 12, 0) ELSE 0 END AGE_YRS,
+            CASE WHEN T03001.T_BIRTH_DATE IS NOT NULL THEN TRUNC(MOD(MONTHS_BETWEEN(SYSDATE, T03001.T_BIRTH_DATE), 12), 0) ELSE 0 END AGE_MOS,
+            T02029.T_NAME_GIVEN ||'' || T02029.T_NAME_FAMILY DOC_NAME ,T03001.T_SITE_CODE,T11011.T_EPISODE_NO,
+            T11011.T_ENTRY_DATE,(SELECT T_USER_NAME FROM T01009 WHERE T_EMP_CODE = T11011.T_ENTRY_USER) ENTRY_USER,t13.T_TYPE_CODE
+            FROM T11011 ,T03001,T02006,T02003,T02029,T02042,T11012 t13
+            WHERE T11011.T_PAT_NO =T03001.T_PAT_NO
+            and T11011.T_ORDER_NO=t13.T_ORDER_NO
+            AND T11011.T_SITE_CODE =T03001.T_SITE_CODE
+            AND T03001.T_GENDER=T02006.T_SEX_CODE 
+            AND T03001.T_NTNLTY_CODE=T02003.T_NTNLTY_CODE
+            AND T11011.T_REQUEST_DOC=  T02029.T_EMP_NO
+            AND T11011.T_CLINIC_CODE=T02042.T_LOC_CODE 
+            --AND T11011.T_SITE_CODE='{siteCode}' 
+            AND T11011.T_ORDER_NO=nvl('{orderNo}',T11011.T_ORDER_NO)
+            ORDER BY TO_DATE(T_ORDER_DATE, 'dd/MM/yyyy') DESC";
+
+
+            return QueryList<dynamic>(query);
+        }
+        public DataTable GetReportData(string lang, string siteCode, string fromDate, string toDate)
+        {
+            var query = $@"SELECT t11.T_ORDER_NO,t11.T_ORDER_DATE,t11.T_ORDER_TIME,t11.T_ORDER_STATUS,t11.T_PRIORITY, t11.T_PAT_NO,t11.T_REQUEST_DOC,t11.T_CLINIC_CODE,
+            t03.T_LANG{lang}_NAME NTNLTY,PAT_NAME(t01.T_PAT_NO, '{lang}') PAT_NAME,t06.T_LANG{lang}_NAME GENDER,t42.T_LANG{lang}_NAME LOCATION_NAME,
+            CASE WHEN t01.T_BIRTH_DATE IS NOT NULL THEN TRUNC(MONTHS_BETWEEN(SYSDATE , t01.T_BIRTH_DATE) / 12, 0) ELSE 0 END AGE_YRS,
+            CASE WHEN t01.T_BIRTH_DATE IS NOT NULL THEN TRUNC(MOD(MONTHS_BETWEEN(SYSDATE, t01.T_BIRTH_DATE), 12), 0) ELSE 0 END AGE_MOS,t13.T_TYPE_CODE,
+            t29.T_NAME_GIVEN ||'' || t29.T_NAME_FAMILY DOC_NAME,t11.T_ENTRY_DATE,(SELECT T_USER_NAME FROM T01009 WHERE T_EMP_CODE = t11.T_ENTRY_USER) ENTRY_USER
+            FROM T11011 t11,T03001 t01,T02006 t06,T02003 t03,T02029 t29,T02042 t42,T11012 t13
+            WHERE t11.T_PAT_NO =t01.T_PAT_NO            
+            and t11.T_ORDER_NO=t13.T_ORDER_NO
+            AND t01.T_GENDER=t06.T_SEX_CODE(+) 
+            AND t01.T_NTNLTY_CODE=t03.T_NTNLTY_CODE(+)
+            AND t11.T_REQUEST_DOC=t29.T_EMP_NO(+)
+            AND t11.T_CLINIC_CODE=t42.T_LOC_CODE(+)
+            --AND t11.T_SITE_CODE='{siteCode}' 
+            and t11.T_ORDER_DATE BETWEEN to_date('{fromDate}','dd/MM/yyyy') and to_date('{toDate}','dd/MM/yyyy')
+            ORDER BY TO_DATE(T_ORDER_DATE, 'dd/MM/yyyy') DESC";
+            return ReportQuery(query);
+        }
+    }
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="R30190" msprop:BaseTable.1="T04" msprop:BaseTable.0="V30166">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="T_STK_LOC_CODE" msprop:BaseColumn="T_STK_LOC_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_STK_NAME" msprop:BaseColumn="T_LANG2_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_REQUEST_GCODE" msprop:BaseColumn="T_REQUEST_GCODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_GEN_NAME" msprop:BaseColumn="T_LANG2_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="DRUG" msprop:BaseColumn="DRUG" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_MOH_ITEM_CODE" msprop:BaseColumn="T_MOH_ITEM_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="PATIENT" msprop:OraDbType="107" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ISSUED_QUANTITY" msprop:OraDbType="107" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ORDER_QUANTITY" msprop:OraDbType="107" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="header" msprop:BaseTable.0="T01028">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="T_SITE_CODE" msprop:BaseColumn="T_SITE_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_COUNTRY_LANG1_NAME" msprop:BaseColumn="T_COUNTRY_LANG1_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_COUNTRY_LANG2_NAME" msprop:BaseColumn="T_COUNTRY_LANG2_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_MIN_LANG1_NAME" msprop:BaseColumn="T_MIN_LANG1_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_MIN_LANG2_NAME" msprop:BaseColumn="T_MIN_LANG2_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_SITE_LANG1_NAME" msprop:BaseColumn="T_SITE_LANG1_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_SITE_LANG2_NAME" msprop:BaseColumn="T_SITE_LANG2_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_LOGO_ID" msprop:BaseColumn="T_LOGO_ID" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_LOGO_NAME" msprop:BaseColumn="T_LOGO_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_LOGO" msprop:BaseColumn="T_LOGO" msprop:OraDbType="110" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="T_LCENCE_NO" msprop:BaseColumn="T_LCENCE_NO" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

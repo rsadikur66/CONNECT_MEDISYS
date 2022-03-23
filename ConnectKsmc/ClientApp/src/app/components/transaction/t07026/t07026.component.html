@@ -1,0 +1,295 @@
+<common formCode="T07026" (permissionLoaded)="setPermission($event)" (saveClicked)="onSaveClicked()" (clearClicked)="onClearClicked()" [isNextVisible]="true" (nextClicked)="onNextClicked()">
+  <p-scrollPanel styleClass="scroll">
+    <div class="content" style="width: 1700px">
+      <form [formGroup]="userForm">
+        <table>
+          <tr>
+            <td>
+              <label id="lblDoctor" for="ddlDoctor"></label>
+            </td>
+            <td>
+              <p-dropdown inputId="ddlDoctor" formControlName="ddlDoctor" [options]="doctors" [filter]="true" filterBy="CODE,NAME" [group]="true" [(ngModel)]="selectedDoctor" [virtualScroll]="true" [itemSize]="30" [autoDisplayFirst]="false" [showClear]="true" [style]="{'width':'350px'}" appendTo="body" (onChange)="onDoctorChanged($event.value)">
+                <ng-template let-group pTemplate="group">
+                  <div class="dropDownGrid dropDownGridHead">
+                    <span style="width: 50px">CODE</span>
+                    <span style="width: calc(100% - 50px)">NAME</span>
+                  </div>
+                </ng-template>
+                <ng-template let-option pTemplate="item">
+                  <div class="dropDownGrid dropDownGridBody">
+                    <span style="width: 50px">{{option.CODE}}</span>
+                    <span>{{option.NAME}}</span>
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="selectedItem">
+                  {{selectedDoctor.NAME}}
+                </ng-template>
+              </p-dropdown>
+            </td>
+            <td>
+              <label id="lblClinic" for="ddlClinic"></label>
+            </td>
+            <td>
+              <p-dropdown *ngIf="!selectedDoctor" inputId="ddlClinic" formControlName="ddlClinic" [options]="clinics" [filter]="true" filterBy="CODE,NAME" [group]="true" [(ngModel)]="selectedClinic" [virtualScroll]="true" [itemSize]="30" [autoDisplayFirst]="false" [showClear]="true" [style]="{'width':'350px'}" appendTo="body" (onChange)="onClinicChanged($event.value)">
+                <ng-template let-group pTemplate="group">
+                  <div class="dropDownGrid dropDownGridHead">
+                    <span style="width: 50px">CODE</span>
+                    <span style="width: calc(100% - 50px)">NAME</span>
+                  </div>
+                </ng-template>
+                <ng-template let-option pTemplate="item">
+                  <div class="dropDownGrid dropDownGridBody">
+                    <span style="width: 50px">{{option.CODE}}</span>
+                    <span>{{option.NAME}}</span>
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="selectedItem">
+                  {{selectedClinic.NAME}}
+                </ng-template>
+              </p-dropdown>
+              <p-dropdown *ngIf="selectedDoctor" inputId="ddlClinic" formControlName="ddlClinic" [options]="clinics" [filter]="true" filterBy="CODE,NAME,RULE" [group]="true" [(ngModel)]="selectedClinic" [virtualScroll]="true" [itemSize]="30" [autoDisplayFirst]="false" [showClear]="true" [style]="{'width':'350px'}" appendTo="body" (onChange)="onClinicChanged($event.value)">
+                <ng-template let-group pTemplate="group">
+                  <div class="dropDownGrid dropDownGridHead">
+                    <span style="width: 50px">CODE</span>
+                    <span style="width: 300px">NAME</span>
+                    <span style="width: calc(100% - 350px)">RULE</span>
+                  </div>
+                </ng-template>
+                <ng-template let-option pTemplate="item">
+                  <div class="dropDownGrid dropDownGridBody">
+                    <span style="width: 50px">{{option.CODE}}</span>
+                    <span style="width: 300px">{{option.NAME}}</span>
+                    <span>{{option.RULE}}</span>
+                  </div>
+                </ng-template>
+                <ng-template pTemplate="selectedItem">
+                  {{selectedClinic.NAME}}
+                </ng-template>
+              </p-dropdown>
+            </td>
+            <td>
+              <input type="text" id="txtScheduleRule" formControlName="txtScheduleRule" pInputText style="width: 50px" readonly="readonly" />
+            </td>
+            <td>
+              <label id="lblApptDate" for="txtApptDate"></label>
+            </td>
+            <td>
+              <p-inputMask inputId="txtApptDate" formControlName="txtApptDate" mask="99/99/9999" slotChar="dd/mm/yyyy" [style]="{'width': '100px'}" (onBlur)="onApptDateBlur()"></p-inputMask>
+            </td>
+            <td>
+              <input type="text" id="txtApptDay" formControlName="txtApptDay" pInputText style="width: 100px" readonly="readonly" />
+            </td>
+          </tr>
+        </table>
+        <hr />
+        <div style="height: 300px; overflow-x: hidden; overflow-y: auto">
+          <p-table [value]="data">
+            <ng-template pTemplate="header">
+              <tr>
+                <th class="center-label" style="width: 67px"><label id="lblGridPatNo"></label></th>
+                <th class="center-label" style="width: 200px"><label id="lblGridPatName"></label></th>
+                <th class="center-label" style="width: 69px"><label id="lblGridGender"></label></th>
+                <th class="center-label" style="width: 35px"><label id="lblGridAge"></label></th>
+                <th style="width: 185px"></th>
+                <th class="center-label" style="width: 120px"><label id="lblGridApptType"></label></th>
+                <th class="center-label" style="width: 40px"><label id="lblGridVisit"></label></th>
+                <th class="center-label" style="width: 90px"><label id="lblGridApptStatus"></label></th>
+                <th class="center-label" style="width: 80px"><label id="lblGridArrivalTime"></label></th>
+                <th class="center-label" style="width: 94px"><label id="lblGridICD10"></label></th>
+                <th class="center-label" style="width: 160px"><label id="lblGridDocArrival"></label></th>
+                <th class="center-label" style="width: 100px"><label id="lblGridDiagnosis"></label></th>
+                <th class="center-label" style="width: 155px"><label id="lblGridFollowup"></label></th>
+                <!--<th class="center-label" style="width: 45px"><label id="lblGridPatIn"></label></th>-->
+                <th class="center-label" style="width: 55px"><label id="lblGridInTime"></label></th>
+                <th class="center-label" style="width: 60px"><label id="lblGridOutTime"></label></th>
+                <th style="width: 20px"></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+              <tr (click)="onRowClick(rowData)">
+                <td style="padding: 0 1px 0 1px !important"><input type="text" pInputText [(ngModel)]="rowData.T_PAT_NO" [ngModelOptions]="{standalone: true}" style="width: 70px" readonly="readonly" /></td>
+                <td style="padding: 0 1px 0 1px !important"><input type="text" pInputText [(ngModel)]="rowData.PAT_NAME" [ngModelOptions]="{standalone: true}" style="width: 218px" readonly="readonly" /></td>
+                <td style="padding: 0 1px 0 1px !important"><input type="text" pInputText [(ngModel)]="rowData.GENDER" [ngModelOptions]="{standalone: true}" style="width: 73px" readonly="readonly" /></td>
+                <td style="padding: 0 1px 0 1px !important"><input type="text" pInputText [(ngModel)]="rowData.AGE" [ngModelOptions]="{standalone: true}" style="width: 35px" readonly="readonly" /></td>
+                <td style="padding: 0 1px 0 1px !important">
+                  <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important; margin: 0 1px 0 0" label="P" title="Prescription" (click)="onPrescriptionClick(rowData)"></button>
+                  <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important; margin: 0 1px" label="LR" title="Laboratory Request" (click)="onLabRequestClick(rowData)"></button>
+                  <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important; margin: 0 1px" label="LIR" title="Laboratory Investigation Report" (click)="onLabInvReportClick(rowData)"></button>
+                  <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important; margin: 0 1px" label="R" title="Radiology Request" (click)="onRadRequestClick(rowData)"></button>
+                  <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important; margin: 0 1px" label="SL" title="Sick Leave" (click)="onSickLeaveClick(rowData)"></button>
+                  <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important; margin: 0 1px" label="AR" title="Appointment Request" (click)="onApptRequestClick(rowData)"></button>
+                  <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important; margin: 0 1px" label="V" title="Vital Sign" (click)="onVitalSignClick(rowData)"></button>
+                  <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important; margin: 0 0 0 1px" label="AD" title="Admission Request" (click)="onAdmissionRequestClick(rowData)"></button>
+                </td>
+                <td style="padding: 0 1px 0 1px !important"><p-dropdown [options]="apptTypes" optionLabel="NAME" [(ngModel)]="rowData.T_APPT_TYPE" [ngModelOptions]="{standalone: true}" [style]="{'width':'130px'}" [readonly]="true"></p-dropdown></td>
+                <td style="padding: 0 1px 0 1px !important"><input type="text" pInputText [(ngModel)]="rowData.T_VISIT_NO" [ngModelOptions]="{standalone: true}" style="width: 40px" readonly="readonly" /></td>
+                <td style="padding: 0 1px 0 1px !important"><p-dropdown [options]="arvlStatus" optionLabel="NAME" [(ngModel)]="rowData.T_ARRIVAL_STATUS" [ngModelOptions]="{standalone: true}" [style]="{'width':'95px'}" [readonly]="true"></p-dropdown></td>
+                <td style="padding: 0 1px 0 1px !important"><input type="text" pInputText [(ngModel)]="rowData.T_ARRIVAL_TIME" [ngModelOptions]="{standalone: true}" style="width: 84px" readonly="readonly" /></td>
+                <td style="padding: 0 1px 0 1px !important">
+                  <p-dropdown [options]="icdList" [filter]="true" filterBy="CODE,NAME" [group]="true" [(ngModel)]="rowData.T_ICD10_MAIN_CODE" [ngModelOptions]="{standalone: true}" [virtualScroll]="true" [itemSize]="30" [autoDisplayFirst]="rowData.IS_SAVED !== 'X'" [showClear]="rowData.IS_SAVED === 'X'" [readonly]="rowData.IS_SAVED !== 'X' || rowData.IS_OLD === 'Y'" [style]="{'width':'100px'}" appendTo="body" (onChange)="onICD10Changed($event.value)">
+                    <ng-template let-group pTemplate="group">
+                      <div class="dropDownGrid dropDownGridHead">
+                        <span style="width: 55px">CODE</span>
+                        <span style="width: 500px">NAME</span>
+                      </div>
+                    </ng-template>
+                    <ng-template let-option pTemplate="item">
+                      <div class="dropDownGrid dropDownGridBody">
+                        <span style="width: 55px">{{option.CODE}}</span>
+                        <span>{{option.NAME}}</span>
+                      </div>
+                    </ng-template>
+                    <ng-template pTemplate="selectedItem">
+                      {{rowData.T_ICD10_MAIN_CODE}}
+                    </ng-template>
+                  </p-dropdown>
+                </td>
+                <td style="padding: 0 1px 0 1px !important"><p-dropdown [options]="docArvlStatus" optionLabel="NAME" [(ngModel)]="rowData.T_DOC_ARRIVAL_STATUS" [ngModelOptions]="{standalone: true}" [autoDisplayFirst]="rowData.IS_SAVED !== 'X'" [showClear]="rowData.IS_SAVED === 'X'" [readonly]="rowData.IS_SAVED !== 'X' || rowData.IS_OLD === 'Y'" [style]="{'width':'173px'}" (onChange)="onDocArvlStatusChanged($event.value, rowIndex)"></p-dropdown></td>
+                <td style="padding: 0 1px 0 1px !important"><input type="text" id="txtDiagosis" [(ngModel)]="rowData.T_DIAGNOSIS" [ngModelOptions]="{standalone: true}" pInputText [readonly]="rowData.IS_SAVED !== 'X' || rowData.IS_OLD === 'Y'" style="width: 107px" /></td>
+                <td style="padding: 0 1px 0 1px !important">
+                  <input type="text" id="txtNextFollowup" [(ngModel)]="rowData.T_NXT_FLWUP" [ngModelOptions]="{standalone: true}" pInputText [readonly]="rowData.IS_SAVED !== 'X' || rowData.IS_OLD === 'Y'" style="width: 88px" (dblclick)="onNextFollowupDblClick(rowData, rowIndex)" /><span style="width: 3px; display: inline-block"></span>
+                  <input type="text" id="txtFollowupTime" [(ngModel)]="rowData.T_FLWUP_TIME" [ngModelOptions]="{standalone: true}" pInputText [readonly]="rowData.IS_SAVED !== 'X' || rowData.IS_OLD === 'Y'" style="width: 50px" /><span style="width: 3px; display: inline-block"></span>
+                  <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" label="..." title="More Options" [disabled]="rowData.IS_SAVED !== 'X' || rowData.IS_OLD === 'Y'" (click)="showFollowup=rowData.T_DOC_ARRIVAL_STATUS!==null"></button>
+                </td>
+                <!--<td style="padding: 0 1px 0 1px !important; text-align: center"><p-checkbox inputId="chkPatIn" [binary]="true"></p-checkbox></td>-->
+                <td style="padding: 0 1px 0 1px !important"><input type="text" id="txtInTime" [(ngModel)]="rowData.T_SEEN_BY_DOC_TIME" [ngModelOptions]="{standalone: true}" pInputText style="width: 57px" [readonly]="true" /></td>
+                <td style="padding: 0 1px 0 1px !important"><input type="text" id="txtOutTime" [(ngModel)]="rowData.T_OUT_TIME" [ngModelOptions]="{standalone: true}" pInputText style="width: 63px" [readonly]="true" /></td>
+                <td style="padding: 0 1px 0 1px !important"><button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" label="C" [disabled]="rowData.IS_SAVED !== 'X' || rowData.IS_OLD === 'Y'" (click)="onCClicked()"></button></td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <table>
+          <tr>
+            <td>
+              <label id="lblEligibility" for="txtEligibility"></label>
+            </td>
+            <td>
+              <input type="text" id="txtEligibility" formControlName="txtEligibility" pInputText style="width: 80px" readonly="readonly" />
+            </td>
+            <td>
+              <label id="lblEligible" for="txtEligible"></label>
+            </td>
+            <td>
+              <input type="text" id="txtEligible" formControlName="txtEligible" pInputText style="width: 40px" readonly="readonly" />
+            </td>
+            <td>
+              <label id="lblApptEntryUser" for="txtApptEntryUser"></label>
+            </td>
+            <td>
+              <input type="text" id="txtApptEntryUser" formControlName="txtApptEntryUser" pInputText style="width: 150px" readonly="readonly" />
+            </td>
+            <td>
+              <label id="lblApptEntryDate" for="txtApptEntryDate"></label>
+            </td>
+            <td>
+              <input type="text" id="txtApptEntryDate" formControlName="txtApptEntryDate" pInputText style="width: 80px" readonly="readonly" />
+            </td>
+            <td>
+              <label id="lblICD10Desc" for="txtICD10Desc"></label>
+            </td>
+            <td>
+              <input type="text" id="txtICD10Desc" formControlName="txtICD10Desc" pInputText style="width: 275px" readonly="readonly" />
+            </td>
+            <td>
+              <label id="lblRemarks" for="txtRemarks"></label>
+            </td>
+            <td>
+              <input type="text" id="txtRemarks" formControlName="txtRemarks" pInputText style="width: 275px" readonly="readonly" />
+            </td>
+            <td>
+              <label id="lblComment" for="txtComment"></label>
+            </td>
+            <td>
+              <input type="text" id="txtComment" formControlName="txtComment" pInputText style="width: 275px" readonly="readonly" />
+            </td>
+          </tr>
+        </table>
+        <p-dialog [(visible)]="showAppointment" [style]="{width: '500px'}" [modal]="true">
+          <ng-template pTemplate="header">
+            Select Available Slot
+          </ng-template>
+          <p-table [value]="appointmentData" [paginator]="true" [rows]="10" selectionMode="single">
+            <ng-template pTemplate="header">
+              <tr>
+                <th class="center-label"><label id="lblGridApptDate">{{lblGridApptDate}}</label></th>
+                <th class="center-label"><label id="lblGridApptTime">{{lblGridApptTime}}</label></th>
+                <th class="center-label"><label id="lblGridApptDay">{{lblGridApptDay}}</label></th>
+                <th class="center-label"><label id="lblGridRule">{{lblGridRule}}</label></th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+              <tr [pSelectableRow]="rowData" (dblclick)="onAppointmentSelect(rowData)">
+                <td>{{rowData.APPT_DATE_G}}</td>
+                <td>{{rowData.T_APPT_TIME}}</td>
+                <td>{{rowData.DAY_ENG}}</td>
+                <td>{{rowData.RULE_NO}}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </p-dialog>
+        <p-dialog [(visible)]="showFollowup" [modal]="true">
+          <ng-template pTemplate="header">
+            Select Followup Appointment Date After N Weeks or N Months
+          </ng-template>
+          <table>
+            <tr>
+              <td>
+                <label id="lblWeeks" for="ddlWeeks">{{lblWeeks}}</label>
+              </td>
+              <td>
+                <p-dropdown inputId="ddlWeeks" formControlName="ddlWeeks" [options]="weeks" [autoDisplayFirst]="false" [showClear]="true" optionLabel="NAME" [style]="{'width':'150px'}" appendTo="body" (onChange)="onWeeksChanged($event.value)"></p-dropdown>
+              </td>
+              <td>
+                <label id="lblMonths" for="ddlMonths">{{lblMonths}}</label>
+              </td>
+              <td>
+                <p-dropdown inputId="ddlMonths" formControlName="ddlMonths" [options]="months" [autoDisplayFirst]="false" [showClear]="true" optionLabel="NAME" [style]="{'width':'150px'}" appendTo="body" (onChange)="onMonthsChanged($event.value)"></p-dropdown>
+              </td>
+            </tr>
+          </table>
+          <hr />
+          <table>
+            <tr>
+              <td>
+                <label id="lblApptDate1" for="txtApptDate1">{{lblApptDate1}}</label>
+              </td>
+              <td>
+                <input type="text" id="txtApptDate1" formControlName="txtApptDate1" pInputText style="width: 100px" readonly="readonly" />
+              </td>
+              <td>
+                <label id="lblSlot1" for="txtSlot1">{{lblSlot1}}</label>
+              </td>
+              <td>
+                <input type="text" id="txtSlot1" formControlName="txtSlot1" pInputText style="width: 70px" readonly="readonly" />
+              </td>
+              <td>
+                <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" label="Book" title="Additional and Book Appointment" (click)="onAddSlot1Click()"></button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label id="lblApptDate2" for="txtApptDate2">{{lblApptDate2}}</label>
+              </td>
+              <td>
+                <input type="text" id="txtApptDate2" formControlName="txtApptDate2" pInputText style="width: 100px" readonly="readonly" />
+              </td>
+              <td>
+                <label id="lblSlot2" for="txtSlot2">{{lblSlot2}}</label>
+              </td>
+              <td>
+                <input type="text" id="txtSlot2" formControlName="txtSlot2" pInputText style="width: 70px" readonly="readonly" />
+              </td>
+              <td>
+                <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" label="Book" title="Additional and Book Appointment" (click)="onAddSlot2Click()"></button>
+              </td>
+            </tr>
+          </table>
+          <ng-template pTemplate="footer">
+            <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" label="Close" (click)="showFollowup=false"></button>
+          </ng-template>
+        </p-dialog>
+      </form>
+    </div>
+  </p-scrollPanel>
+</common>

@@ -1,0 +1,225 @@
+.homeContainer {
+  color: #7A7A7A;
+  height: 100%;
+  width: 100%;
+  padding-top: 70px;
+}
+
+.connect {
+  height: 100px;
+  top: 5px;
+  left: 5px;
+  position: absolute;
+}
+
+.medisys {
+  top: 15px;
+  right: 15px;
+  position: absolute;
+}
+
+.boxContainer {
+  margin: auto;
+  margin-top: 50px;
+  height: 400px;
+  width: 1300px;
+  min-width: 1200px;
+  border-radius: 15px;
+  border: 1px solid rgb(217, 220, 220);
+  background-color: rgba(250, 250, 250, .7);
+  /*direction: rtl;*/
+}
+
+.floatLeft {
+  float: left;
+}
+
+.floatRight {
+  float: right;
+}
+
+.title {
+  color: #C12D2D;
+  font-size: 42px;
+  display: block;
+  margin-left: 20px;
+}
+
+.rTable {
+  display: table;
+}
+
+.rTableRow {
+  display: table-row;
+}
+
+.rTableCell {
+  display: table-cell;
+  vertical-align: top;
+}
+
+.round {
+  height: 140px;
+  width: 140px;
+  border-radius: 70px;
+  background-color: #FFF;
+  margin: 10px 20px 0 30px;
+}
+
+.tips {
+  margin: 32px 0 0 36px;
+}
+
+.hospLogo {
+  margin: 15px 0 0 20px;
+}
+
+.heading {
+  font-size: 20px;
+  font-weight: bold;
+  color: #C12D2D;
+}
+
+.rTableCell ul li {
+  font-size: 13px;
+  text-wrap: normal;
+}
+
+.loginContainer {
+  background-image: radial-gradient(ellipse farthest-corner at left top, #D61D25 0%, #97151A 60%, #791215 100%);
+  border-radius: 15px;
+  overflow: hidden;
+  height: 357px;
+  width: 595px;
+  margin: 20px 25px;
+  direction: ltr;
+}
+
+.securityIcon {
+  margin: 50px 0 0 75px;
+}
+
+.inputPanel {
+  height: 33px;
+  width: 220px;
+  padding-top: 8px;
+  box-sizing: content-box;
+  border-radius: 5px;
+  background-color: #FFF;
+}
+
+  .inputPanel img {
+    margin: -10px 5px -1px 13px;
+  }
+
+  .inputPanel input {
+    font-size: 20px;
+    width: 150px;
+    color: #C12D2D;
+    border: none;
+    text-transform: uppercase;
+  }
+
+.namePanel {
+  margin: 75px 0 0 25px;
+}
+
+.passPanel {
+  margin: 5px 0 0 25px;
+}
+
+.triangle {
+  margin-top: 165px;
+  margin-left: -65px;
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid #AAA;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+}
+
+.line {
+  margin-left: -35px;
+  height: 400px;
+  width: 1px;
+  background: #FFF;
+  border-left: solid 1px #000;
+  opacity: 0.2;
+}
+
+.floatRight table {
+  margin: 20px 45px 0 0;
+}
+
+  .floatRight table button {
+    height: 55px;
+    width: 55px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #555;
+    background: linear-gradient(#F3F3F3, #CCC);
+    border: none;
+    border-radius: 5px;
+  }
+
+#btn0 {
+  width: 114px;
+}
+
+#btnEnter {
+  height: 114px;
+}
+
+#btnDot, #btnBS {
+  font-size: 18px;
+}
+
+.actionButton {
+  border: none;
+  border-radius: 50%;
+}
+
+#btnLogin {
+  height: 70px;
+  width: 70px;
+  margin: 10px 10px 10px 35px;
+  background: url("../../../../../wwwroot/images/login.png") no-repeat;
+}
+
+#btnLogout {
+  height: 72px;
+  width: 72px;
+  margin: 10px;
+  background: url("../../../../../wwwroot/images/logout.png") no-repeat;
+}
+
+.footerBox {
+  font-size: 13px;
+  line-height: 15px;
+  margin: 5px auto;
+  width: 1300px;
+  min-width: 1300px;
+}
+
+  .footerBox span {
+    color: #C12D2D;
+    font-weight: bold;
+  }
+
+.footerLeft {
+  float: left;
+  width: 300px;
+}
+
+.footerRight {
+  float: right;
+  width: 700px;
+}
+
+.loginDialog {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

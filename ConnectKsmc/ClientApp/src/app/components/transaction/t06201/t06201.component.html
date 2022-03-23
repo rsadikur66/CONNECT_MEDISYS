@@ -1,0 +1,338 @@
+<common formCode="T06201" (permissionLoaded)="setPermission($event)" [isPrintVisible]="true" [isNextVisible]="true" (clearClicked)="onClearClicked()" (saveClicked)="onSaveClicked()" (nextClicked)="onNextClicked()" (printClicked)="onPrintClicked()">
+  <p-scrollPanel styleClass="scroll">
+    <div class="content" style="height:518px">
+      <form [formGroup]="userForm">
+        <table *ngIf="tableShowPatient">
+          <tr>
+            <td class="align-label">
+              <label id="lblPatientType" for="txtUnitFrom">{{onLabelLoad('lblPatientType')}}</label>
+            </td>
+            <td>
+              <p-dropdown inputId="ddlPatientType" formControlName="ddlPatientType" [options]="patientType"
+                          [autoDisplayFirst]="false" [showClear]="true" optionLabel="NAME" [style]="{'width':'100px'}"
+                          appendTo="body" (onChange)="onPatientTypeChanged()">
+
+              </p-dropdown>
+            </td>
+            <td class="align-label">
+              <label id="lblYY" for="txtUnitFrom">{{onLabelLoad('lblYY')}}</label>
+            </td>
+            <td>
+              <input type="text" id="txtYY" formControlName="txtYY" pInputText style="width: 100px" readonly />
+            </td>
+            <td class="align-label">
+              <label id="lblMM" for="txtUnitFrom">{{onLabelLoad('lblMM')}}</label>
+            </td>
+            <td>
+              <input type="text" id="txtMM" formControlName="txtMM" pInputText style="width: 100px" readonly />
+            </td>
+            <td class="align-label">
+              <label id="lblDateofBirth" for="txtUnitFrom">{{onLabelLoad('lblDateofBirth')}}</label>
+            </td>
+            <td>
+              <input type="text" id="txtDateBirth" formControlName="txtDateBirth" pInputText style="width: 100px" readonly />
+            </td>
+            <td class="align-label">
+              <label id="lblNationality" for="txtUnitFrom">{{onLabelLoad('lblNationality')}}</label>
+            </td>
+            <td>
+              <input type="text" id="txtNationality" formControlName="txtNationality" pInputText style="width: 100px" readonly />
+            </td>
+          </tr>
+          <tr>
+            <td class="align-label"> 
+              <label id="lblPatientNo" for="txtPatientNo">{{onLabelLoad('lblPatientNo')}}</label>
+            </td>
+            <td>
+              <input type="text" id="txtPatientNo" formControlName="txtPatientNo" (blur)="PatientClick()" pInputText style="width: 100px" />
+            </td>
+            <td colspan="4">
+              <input type="text" id="txtPatientName" formControlName="txtPatientName" pInputText style="width: 245px" readonly />
+            </td>
+            <td class="align-label">
+              <label id="lblSex" for="txtUnitFrom">{{onLabelLoad('lblSex')}}</label>
+            </td>
+            <td>
+              <input type="text" id="txtSex" formControlName="txtSex" pInputText style="width: 100px" readonly />
+            </td>
+            <td class="align-label">
+              <label id="lblOccupation" for="txtOccupation">{{onLabelLoad('lblOccupation')}}</label>
+            </td>
+            <td>
+              <input type="text" id="txtOccupation" formControlName="txtOccupation" pInputText style="width: 100px" readonly />
+            </td>
+          </tr>
+          <tr>
+            <td class="align-label">
+              <label id="lblAdmDate" for="txtAdmDateEng">{{onLabelLoad('lblAdmDate')}}</label>
+            </td>
+            <td>
+              <input type="text" id="txtAdmDateEng" formControlName="txtAdmDateEng" pInputText style="width: 100px" readonly />
+            </td>
+            <td colspan="2">
+              <input type="text" id="txtAdmDateAr" formControlName="txtAdmDateAr" pInputText style="width: 100px" readonly />
+            </td>
+            <td colspan="2" class="align-label">
+              <label id="lblDichargeDate" for="txtDichargeDateEng">{{onLabelLoad('lblDichargeDate')}}</label>
+            </td>
+            <td>
+              <input type="text" id="txtDichargeDateEng" formControlName="txtDichargeDateEng" pInputText style="width: 100px" readonly />
+            </td>
+            <td>
+              <input type="text" id="txtDichargeDateAr" formControlName="txtDichargeDateAr" pInputText style="width: 100px" readonly />
+            </td>
+            <td class="align-label">
+              <label id="lblEpisodeNo" for="txtEpisode">{{onLabelLoad('lblEpisodeNo')}}</label>
+            </td>
+            <td>
+              <input type="text" id="txtEpisode" formControlName="txtEpisode" pInputText style="width: 100px" readonly />
+            </td>
+          </tr>
+        </table>
+        <table *ngIf="tableShowDoctor">
+          <tr><td colspan="6" style="font-size: 16px; font-weight: bolder; color: brown; text-decoration: underline; ">You have Patients taken Sick Leave By Resident/Specialist under your Name Verify this </td></tr>
+          <tr><td colspan="6"></td></tr>
+          <tr>
+            <td>
+              <label id="lblDoctorId" for="txtDoctorId"></label>
+            </td>
+            <td>
+              <input type="text" id="txtDoctorId" formControlName="txtDoctorId" autofocus pInputText style="width: 100px" />
+            </td>
+            <td>
+              <input type="text" id="txtDoctorName" formControlName="txtDoctorName" autofocus pInputText style="width: 200px" />
+            </td>
+            <td>
+              <label id="lblPatientNo_1" for="txtPatientNo_1"></label>
+            </td>
+            <td>
+              <input type="text" id="txtPatientNo_1" formControlName="txtPatientNo_1" autofocus pInputText style="width: 100px" />
+            </td>
+            <td>
+              <input type="text" id="txtPatientName_1" formControlName="txtPatientName_1" autofocus pInputText style="width: 200px" />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label id="lblDate" for="txtDate"></label>
+            </td>
+            <td colspan="2">
+              <input type="text" id="txtDate" formControlName="txtDate" autofocus pInputText style="width: 100px" />
+            </td>
+            <td>
+              <label id="lblDays" for="txtDays"></label>
+            </td>
+            <td>
+              <input type="text" id="txtDays" formControlName="txtLeaveDays" autofocus pInputText style="width: 100px" />
+            </td>
+            <td>
+              <p-checkbox [binary]="true" style="margin-left:50px" formControlName="chkOk"></p-checkbox>
+              <button id="btnOk" style="float: right; background: url(images/back.png) " pButton class="p-button-danger p-button-outlined" (click)="onOkClicked()"></button>
+            </td>
+            <!--<img src="/images/back.png" />-->
+          </tr>
+        </table>       
+        <hr />
+        <div style="width: 100%; text-align: center; font-size: 16px; font-weight: bolder; color: brown; text-decoration: underline; ">Rcommended Patient Sick Leave Details</div>
+        <div style="width: 50%; float: left; ">
+          <table>
+            <tr>
+              <td style="width:20px"></td>
+              <td>
+                <label id="lblDateVisit" for="txtDateVisitEng"></label>
+              </td>
+              <td>
+                <input type="text" id="txtDateVisitEng" formControlName="txtDateVisitEng" (blur)="onVisitDateBlur()" pInputText style="width: 100px" />
+              </td>
+              <td colspan="2">
+                <input type="text" id="txtDateVisitAr" formControlName="txtDateVisitAr" pInputText style="width: 100px" readonly/>
+              </td>
+            </tr>
+            <tr>
+              <td style="width:20px">
+                <p-checkbox [binary]="true" formControlName="chkSickLeaveFlg" ></p-checkbox>
+              </td>
+              <td>
+                <label id="lblSickLeaveFor" for="txtSickLeaveFor"></label>
+              </td>
+              <td>
+                <input type="text" id="txtSickLeaveFor" formControlName="txtSickLeaveDays" (blur)="onSickLeaveBlur()" pInputText style="width: 50px" /> Day(s)
+              </td>
+              <td>
+                <input type="hidden"  id="txtSickLeaveCon" formControlName="txtConsDoc" pInputText style="width: 100px" />
+              </td>
+              <td>
+                <input type="hidden"  id="txtSickLeaveDis" formControlName="txtDocDesMor" pInputText style="width: 100px" />
+              </td>
+            </tr>
+            <tr>
+              <td style="width:20px"></td>
+              <td>
+                <label id="lblStartingFrom" for="txtStartingEng"></label>
+              </td>
+              <td>
+                <input type="text" id="txtStartingEng" formControlName="txtStartingEng" (blur)="onStartDateBlur()" maxlength="8" pInputText pKeyFilter="pint" style="width: 100px" />
+              </td>
+              <td>
+                <input type="text" id="txtStartingAr" formControlName="txtStartingAr" pInputText style="width: 100px" readonly/>
+              </td>
+              <td>
+                <input type="text" id="txtEndDateEng" formControlName="txtEndDateEng" pInputText style="width: 100px" readonly/>
+              </td>
+            </tr>
+            <tr>
+              <td style="width:20px">
+                <p-checkbox [binary]="true" id="chkFuFlg" formControlName="chkFuFlg"></p-checkbox>
+              </td>
+              <td colspan="2">
+                <label id="lblFBESL" for="chkFuFlg"></label>
+              </td>
+              <td></td>
+              <td colspan="2">
+                <input type="text" id="txtEndDateAr" formControlName="txtEndDateAr" pInputText style="width: 100px" readonly/>
+              </td>
+
+            </tr>
+            <tr>
+              <td style="width:20px">
+                <p-checkbox [binary]="true" id="chkMedComFlg" formControlName="chkMedComFlg"></p-checkbox>
+              </td>
+              <td colspan="3">
+                <label id="lblRMCFR" for="chkMedComFlg"></label>
+              </td>
+            </tr>
+            <tr>
+              <td style="width:20px">
+              </td>
+              <td colspan="4">
+                <textarea id="txtMCR" formControlName="txtMCR" pInputText style="width: 350px;margin-left:50px"> </textarea>
+
+              </td>
+            </tr>
+            <tr>
+              <td style="width:20px">
+                <p-checkbox [binary]="true" id="chkApprovalFlg" formControlName="chkApprovalFlg"></p-checkbox>
+              </td>
+              <td colspan="2">
+                <label id="lblASL" for="chkApprovalFlg"></label>
+              </td>
+            </tr>
+            <tr>
+              <td style="width:20px">
+                <p-checkbox [binary]="true" id="chkConTrearFlg" formControlName="chkConTrearFlg"></p-checkbox>
+              </td>
+              <td colspan="2">
+                <label id="lblCTTF" for="chkConTrearFlg"></label>
+              </td>
+            </tr>
+            <tr>
+              <td style="width:20px">
+                <p-checkbox [binary]="true" id="chkPrmntParFlg" formControlName="chkPrmntParFlg"></p-checkbox>
+              </td>
+              <td colspan="2">
+                <label id="lblPPD" for="chkPrmntParFlg"></label>
+              </td>
+            </tr>
+            <tr>
+              <td style="width:20px">
+                <p-checkbox [binary]="true" id="chkOtherFlg" formControlName="chkOtherFlg"></p-checkbox>
+              </td>
+              <td colspan="1">
+                <label id="lblOthers" for="chkOtherFlg"></label>
+              </td>
+            </tr>
+            <tr>
+              <td style="width:20px">
+              </td>
+              <td colspan="4">
+                <textarea id="txtOtherRsn" formControlName="txtOtherRsn" pInputText style="width: 350px;margin-left:50px"> </textarea>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div style="width: 50%; float: left; border-left: 6px solid gray;height:330px">
+          <table>
+            <tr>
+              <td>
+                <label id="lblDocCode" for="txtTreatCode"></label>
+              </td>
+              <td>
+                <input type="text" id="txtTreatCode" formControlName="txtTreatCode" pInputText style="width: 100px" />
+              </td>
+              <td colspan="2">
+                <input type="text" id="txtTreatDoc" formControlName="txtTreatDoc" pInputText style="width: 200px" />
+              </td>             
+            </tr>
+            <tr>
+              <td></td>
+              <td></td>
+              <td>
+                <label id="lblBadgeNo" for="txtBadgeNo"></label>
+              </td>
+              <td>
+                <input type="text" id="txtBadgeNo" formControlName="txtBadgeNo" pInputText style="width: 143px" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label id="lblPhysicianName" for="txtPhysicianName"></label>
+              </td>
+              <td colspan="3">
+                <input type="text" id="txtPhysicianName" formControlName="txtPhysicianName" pInputText style="width: 302px" />
+              </td>
+            </tr>
+          </table>
+          <hr />
+          <table>
+            <tr>
+              <td>
+                <label id="lblOccupation" for="txtOccupation"></label>
+              </td>
+              <td colspan="3">
+                <input type="text" id="txtOccupation" formControlName="txtOccupation_2" pInputText style="width: 250px" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label id="lblPlaceofwork" for="txtPlaceofwork"></label>
+              </td>
+              <td colspan="3">
+                <input type="text" id="txtPlaceofwork" formControlName="txtPlaceofwork" pInputText style="width: 250px" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label id="lblLetterHead" for="txtLetterHead"></label>
+              </td>
+              <td colspan="3">
+                <input type="text" id="txtLetterHead" formControlName="txtLetterHead" pInputText style="width: 250px" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label id="lblLetterRef" for="txtLetterRef"></label>
+              </td>
+
+              <td colspan="3">
+                <input type="text" id="txtLetterRef" formControlName="txtLetterRef" pInputText style="width: 250px" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label id="lblLetterRefDate" for="txtLetterRefDate"></label>
+              </td>
+              <td>
+                <input type="text" id="txtLetterRefDateEng" (blur)="onLetterReDate()" formControlName="txtLetterRefDateEng" pInputText style="width: 100px" />
+              </td>
+              <td colspan="2">
+                <input type="text" id="txtLetterRefDateAr" formControlName="txtLetterRefDateAr" pInputText style="width: 100px" readonly/>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      </form>
+    </div>
+  </p-scrollPanel>
+</common>
+

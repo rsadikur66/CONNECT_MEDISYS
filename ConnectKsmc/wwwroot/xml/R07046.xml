@@ -1,0 +1,46 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="R07046" msprop:BaseTable.1="T03001" msprop:BaseTable.0="T07003" msprop:BaseTable.2="T_NLTY">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="T_PAT_NO" msprop:BaseColumn="T_PAT_NO" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_CLINIC_NAME_LANG1" msprop:BaseColumn="T_CLINIC_NAME_LANG1" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="PAT_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="YY" msprop:OraDbType="107" type="xs:decimal" minOccurs="0" />
+              <xs:element name="T_NTNLTY_CODE" msprop:BaseColumn="T_NTNLTY_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_ARRIVAL_DATE_ENG" msprop:BaseColumn="T_ARRIVAL_DATE" msprop:OraDbType="106" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="T_ARRIVAL_DATE_HIJ" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+			  <xs:element name="T_PRINT_DATE_HIJ" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_TIME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_ARRIVAL_TIME" msprop:BaseColumn="T_ARRIVAL_TIME" msprop:OraDbType="112" type="xs:int" minOccurs="0" />
+              <xs:element name="BARCODE_NO" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_NATIONALITY" msprop:BaseColumn="T_LANG2_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="DES" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_APPT_NO" msprop:BaseColumn="T_APPT_NO" msprop:OraDbType="113" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="header" msprop:BaseTable.0="T01028">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="T_SITE_CODE" msprop:BaseColumn="T_SITE_CODE" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_COUNTRY_LANG1_NAME" msprop:BaseColumn="T_COUNTRY_LANG1_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_COUNTRY_LANG2_NAME" msprop:BaseColumn="T_COUNTRY_LANG2_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_MIN_LANG1_NAME" msprop:BaseColumn="T_MIN_LANG1_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_MIN_LANG2_NAME" msprop:BaseColumn="T_MIN_LANG2_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_SITE_LANG1_NAME" msprop:BaseColumn="T_SITE_LANG1_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_SITE_LANG2_NAME" msprop:BaseColumn="T_SITE_LANG2_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_LOGO_ID" msprop:BaseColumn="T_LOGO_ID" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_LOGO_NAME" msprop:BaseColumn="T_LOGO_NAME" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+              <xs:element name="T_LOGO" msprop:BaseColumn="T_LOGO" msprop:OraDbType="110" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="T_LCENCE_NO" msprop:BaseColumn="T_LCENCE_NO" msprop:OraDbType="126" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

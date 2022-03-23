@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="02/06/2022 11:18:05" ReportInfo.Modified="02/08/2022 16:32:47" ReportInfo.CreatorVersion="2019.2.7.0">
+  <Dictionary>
+    <XmlDataConnection Name="Connection" ConnectionString="rijcmlqmmfdjkQxfe1iwShBNGpudzz8wMlNzQOnBPX+eImJ3PKvJMDZAptTGOBuYBcZ43sJJWS6apUQBF3K2EAx+oI2z6U1Jfh28TLjnr0yKBLIIyTd8wUbLKmrKERyO1XtXZvG">
+      <TableDataSource Name="R07027" DataType="System.Int32" Enabled="true" TableName="R07027">
+        <Column Name="T_PAT_NO" DataType="System.String"/>
+        <Column Name="PAT_NAME" DataType="System.String"/>
+        <Column Name="SEX_DESC" DataType="System.String"/>
+        <Column Name="DOCTOR_NAME" DataType="System.String"/>
+        <Column Name="CLINIC_DESC" DataType="System.String"/>
+        <Column Name="CLINIC_SPECIALITY" DataType="System.String"/>
+        <Column Name="APP_DESC" DataType="System.String"/>
+        <Column Name="T_CLINIC_SPCLTY" DataType="System.String"/>
+        <Column Name="T_CLINIC_CODE" DataType="System.String"/>
+        <Column Name="T_CLINIC_DOC_CODE" DataType="System.String"/>
+        <Column Name="T_REQUEST_NO" DataType="System.String"/>
+        <Column Name="T_REQUEST_DATE" DataType="System.DateTime"/>
+        <Column Name="T_REQUEST_TIME" DataType="System.String"/>
+        <Column Name="T_APPT_DATE" DataType="System.String"/>
+        <Column Name="USER_NAME" DataType="System.String"/>
+      </TableDataSource>
+    </XmlDataConnection>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Top="20" Width="718.2" Height="56.7">
+      <TextObject Name="Text1" Left="557.55" Top="37.8" Width="141.75" Height="18.9" Text="[R07027.T_REQUEST_NO]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text22" Left="557.55" Top="9.45" Width="141.75" Height="18.9" Text="Request No #" VertAlign="Center" Font="Arial, 10pt, style=Bold, Italic"/>
+      <TextObject Name="Text23" Left="302.4" Top="28.35" Width="189" Height="18.9" Text="![R07027.T_REQUEST_NO]!" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+      <TextObject Name="Text24" Left="9.45" Top="9.45" Width="132.3" Height="18.9" Text="Medisys R70727" HorzAlign="Center" Font="Arial, 8pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="96.7" Width="718.2" Height="245.7">
+      <TextObject Name="Text2" Left="28.35" Top="28.35" Width="94.5" Height="18.9" Text="Patient No:" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text3" Left="122.85" Top="28.35" Width="94.5" Height="18.9" Text="[R07027.T_PAT_NO]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text4" Left="255.15" Top="28.35" Width="103.95" Height="18.9" Text="Request Date:" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text5" Left="359.1" Top="28.35" Width="151.2" Height="18.9" Text="[R07027.T_REQUEST_DATE]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text6" Left="510.3" Top="28.35" Width="103.95" Height="18.9" Text="Request Time:" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text7" Left="614.25" Top="28.35" Width="94.5" Height="18.9" Text="[R07027.T_REQUEST_TIME]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text8" Left="28.35" Top="56.7" Width="103.95" Height="18.9" Text="Patient Name:" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text9" Left="132.3" Top="56.7" Width="434.7" Height="18.9" Text="[R07027.PAT_NAME]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text10" Left="28.35" Top="103.95" Width="141.75" Height="18.9" Text="Appointment within:" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text11" Left="179.55" Top="103.95" Width="302.4" Height="18.9" Text="[R07027.T_APPT_DATE]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text12" Left="28.35" Top="141.75" Width="94.5" Height="18.9" Text="Clinic:" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text13" Left="122.85" Top="141.75" Width="94.5" Height="18.9" Text="[R07027.T_CLINIC_CODE]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text14" Left="28.35" Top="170.1" Width="122.85" Height="18.9" Text="Clinic Speciality:" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text15" Left="160.65" Top="170.1" Width="94.5" Height="18.9" Text="[R07027.T_CLINIC_SPCLTY]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text16" Left="28.35" Top="198.45" Width="122.85" Height="18.9" Text="Clinic Doctor:" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text17" Left="160.65" Top="198.45" Width="434.7" Height="18.9" Text="[R07027.DOCTOR_NAME]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text18" Left="28.35" Top="226.8" Width="122.85" Height="18.9" Text="Request by:" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text19" Left="160.65" Top="226.8" Width="434.7" Height="18.9" Text="[R07027.USER_NAME]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text20" Left="255.15" Top="170.1" Width="340.2" Height="18.9" Text="[R07027.CLINIC_SPECIALITY]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text21" Left="217.35" Top="141.75" Width="378" Height="18.9" Text="[R07027.CLINIC_DESC]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </PageHeaderBand>
+  </ReportPage>
+</Report>

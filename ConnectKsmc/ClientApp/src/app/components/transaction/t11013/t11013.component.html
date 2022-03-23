@@ -1,0 +1,823 @@
+<common formCode="T11013" (permissionLoaded)="setPermission($event)" (saveClicked)="onSaveClicked()" (clearClicked)="onClearClicked()" [isPrintVisible]="true" (printClicked)="onPrintClicked()">
+  <p-scrollPanel styleClass="scroll">
+    <div class="content">
+      <form [formGroup]="userForm">
+        <table style="margin: 0 auto;">
+          <tr>
+            <td style="width:100px"><label id="lblPAT_NO" for="T_PAT_NO"></label></td>
+            <td>
+              <input type="text" pInputText inputId="T_PAT_NO" formControlName="T_PAT_NO" style="width:100px" (dblclick)="onPatientDblClick()" (blur)="onPatNoBlur()" />
+            </td>
+            <td colspan="4">
+              <input type="text" pInputText formControlName="PAT_NAME" style="width:350px" [readonly]="true" />
+            </td>
+            <td style="width: 140px">
+              <label id="lblGENDER" for="GENDER_DSCRPTN"></label>
+            </td>
+            <td>
+              <input type="text" pInputText formControlName="GENDER_DSCRPTN" style="width:100px" [readonly]="true" />
+            </td>
+            <td style="width:50px"><label id="lblAGE_YRS" for="T_AGE_YRS"></label></td>
+            <td>
+              <input type="text" pInputText formControlName="T_AGE_YRS" style="width:50px" [readonly]="true" />
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td style="width: 100px"><label id="lblPAT_TYPE" for="T_PAT_TYPE"></label></td>
+            <td>
+              <p-dropdown inputId="T_PAT_TYPE" formControlName="T_PAT_TYPE" [options]="patientType" optionLabel="PATIENT_TYPE" [resetFilterOnHide]="true"
+                          [style]="{'width':'100px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false" (onChange)="onPatTypeChange()"></p-dropdown>
+            </td>
+            <td colspan="2" width="150"></td>
+            <td style="width: 100px"><label id="lblHospital" for="HOSPITAL"></label></td>
+            <td>
+              <p-dropdown inputId="HOSPITAL" formControlName="HOSPITAL" [options]="hospitals" optionLabel="NAME" [resetFilterOnHide]="true" [style]="{'width':'100px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false"></p-dropdown>
+            </td>
+            <td style="width:140px"><label id="lblORDER_DATE" for="T_ORDER_DATE"></label></td>
+            <td style="width:100px"><p-calendar inputId="T_ORDER_DATE" formControlName="T_ORDER_DATE" dateFormat="dd/mm/yy" [monthNavigator]="true" appendTo="body" [yearNavigator]="true" [showButtonBar]="true" [readonlyInput]="true" [style]="{'width':'100px'}" [inputStyle]="{'width':'100px'}" (onSelect)="onOrderDateChange()"></p-calendar></td>
+            <td colspan="2">
+              <input type="text" pInputText formControlName="ORDER_DATE_H" style="width:100px" />
+            </td>
+            <td align="left">
+              H
+            </td>
+          </tr>
+          <tr>
+            <td style="width:100px"><label id="lblFRM_LOCATION" for="T_FRM_LOCATION"></label></td>
+            <td>
+              <input type="text" style="text-transform: uppercase; width: 100px" pInputText inputId="T_FRM_LOCATION" formControlName="T_FRM_LOCATION" (dblclick)="onLocationDblClick()" (blur)="onLocationBlur()" />
+            </td>
+            <td colspan="4">
+              <input type="text" pInputText formControlName="WARD_DSCRPTN" style="width:350px" />
+            </td>
+            <td style="width:140px"><label id="lblORDER_NO" for="T_ORDER_NO"></label></td>
+            <td>
+              <input type="text" pInputText formControlName="T_ORDER_NO" style="width:100px" (dblclick)="onOrderRequestDblClick()" #orderNo />
+            </td>
+            <td>
+              <label id="lblORDER_TIME" for="T_ORDER_TIME"></label>
+            </td>
+            <td>
+              <input type="text" pInputText formControlName="T_ORDER_TIME" style="width:50px" />
+            </td>
+            <td></td>
+          </tr>
+          <tr>
+            <td style="width:100px"><label id="lblIV_CONSTRAST" for="T_IV_CONSTRAST"></label></td>
+            <td>
+              <p-dropdown inputId="T_IV_CONSTRAST" formControlName="T_IV_CONSTRAST" [options]="conditions" optionLabel="NAME" [resetFilterOnHide]="true"
+                          [style]="{'width':'100px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false"></p-dropdown>
+            </td>
+            <td colspan="2" width="150"></td>
+            <td style="width:100px">
+              <label id="lblALERGY_FLAG" for="T_ALERGY_FLAG"></label>
+            </td>
+            <td>
+              <p-dropdown inputId="T_ALERGY_FLAG" formControlName="T_ALERGY_FLAG" [options]="conditions" optionLabel="NAME" [resetFilterOnHide]="true"
+                          [style]="{'width':'100px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false" (onChange)="onEnableDisableForm1()"></p-dropdown>
+            </td>
+            <td style="width:140px">
+              <label id="lblANASTHESIA" for="T_ANASTHESIA"></label>
+            </td>
+            <td>
+              <p-dropdown inputId="T_ANASTHESIA" formControlName="T_ANASTHESIA" [options]="conditions" optionLabel="NAME" [resetFilterOnHide]="true"
+                          [style]="{'width':'100px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false"></p-dropdown>
+            </td>
+            <td colspan="3"></td>
+          </tr>
+          <tr>
+            <td style="width:100px"><label id="lblLAB_REQ" for="T_LAB_REQ"></label></td>
+            <td>
+              <p-dropdown inputId="T_LAB_REQ" formControlName="T_LAB_REQ" [options]="labReq" optionLabel="NAME" [resetFilterOnHide]="true"
+                          [style]="{'width':'100px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false" (onChange)="onEnableDisableForm1()"></p-dropdown>
+            </td>
+            <td colspan="4" width="350"></td>
+            <td style="width:140px">
+              <label id="lblINF_PREC" for="T_INF_PREC"></label>
+            </td>
+            <td>
+              <p-dropdown inputId="T_INF_PREC" formControlName="T_INF_PREC" [options]="precautions" optionLabel="INF_PREC" [resetFilterOnHide]="true"
+                          [style]="{'width':'100px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false"></p-dropdown>
+            </td>
+            <td colspan="3"></td>
+          </tr>
+          <tr>
+            <td style="width:100px">
+              <label id="lblREQUEST_DOC" for="T_REQUEST_DOC"></label>
+            </td>
+            <td>
+              <input type="text" pInputText formControlName="T_REQUEST_DOC" (dblclick)="onReqDocDblClick()" style="width:100px;text-transform:uppercase" (blur)="onReqDocBlur()" />
+            </td>
+            <td colspan="4">
+              <input type="text" pInputText formControlName="DOCTOR_NAME_1" style="width:350px" [readonly]="true" />
+            </td>
+            <td style="width:100px">
+              <label id="lblURGENT_REP" for="T_URGENT_REP"></label>
+            </td>
+            <td style="width:100px">
+              <p-checkbox inputId="T_URGENT_REP" formControlName="T_URGENT_REP"></p-checkbox>
+            </td>
+            <td colspan="7"></td>
+          </tr>
+          <tr>
+            <td style="width:100px"><label id="lblPREGNANCY_FLAG" for="T_PREGNANCY_FLAG"></label></td>
+            <td>
+              <p-dropdown inputId="T_PREGNANCY_FLAG" formControlName="T_PREGNANCY_FLAG" [options]="conditions" optionLabel="NAME" [resetFilterOnHide]="true"
+                          [style]="{'width':'100px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false"></p-dropdown>
+            </td>
+            <td colspan="2" width="150"></td>
+            <td style="width:100px"><label id="lblLMP_DATE" for="T_LMP_DATE"></label></td>
+            <td>
+              <p-calendar inputId="T_LMP_DATE" formControlName="T_LMP_DATE" dateFormat="dd/mm/yy" appendTo="body" [monthNavigator]="true" [yearNavigator]="true" [showButtonBar]="true" [readonlyInput]="true" [style]="{'width':'100px'}" [inputStyle]="{'width':'100px'}"></p-calendar>
+            </td>
+            <td colspan="9"></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="content">
+      <form [formGroup]="userForm1">
+        <table style="margin: 0 auto;">
+          <tr>
+            <td style="width:15%">
+              <label id="lblTYPE_CODE" for="T_TYPE_CODE">Type</label>
+            </td>
+            <td style="width:25%">
+              <p-dropdown inputId="T_TYPE_CODE" formControlName="T_TYPE_CODE" [options]="radiologyType" optionLabel="TYPE_NAME" [resetFilterOnHide]="true" (onChange)="onRadioTypeChange()"
+                          [style]="{'width':'150px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false"></p-dropdown>
+            </td>
+            <td style="width:5%"></td>
+            <td style="width:10%">
+              <label id="lblPROC_CODE" for="T_PROC_CODE">Procedure</label>&nbsp;
+            </td>
+            <td style="width:10%">
+              <input type="text" pInputText formControlName="T_PROC_CODE" style="width:125px;text-transform:uppercase" (dblclick)="onProcDblClick()" (blur)="onProcBlur()" />
+            </td>
+            <td style="width:30%" colspan="2">
+              <input type="text" pInputText formControlName="PROCEDURE_DSCRPTN" style="width:99%" [readonly]="true" />
+            </td>
+            <td style="width:5%"></td>
+          </tr>
+          <tr>
+            <td style="width:15%" valign="top">
+              <label id="lblPROC_NOTES" for="T_PROC_NOTES">Position</label>
+            </td>
+            <td style="width:25%">
+              <textarea pInputTextarea formControlName="T_PROC_NOTES" style="width: 400px;resize:none;height: 45px"></textarea>
+            </td>
+            <td style="width:5%"></td>
+            <td style="width:10%;padding-top:5px" valign="top">
+              <label id="lblPriority" for="T_PRIORITY_CODE">Priority</label>&nbsp;
+            </td>
+            <td style="width:10%" valign="top">
+              <p-dropdown inputId="T_PRIORITY_CODE" formControlName="T_PRIORITY_CODE" [options]="priorities" optionLabel="PRIORITY_CODE" [resetFilterOnHide]="true"
+                          [style]="{'width':'125px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false"></p-dropdown>
+            </td>
+            <td style="width:30%;" colspan="2" valign="top">
+              <button type="button" pButton class="ui-button-secondary" label="Contrast Pre Medication" style="width:99%;background: lightgray;height: 28px;"></button>
+            </td>
+            <td style="width:5%"></td>
+          </tr>
+          <tr>
+            <td style="width:15%" valign="top">
+              <label id="lblINDICATION" for="T_INDICATION">Indication</label>
+            </td>
+            <td style="width:25%">
+              <textarea pInputTextarea formControlName="T_INDICATION" style="width:400px;resize:none;height:45px"></textarea>
+            </td>
+            <td style="width:5%"></td>
+            <td style="width:20%" colspan="2">
+              <button type="button" pButton class="ui-button-secondary" label="Consent" style="width:99%;background: lightgray;height: 28px;"></button>
+            </td>
+            <td style="width:30%;" colspan="2">
+              <button type="button" pButton class="ui-button-secondary" label="MRI/MAM Questioner" (click)="onMRIShow()" style="width:99%;background: lightgray;height: 28px;"></button>
+            </td>
+            <td style="width:5%"></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div class="content">
+      <form [formGroup]="userForm2">
+        <div style="width:70%;margin:0 auto;padding-bottom:5px">
+          <p-table #dt8 [value]="proceData">
+            <ng-template pTemplate="header">
+              <tr>
+                <th style="width: 80px;">Procedure Code</th>
+                <th style="width: 350px;">Description</th>
+                <th style="width: 0px;visibility:hidden">Description</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+              <tr (dblclick)="onProcedureRowDblClick(rowIndex)" [pSelectableRow]="rowData" style="height:21px">
+                <td>{{ rowData.CODE }}</td>
+                <td>{{ rowData.NAME }}</td>
+                <td style="visibility:hidden">{{ rowData.ORDER }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+      </form>
+    </div>   
+    <form [formGroup]="userFormMAMO">
+      <p-dialog header="MAMO Information" [(visible)]="displayMAMO" [modal]="true" [style]="{width: '950px'}">
+        <div class="ui-g">
+          <div class="ui-lg-5">
+            <table style="margin:0 auto;width: 100%">
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_M_FEED" [binary]="true" formControlName="T_M_FEED"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblM_FEED" for="T_M_FEED">Patient presently breast-feeding</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_M_CON" [binary]="true" formControlName="T_M_CON"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblM_CON" for="T_M_CON">Patient use oral contraceptive pill</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_M_HRT" [binary]="true" formControlName="T_M_HRT"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblM_HRT" for="T_M_HRT">Patient on H.R.T</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_M_HCAN" [binary]="true" formControlName="T_M_HCAN"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblM_HCAN" for="T_M_HCAN">Personal history of Cancer</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_M_TUM" [binary]="true" formControlName="T_M_TUM"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblM_TUM" for="T_M_TUM">Personal history of cancer other than breast</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_M_HCHEM" [binary]="true" formControlName="T_M_HCHEM"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblM_HCHEM" for="T_M_HCHEM">History of Chemotherapy</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_M_HRAD" [binary]="true" formControlName="T_M_HRAD"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblM_HRAD" for="T_M_HRAD">History of Radiotherapy</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_M_FAMB" [binary]="true" formControlName="T_M_FAMB"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblM_FAMB" for="T_M_FAMB">Family history of breast Cancer</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_M_MAM" [binary]="true" formControlName="T_M_MAM"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblM_MAM" for="T_M_MAM">Mammogram Study done</label>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="ui-lg-4">
+            <table style="margin:0 auto;width: 100%">
+              <tr>
+                <td>
+                  <label id="lblM_AGEDIA" for="T_M_AGEDIA">Age of diagnosis</label>
+                </td>
+                <td>
+                  <input type="text" id="T_M_AGEDIA" formControlName="T_M_AGEDIA" pInputText pKeyFilter="pint" maxlength="10" style="width: 150px" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label id="lblM_TUMSPY" for="T_M_TUMSPY">Specify</label>
+                </td>
+                <td>
+                  <input type="text" id="T_M_TUMSPY" formControlName="T_M_TUMSPY" pInputText style="width: 150px" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label id="lblM_FMHIS" for="T_M_FMHIS">Whom / Age of Dx</label>
+                </td>
+                <td>
+                  <input type="text" id="T_M_FMHIS" formControlName="T_M_FMHIS" pInputText style="width: 150px" />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label id="lblM_DATE" for="T_M_DATE">When</label>
+                </td>
+                <td>
+                  <p-calendar inputId="T_M_DATE" formControlName="T_M_DATE" dateFormat="dd/mm/yy" [monthNavigator]="true" appendTo="body" [yearNavigator]="true" [showButtonBar]="true" [readonlyInput]="true" [style]="{'width':'150px'}" [inputStyle]="{'width':'150px'}"></p-calendar>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <label id="lblM_COMM" for="T_M_COMM">Other</label>
+                </td>
+                <td>
+                  <input type="text" id="T_M_COMM" formControlName="T_M_COMM" pInputText style="width: 150px" />
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="ui-lg-3">
+            <table style="margin:0 auto;width: 100%;text-align:center">
+              <tr>
+                <th>INDICATION</th>
+                <th>RT</th>
+                <th>LF</th>
+              </tr>
+              <tr>
+                <td align="left">
+                  <label id="lblM_MSLR" for="T_M_MSLR">Mass lesion</label>
+                </td>
+                <td>
+                  <p-checkbox inputId="T_M_MSLR" [binary]="true" formControlName="T_M_MSLR"></p-checkbox>
+                </td>
+                <td>
+                  <p-checkbox inputId="T_M_MSLL" [binary]="true" formControlName="T_M_MSLL"></p-checkbox>
+                </td>
+              </tr>
+              <tr>
+                <td align="left">
+                  <label id="lblM_AXIR" for="T_M_AXIR">Axillary LNS</label>
+                </td>
+                <td>
+                  <p-checkbox inputId="T_M_AXIR" [binary]="true" formControlName="T_M_AXIR"></p-checkbox>
+                </td>
+                <td>
+                  <p-checkbox inputId="T_M_AXIL" [binary]="true" formControlName="T_M_AXIL"></p-checkbox>
+                </td>
+              </tr>
+              <tr>
+                <td align="left">
+                  <label id="lblM_NIPPR" for="T_M_NIPPR">Nipple refraction</label>
+                </td>
+                <td>
+                  <p-checkbox inputId="T_M_NIPPR" [binary]="true" formControlName="T_M_NIPPR"></p-checkbox>
+                </td>
+                <td>
+                  <p-checkbox inputId="T_M_NIPPL" [binary]="true" formControlName="T_M_NIPPL"></p-checkbox>
+                </td>
+              </tr>
+              <tr>
+                <td align="left">
+                  <label id="lblM_SKNR" for="T_M_SKNR">Skin Change</label>
+                </td>
+                <td>
+                  <p-checkbox inputId="T_M_SKNR" [binary]="true" formControlName="T_M_SKNR"></p-checkbox>
+                </td>
+                <td>
+                  <p-checkbox inputId="T_M_SKNL" [binary]="true" formControlName="T_M_SKNL"></p-checkbox>
+                </td>
+              </tr>
+              <tr>
+                <td align="left">
+                  <label id="lblM_NIPDSR" for="T_M_NIPDSR">Nipple Discharge</label>
+                </td>
+                <td>
+                  <p-checkbox inputId="T_M_NIPDSR" [binary]="true" formControlName="T_M_NIPDSR"></p-checkbox>
+                </td>
+                <td>
+                  <p-checkbox inputId="T_M_NIPDSL" [binary]="true" formControlName="T_M_NIPDSL"></p-checkbox>
+                </td>
+              </tr>
+              <tr>
+                <td align="left">
+                  <label id="lblM_PAINR" for="T_M_PAINR">Pain</label>
+                </td>
+                <td>
+                  <p-checkbox inputId="T_M_PAINR" [binary]="true" formControlName="T_M_PAINR"></p-checkbox>
+                </td>
+                <td>
+                  <p-checkbox inputId="T_M_PAINL" [binary]="true" formControlName="T_M_PAINL"></p-checkbox>
+                </td>
+              </tr>
+              <br />
+              <tr>
+                <td colspan="3">
+                  <label id="lblM_OTHERS" for="T_M_OTHERS">Cause</label>&nbsp;
+                  <input type="text" id="T_M_OTHERS" formControlName="T_M_OTHERS" pInputText style="width: 150px" />
+                </td>
+              </tr>
+              <br />
+              <tr>
+                <td colspan="3">
+                  <p-checkbox inputId="T_MAM_FLAG" [binary]="true" formControlName="T_MAM_FLAG"></p-checkbox>&nbsp;
+                  <label id="lblMAMO_FLAG" for="T_MAM_FLAG">MAMO Question</label>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <p-footer>
+          <button type="button" pButton icon="pi pi-check" class="ui-button-secondary" (click)="onMAMOOkClick()" label="Ok"></button>
+          <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" (click)="displayMAMO=false" label="Cancel"></button>
+        </p-footer>
+      </p-dialog>
+    </form>
+    <form [formGroup]="userFormMRI">
+      <p-dialog header="MRI Information" [(visible)]="displayMRI" [modal]="true" [style]="{width: '900px'}">
+        <div class="ui-g">
+          <table style="margin:0 auto;width: 100%">
+            <tr>
+              <td align="center">
+                <label id="lblHazard" style="color:red">******Pls. Check for possible hazard Yes and Blank for No</label>
+              </td>
+            </tr>
+          </table>
+          <div class="ui-lg-7">
+            <table style="margin:0 auto;width: 100%">
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_SUR" [binary]="true" formControlName="T_I_SUR"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_SUR" for="T_I_SUR">Surgical Clips / Aneurysm Clips</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_ART" [binary]="true" formControlName="T_I_ART"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_ART" for="T_I_ART">Artificial Heart Valves</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_PSUR" [binary]="true" formControlName="T_I_PSUR"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_PSUR" for="T_I_PSUR">Previous surgery</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_PRE" [binary]="true" formControlName="T_I_PRE"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_PRE" for="T_I_PRE">Tissue Expanders (Breast or other).</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_KIDNY" [binary]="true" formControlName="T_I_KIDNY"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_KIDNY" for="T_I_KIDNY">Kidney Disease / patient on Dialysis.</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_NEURO" [binary]="true" formControlName="T_I_NEURO"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_NEURO" for="T_I_NEURO">Neurostimulator</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_HRAID" [binary]="true" formControlName="T_I_HRAID"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_HRAID" for="T_I_HRAID">Hearing Aid.</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_CLAUS" [binary]="true" formControlName="T_I_CLAUS"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_CLAUS" for="T_I_CLAUS">Claustrophobic.</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_IVCFIL" [binary]="true" formControlName="T_I_IVCFIL"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_IVCFIL" for="T_I_IVCFIL">IVC Filter</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_VASCLIP" [binary]="true" formControlName="T_I_VASCLIP"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_VASCLIP" for="T_I_VASCLIP">Vascular Clips / Wires / Stent</label>
+                </td>
+              </tr>
+              <br />
+              <br />
+              <tr>
+                <td></td>
+                <td>
+                  <label id="lblI_COMPAT" for="T_I_COMPAT">If yes in any above, please specify whether it is MRI Compation or No</label>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <input type="text" inputId="T_I_COMPAT" pInputText formControlName="T_I_COMPAT" size="60" />
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="ui-lg-5">
+            <table style="margin:0 auto;width: 100%">
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_JPF" [binary]="true" formControlName="T_I_JPF"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_JPF" for="T_I_JPF">Joint Prosthesis, Mxation Material Mall, Plate etc.</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_CAR" [binary]="true" formControlName="T_I_CAR"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_CAR" for="T_I_CAR">Cardiac Pacemakers / Wires.</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_IPCARD" [binary]="true" formControlName="T_I_IPCARD"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_IPCARD" for="T_I_IPCARD">Implanted Cardiac Defibrillator.</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_INT" [binary]="true" formControlName="T_I_INT"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_INT" for="T_I_INT">Intracranial Vascular Clips</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_IMF" [binary]="true" formControlName="T_I_IMF"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_IMF" for="T_I_IMF">Intraocular Metallic F.B / Prosthesis.</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_PRGSTU" [binary]="true" formControlName="T_I_PRGSTU"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_PRGSTU" for="T_I_PRGSTU">Programmable Shunt.</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_PENIM" [binary]="true" formControlName="T_I_PENIM"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_PENIM" for="T_I_PENIM">Penile Implant.</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_M_PATCH" [binary]="true" formControlName="T_M_PATCH"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblM_PATCH" for="T_M_PATCH">Medication Patch.</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_DENT" [binary]="true" formControlName="T_I_DENT"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_DENT" for="T_I_DENT">Denture / Braces</label>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_I_SWANS" [binary]="true" formControlName="T_I_SWANS"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblI_SWANS" for="T_I_SWANS">Swans - Ganz Catheter</label>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2"></td>
+              </tr>
+              <tr>
+                <td colspan="2"></td>
+              </tr>
+              <br />
+              <br />
+              <tr>
+                <td>
+                  <p-checkbox inputId="T_MRI_FLAG" [binary]="true" formControlName="T_MRI_FLAG"></p-checkbox>
+                </td>
+                <td>
+                  <label id="lblMRI_FLAG" for="T_MRI_FLAG">MRI Question</label>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <p-footer>
+          <button type="button" pButton icon="pi pi-check" class="ui-button-secondary" (click)="onMRIOkClick()" label="Ok"></button>
+          <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" (click)="displayMRI=false" label="Cancel"></button>
+        </p-footer>
+      </p-dialog>
+    </form>
+    <p-dialog header="Location Info" [(visible)]="displayLocation" [modal]="true" [style]="{width: '500px'}">
+      <p-table #dt [value]="patientLocationData" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="locationSelectedData" [pageLinks]="10">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 50px;">Code</th>
+            <th style="width: 300px;">Name</th>
+          </tr>
+          <tr>
+            <td><input pInputText type="text" (input)="dt.filter(getEventValue($event), 'LOC_CODE', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt.filter(getEventValue($event), 'LOC_NAME', 'contains')" style="width: 100%;"></td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr (dblclick)="onLocationRowDblClick(rowData)" [pSelectableRow]="rowData">
+            <td>{{ rowData.LOC_CODE }}</td>
+            <td>{{ rowData.LOC_NAME }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-footer>
+        <button type="button" pButton icon="pi pi-check" class="ui-button-secondary" (click)="onLocationOkClick()" label="Ok"></button>
+        <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" (click)="displayLocation=false" label="Cancel"></button>
+      </p-footer>
+    </p-dialog>
+    <p-dialog header="Doctor's Info" [(visible)]="displayDoctor" [modal]="true" [style]="{width: '500px'}">
+      <p-table #dt1 [value]="doctorsData" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="doctorSelectedData" [pageLinks]="10">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 50px;">Code</th>
+            <th style="width: 300px;">Name</th>
+          </tr>
+          <tr>
+            <td><input pInputText type="text" (input)="dt1.filter(getEventValue($event), 'T_DOC_CODE', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt1.filter(getEventValue($event), 'DOC_NAME', 'contains')" style="width: 100%;"></td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr (dblclick)="onDoctorRowDblClick(rowData)" [pSelectableRow]="rowData">
+            <td>{{ rowData.T_DOC_CODE }}</td>
+            <td>{{ rowData.DOC_NAME }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-footer>
+        <button type="button" pButton icon="pi pi-check" class="ui-button-secondary" (click)="onDoctorOkClick()" label="Ok"></button>
+        <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" (click)="displayDoctor=false" label="Cancel"></button>
+      </p-footer>
+    </p-dialog>
+    <p-dialog header="Procedure Info" [(visible)]="displayProcedure" [modal]="true" [style]="{width: '500px'}">
+      <p-table #dt2 [value]="procedureData" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="procedureSelectedData" [pageLinks]="10">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 50px;">Code</th>
+            <th style="width: 300px;">Name</th>
+          </tr>
+          <tr>
+            <td><input pInputText type="text" (input)="dt2.filter(getEventValue($event), 'T_PROC_CODE', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt2.filter(getEventValue($event), 'PROC_DSCRPTN', 'contains')" style="width: 100%;"></td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr (dblclick)="onProcRowDblClick(rowData)" [pSelectableRow]="rowData">
+            <td>{{ rowData.T_PROC_CODE }}</td>
+            <td>{{ rowData.PROC_DSCRPTN }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-footer>
+        <button type="button" pButton icon="pi pi-check" class="ui-button-secondary" (click)="onProcOkClick()" label="Ok"></button>
+        <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" (click)="displayProcedure=false" label="Cancel"></button>
+      </p-footer>
+    </p-dialog>
+    <p-dialog header="Procedure Info" [(visible)]="displayProce" [modal]="true" [style]="{width: '500px'}">
+      <p-table #dt3 [value]="procData" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="procSelectedData" [pageLinks]="10">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 50px;">Code</th>
+            <th style="width: 300px;">Name</th>
+          </tr>
+          <tr>
+            <td><input pInputText type="text" (input)="dt3.filter(getEventValue($event), 'T_PROC_CODE', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt3.filter(getEventValue($event), 'PROC_DSCRPTN', 'contains')" style="width: 100%;"></td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr (dblclick)="onProcedure1RowDblClick(rowData)" [pSelectableRow]="rowData">
+            <td>{{ rowData.T_PROC_CODE }}</td>
+            <td>{{ rowData.PROC_DSCRPTN }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-footer>
+        <button type="button" pButton icon="pi pi-check" class="ui-button-secondary" (click)="onProcedureOkClick()" label="Ok"></button>
+        <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" (click)="displayProce=false" label="Cancel"></button>
+      </p-footer>
+    </p-dialog>
+    <p-dialog header="Patient List" [(visible)]="displayAdmitted" [modal]="true" [style]="{width: '770px'}">
+      <p-table #dt4 [value]="admittedPatients" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="selectedPatData" [pageLinks]="10">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 80px;">{{ onLabelLoad('lblPAT_NO') }}</th>
+            <th style="width: 170px;">{{ onLabelLoad('lblPAT_NAME') }}</th>
+            <th style="width: 80px;">{{onLabelLoad('lblBirthDay')}}</th>
+            <th style="width: 120px;">{{onLabelLoad('lblNtnlty')}}</th>
+            <th style="width: 70px;">{{onLabelLoad('lblGENDER')}}</th>
+            <th style="width: 200px;">{{onLabelLoad('lblSite')}}</th>
+          </tr>
+          <tr>
+            <td><input pInputText type="text" (input)="dt4.filter(getEventValue($event), 'T_PAT_NO', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt4.filter(getEventValue($event), 'T_PAT_NAME', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt4.filter(getEventValue($event), 'T_BIRTH_DATE', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt4.filter(getEventValue($event), 'NATIONALITY', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt4.filter(getEventValue($event), 'GENDER', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt4.filter(getEventValue($event), 'SITE', 'contains')" style="width: 100%;"></td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr (dblclick)="ondbClick(rowData)" [pSelectableRow]="rowData">
+            <td>{{ rowData.T_PAT_NO }}</td>
+            <td>{{ rowData.T_PAT_NAME }}</td>
+            <td>{{ rowData.T_BIRTH_DATE }}</td>
+            <td>{{ rowData.NATIONALITY }}</td>
+            <td>{{ rowData.GENDER }}</td>
+            <td>{{ rowData.SITE }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-footer>
+        <button type="button" pButton icon="pi pi-check" class="ui-button-secondary" (click)="onOkPatPopUpClick()" label="Ok"></button>
+        <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" (click)="displayAdmitted=false" label="Close"></button>
+      </p-footer>
+    </p-dialog>
+    <p-dialog header="Order Request List" [(visible)]="displayRequest" [modal]="true" [style]="{width: '680px'}">
+      <p-table #dt5 [value]="radiologyRequestList" [paginator]="true" [rows]="15" selectionMode="single" [(selection)]="selectedRequestData" [pageLinks]="10">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 80px;">{{ onLabelLoad('lblORDER_NO') }}</th>
+            <th style="width: 75px;">{{ onLabelLoad('lblORDER_DATE') }}</th>
+            <th style="width: 75px;">{{ onLabelLoad('lblORDER_TIME') }}</th>
+            <th style="width: 200px;">{{onLabelLoad('lblREQUEST_DOC')}}</th>
+            <th style="width: 200px;">{{onLabelLoad('lblFRM_LOCATION')}}</th>
+          </tr>
+          <tr>
+            <td><input pInputText type="text" (input)="dt5.filter(getEventValue($event), 'T_ORDER_NO', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt5.filter(getEventValue($event), 'T_ORDER_DATE', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt5.filter(getEventValue($event), 'T_ORDER_TIME', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt5.filter(getEventValue($event), 'DOC_NAME', 'contains')" style="width: 100%;"></td>
+            <td><input pInputText type="text" (input)="dt5.filter(getEventValue($event), 'LOCATION_NAME', 'contains')" style="width: 100%;"></td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr (dblclick)="onRequestDblClick(rowData)" [pSelectableRow]="rowData">
+            <td>{{ rowData.T_ORDER_NO }}</td>
+            <td>{{ rowData.T_ORDER_DATE }}</td>
+            <td>{{ rowData.T_ORDER_TIME }}</td>
+            <td>{{ rowData.DOC_NAME }}</td>
+            <td>{{ rowData.LOCATION_NAME }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-footer>
+        <!--<button type="button" pButton icon="pi pi-check" class="ui-button-secondary" (click)="onRequestOkClick()" label="Ok"></button>
+        <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" (click)="displayRequest=false" label="Close"></button>-->
+      </p-footer>
+    </p-dialog>
+  </p-scrollPanel>
+</common>

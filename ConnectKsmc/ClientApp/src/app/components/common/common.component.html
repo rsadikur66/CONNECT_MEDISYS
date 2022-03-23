@@ -1,0 +1,73 @@
+<link rel="stylesheet" [href]="sanitizer.bypassSecurityTrustResourceUrl(css)" />
+<p-toast></p-toast>
+<div class="main">
+  <ngx-ui-loader></ngx-ui-loader>
+  <div class="topbarBg">
+    <div class="datePanel">
+      <img src="images/calender.png" alt="calender" />
+      <span class="todayG">{{ todayG }}</span>
+      &brvbar;
+      <span class="todayH">{{ todayH }}</span>
+      <span class="formInfo">{{ formInfo }}</span>
+    </div>
+    <span *ngIf="formCode.startsWith('M')" class="language" (click)="onLanguageClick()">{{ language }}</span>
+  </div>
+  <div class="topbarSeparator"></div>
+  <div [ngClass]="formCode.startsWith('M') ? 'headerBg headerBgMenu' : 'headerBg headerBgPage'">
+    <div [ngClass]="formCode.startsWith('M') ? 'logoMenu' : 'logoPage'">
+      <img src="images/Connect.png" alt="logo" width="180" />
+    </div>
+    <div *ngIf="!formCode.startsWith('M')" class="user userPage">
+      <img src="images/user.png" alt="user icon" />
+    </div>
+    <div *ngIf="!formCode.startsWith('M')" class="userNamePage">
+      <span>{{ userName }}</span>
+    </div>
+    <div [ngClass]="formCode.startsWith('M') ? 'title titleMenu' : 'title titlePage'">
+      <span>{{ title }}</span>
+    </div>
+  </div>
+  <div [ngClass]="formCode.startsWith('M') ? 'sidePanelBg sidePanelBgMenu' : 'sidePanelBg sidePanelBgPage'">
+    <div *ngIf="formCode.startsWith('M')" class="userInfo">
+      <div class="user">
+        <img src="images/user.png" alt="user icon" />
+      </div>
+      <div class="userNameMenu">
+        {{ userLang == '1' ? 'مرحبا بك' : 'Welcome' }}<br />
+        {{ userName }}<br />
+        <!--{{ userLang == '1' ? 'اخر دخول ' : 'Last Login ' }}
+        {{ lastLogin }}-->
+      </div>
+    </div>
+    <div *ngIf="formCode.startsWith('M')" class="options optionsMenu">
+      <button type="button" class="buttonMenu transaction" title="{{ transaction }}" *ngIf="isTransactionVisible" (click)="onBtnTransactionClick()">{{ transaction }}</button>
+      <button type="button" class="buttonMenu query" title="{{ query }}" *ngIf="isQueryVisible" (click)="onBtnQueryClick()">{{ query }}</button>
+      <button type="button" class="buttonMenu report" title="{{ report }}" *ngIf="isReportVisible" (click)="onBtnReportClick()">{{ report }}</button>
+      <button type="button" class="buttonMenu setup" title="{{ setup }}" *ngIf="isSetupVisible" (click)="onBtnSetupClick()">{{ setup }}</button>
+      <button type="button" class="buttonMenu security" title="{{ security }}" *ngIf="isSecurityVisible" (click)="onBtnSecurityClick()">{{ security }}</button>
+      <div class="navigation">
+        <button type="button" class="buttonMenu logoutMenu" title="{{ logout }}" (click)="onBtnLogoutClick()">{{ logout }}</button>
+      </div>
+    </div>
+    <div *ngIf="!formCode.startsWith('M')" class="options optionsPage">
+      <button type="button" title="New" class="buttonPage new" *ngIf="isNewVisible" (click)="onBtnNewClick()"></button>
+      <button type="button" title="Save" class="buttonPage save" *ngIf="isSaveVisible" (click)="onBtnSaveClick()"></button>
+      <button type="button" title="Next" class="buttonPage next" *ngIf="isNextVisible" (click)="onBtnNextClick()"></button>
+      <button type="button" title="Delete" class="buttonPage delete" *ngIf="isDeleteVisible" (click)="onBtnDeleteClick()"></button>
+      <button type="button" title="Clear" class="buttonPage clear" *ngIf="isClearVisible" (click)="onBtnClearClick()"></button>
+      <button type="button" title="Enter" class="buttonPage enter" *ngIf="isEnterVisible" (click)="onBtnEnterClick()"></button>
+      <button type="button" title="Execute" class="buttonPage execute" *ngIf="isExecuteVisible" (click)="onBtnExecuteClick()"></button>
+      <button type="button" title="Cancel" class="buttonPage cancel" *ngIf="isCancelVisible" (click)="onBtnCancelClick()"></button>
+      <button type="button" [title]="printTitle" class="buttonPage print" *ngIf="isPrintVisible" (click)="onBtnPrintClick()"></button>
+      <button type="button" [title]="print1Title" class="buttonPage print" *ngIf="isPrint1Visible" (click)="onBtnPrint1Click()"></button>
+      <button type="button" [title]="print2Title" class="buttonPage print" *ngIf="isPrint2Visible" (click)="onBtnPrint2Click()"></button>
+      <div class="navigation">
+        <button type="button" title="Back" class="buttonPage back" (click)="onBtnBackClick()"></button>
+        <button id="btnLogout" type="button" title="Logout" class="buttonPage logoutPage" (click)="onBtnLogoutClick()"></button>
+      </div>
+    </div>
+  </div>
+  <div [ngClass]="formCode.startsWith('M') ? 'container containerMenu' : 'container containerPage'">
+    <ng-content></ng-content>
+  </div>
+</div>

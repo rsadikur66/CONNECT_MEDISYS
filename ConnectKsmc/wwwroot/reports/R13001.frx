@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="02/28/2022 17:17:22" ReportInfo.Modified="03/09/2022 11:11:18" ReportInfo.CreatorVersion="2019.2.7.0">
+  <Dictionary/>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Top="20" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Left="311.85" Top="9.45" Width="94.5" Height="18.9" Border.Lines="All" Text="T13001" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="77.8" Width="718.2" Height="28.35"/>
+    <DataBand Name="Data1" Top="126.15" Width="718.2" Height="907.2">
+      <ShapeObject Name="Shape3" Top="340.2" Width="718.2" Height="538.65"/>
+      <ShapeObject Name="Shape1" Width="718.2" Height="878.85"/>
+      <TextObject Name="Text2" Left="9.45" Top="9.45" Width="103.95" Height="18.9" Border.Lines="All" Text="Pat No #" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="9.45" Top="37.8" Width="103.95" Height="18.9" Border.Lines="All" Text="Name" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text4" Left="9.45" Top="66.15" Width="103.95" Height="18.9" Border.Lines="All" Text="Req Date" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text5" Left="9.45" Top="94.5" Width="103.95" Height="18.9" Border.Lines="All" Text="Spec Coll. Time" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text6" Left="9.45" Top="122.85" Width="103.95" Height="18.9" Border.Lines="All" Text="Clinicaln Diag." VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text7" Left="9.45" Top="151.2" Width="103.95" Height="18.9" Border.Lines="All" Text="Consultant" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text8" Left="113.4" Top="9.45" Width="85.05" Height="18.9" Border.Lines="All" Text="Pat No #" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text9" Left="236.25" Top="9.45" Width="56.7" Height="18.9" Border.Lines="All" Text="Req #" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text10" Left="292.95" Top="9.45" Width="103.95" Height="18.9" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text11" Left="425.25" Top="9.45" Width="56.7" Height="18.9" Border.Lines="All" Text="AGE" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text12" Left="481.95" Top="9.45" Width="37.8" Height="18.9" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text13" Left="538.65" Top="9.45" Width="56.7" Height="18.9" Border.Lines="All" Text="Lab No." VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text14" Left="595.35" Top="9.45" Width="113.4" Height="18.9" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text15" Left="113.4" Top="37.8" Width="321.3" Height="18.9" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text16" Left="113.4" Top="66.15" Width="75.6" Height="18.9" Border.Lines="All" Text="22/02/2022" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text17" Left="198.45" Top="66.15" Width="66.15" Height="18.9" Border.Lines="All" Text="10:58 PM" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text18" Left="274.05" Top="66.15" Width="56.7" Height="18.9" Text="Spec#" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text19" Left="396.9" Top="66.15" Width="66.15" Height="18.9" Border.Lines="All" Text="Location" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text20" Left="396.9" Top="94.5" Width="66.15" Height="18.9" Border.Lines="All" Text="Hist Revd" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text21" Left="396.9" Top="122.85" Width="66.15" Height="18.9" Border.Lines="All" Text="Specimen" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text22" Left="396.9" Top="151.2" Width="66.15" Height="18.9" Border.Lines="All" Text="Analyzer" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text23" Left="463.05" Top="94.5" Width="56.7" Height="18.9" Border.Lines="All" Text="Hist Revd" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text24" Left="538.65" Top="37.8" Width="56.7" Height="18.9" Border.Lines="All" Text="Gender" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text25" Left="595.35" Top="37.8" Width="113.4" Height="18.9" Border.Lines="All" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text26" Left="519.75" Top="94.5" Width="37.8" Height="18.9" Border.Lines="All" Text="Hist Revd" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text27" Left="567" Top="94.5" Width="66.15" Height="18.9" Border.Lines="All" Text="Nationality" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text28" Left="633.15" Top="94.5" Width="75.6" Height="18.9" Border.Lines="All" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text29" Left="198.45" Top="94.5" Width="66.15" Height="18.9" Border.Lines="All" Text="10:58 PM" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text30" Left="113.4" Top="94.5" Width="75.6" Height="18.9" Border.Lines="All" Text="22/02/2022" HorzAlign="Center" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text31" Left="274.05" Top="94.5" Width="94.5" Height="18.9" Border.Lines="All" Text="REF_HOS_NO" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text32" Left="463.05" Top="122.85" Width="132.3" Height="18.9" Border.Lines="All" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text33" Left="113.4" Top="151.2" Width="189" Height="18.9" Border.Lines="All" Text="DOCTOR_NAME" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text34" Left="113.4" Top="122.85" Width="189" Height="18.9" Border.Lines="All" Text="CLINICAL_DIAG" VertAlign="Center" Font="Arial, 8pt"/>
+      <TextObject Name="Text35" Left="463.05" Top="66.15" Width="245.7" Height="18.9" Border.Lines="All" Text="Location" VertAlign="Center" Font="Arial, 8pt"/>
+      <ShapeObject Name="Shape2" Top="179.55" Width="718.2" Height="37.8"/>
+      <TextObject Name="Text36" Left="207.9" Top="189" Width="302.4" Height="18.9" Border.Lines="All" Text="TEST_NAME" HorzAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text37" Left="9.45" Top="226.8" Width="132.3" Height="18.9" Border.Lines="All" Text="Nature of Operation" Font="Arial, 8pt"/>
+      <TextObject Name="Text38" Left="9.45" Top="255.15" Width="141.75" Height="18.9" Border.Lines="All" Text="Sample for Examination" Font="Arial, 8pt"/>
+      <TextObject Name="Text41" Left="9.45" Top="283.5" Width="141.75" Height="18.9" Border.Lines="All" Text="Clinical Data" Font="Arial, 8pt"/>
+      <TextObject Name="Text42" Left="9.45" Top="311.85" Width="141.75" Height="18.9" Border.Lines="All" Text="Clinical Diagnosis" Font="Arial, 8pt"/>
+      <TextObject Name="Text39" Left="160.65" Top="226.8" Width="9.45" Height="18.9" Border.Lines="All" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text43" Left="160.65" Top="255.15" Width="9.45" Height="18.9" Border.Lines="All" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text44" Left="160.65" Top="283.5" Width="9.45" Height="18.9" Border.Lines="All" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text45" Left="160.65" Top="311.85" Width="9.45" Height="18.9" Border.Lines="All" Text=":" Font="Arial, 8pt"/>
+      <TextObject Name="Text40" Left="179.55" Top="226.8" Width="198.45" Height="18.9" Border.Lines="All" Font="Arial, 8pt"/>
+      <TextObject Name="Text46" Left="179.55" Top="255.15" Width="519.75" Height="18.9" Border.Lines="All" Font="Arial, 8pt"/>
+      <TextObject Name="Text47" Left="179.55" Top="283.5" Width="519.75" Height="18.9" Border.Lines="All" Font="Arial, 8pt"/>
+      <TextObject Name="Text48" Left="179.55" Top="311.85" Width="519.75" Height="18.9" Border.Lines="All" Font="Arial, 8pt"/>
+      <TextObject Name="Text49" Left="425.25" Top="226.8" Width="66.15" Height="18.9" Border.Lines="All" Text="Physician" Font="Arial, 8pt"/>
+      <TextObject Name="Text50" Left="491.4" Top="226.8" Width="9.45" Height="18.9" Border.Lines="All" Text=":" Font="Arial, 9pt"/>
+      <TextObject Name="Text51" Left="500.85" Top="226.8" Width="198.45" Height="18.9" Border.Lines="All" Font="Arial, 8pt"/>
+      <TextObject Name="Text52" Left="9.45" Top="349.65" Width="311.85" Height="18.9" Border.Lines="All" Text="F_FROZEN_LABEL" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text53" Left="9.45" Top="378" Width="689.85" Height="18.9" Border.Lines="All" Text="FROZEN TEXT" Font="Arial, 8pt"/>
+      <TextObject Name="Text54" Left="9.45" Top="406.35" Width="311.85" Height="18.9" Border.Lines="All" Text="F_GROSS" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text55" Left="9.45" Top="434.7" Width="689.85" Height="18.9" Border.Lines="All" Text="GROSS DESCRIPTION" Font="Arial, 8pt"/>
+      <TextObject Name="Text56" Left="9.45" Top="463.05" Width="311.85" Height="18.9" Border.Lines="All" Text="F_IMMUNO_CHEM" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text57" Left="9.45" Top="491.4" Width="689.85" Height="18.9" Border.Lines="All" Text="immuno_chemistry" Font="Arial, 8pt"/>
+      <TextObject Name="Text58" Left="9.45" Top="519.75" Width="689.85" Height="18.9" Border.Lines="All" Text="immuno_chemistry 1" Font="Arial, 8pt"/>
+      <TextObject Name="Text59" Left="9.45" Top="548.1" Width="311.85" Height="18.9" Border.Lines="All" Text="F_MICRO" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text60" Left="18.9" Top="576.45" Width="680.4" Height="18.9" Border.Lines="All" Text="MICRO_DESCRIPTION" Font="Arial, 8pt"/>
+      <TextObject Name="Text61" Left="9.45" Top="604.8" Width="141.75" Height="18.9" Border.Lines="All" Text="F_DIAGNOSIS" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text62" Left="170.1" Top="604.8" Width="472.5" Height="18.9" Border.Lines="All" Text="F_DIAGNOSIS_heading" Font="Arial, 8pt, style=Bold"/>
+      <TextObject Name="Text63" Left="18.9" Top="633.15" Width="680.4" Height="18.9" Border.Lines="All" Text="DIAGNOSIS" Font="Arial, 8pt"/>
+      <TextObject Name="Text64" Left="9.45" Top="661.5" Width="217.35" Height="18.9" Border.Lines="All" Text="F_TOPOGRAPHIC" Font="Arial, 8pt"/>
+      <TextObject Name="Text65" Left="18.9" Top="689.85" Width="529.2" Height="18.9" Border.Lines="All" Text="TOPO" Font="Arial, 8pt"/>
+      <TextObject Name="Text66" Left="9.45" Top="718.2" Width="283.5" Height="18.9" Border.Lines="All" Text="F_ADDENDUM_RESULT" Font="Arial, 8pt"/>
+      <TextObject Name="Text67" Left="18.9" Top="746.55" Width="680.4" Height="18.9" Border.Lines="All" Text="ADDENDUM" Font="Arial, 8pt"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="1053.35" Width="718.2" Height="18.9"/>
+  </ReportPage>
+</Report>

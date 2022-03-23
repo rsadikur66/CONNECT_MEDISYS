@@ -1,0 +1,191 @@
+﻿body {
+    direction: rtl;
+}
+
+.topbarBg {
+    background-image: linear-gradient(to left, #6D1215 0%, #CA1D23 100%);
+}
+
+.datePanel {
+    right: 10px;
+}
+
+.todayH {
+    margin-right: 12px;
+}
+
+.topbarSeparator {
+    right: 240px;
+}
+
+.language {
+    left: 10px;
+}
+
+.headerBgMenu {
+    right: 240px;
+}
+
+.logoMenu {
+    float: right;
+    margin: 9px 15px 0 0;
+}
+
+.titleMenu {
+    float: left;
+}
+
+    .titleMenu span {
+        padding-left: 250px;
+    }
+
+.headerBgPage {
+    right: 38px;
+}
+
+.logoPage {
+    float: right;
+    margin: 4px 15px 0 0;
+}
+
+.titlePage {
+    float: left;
+}
+
+    .titlePage span {
+        padding-left: 50px;
+    }
+
+.user {
+    float: right;
+}
+
+    .user img {
+        margin: 6px 9px 0 0;
+    }
+
+.userPage {
+    margin: 10px 20px 0 0;
+}
+
+.userNameMenu {
+    float: right;
+    padding-right: 10px;
+}
+
+.userNamePage {
+    float: right;
+    padding-right: 10px;
+}
+
+.sidePanelBg {
+    right: 0;
+}
+
+.optionsMenu {
+    float: right;
+    margin: 26px 7px 0 0;
+}
+
+.optionsPage {
+    margin: 5px 1px 0 0;
+}
+
+.buttonMenu {
+    background-position: 191px 3px !important;
+    padding: 0 50px 0 0;
+}
+
+    .buttonMenu:enabled:active {
+        background-position: 190px 4px !important;
+        padding: 2px 51px 0 0;
+    }
+
+.containerMenu {
+    right: 255px;
+    left: 15px;
+}
+
+.containerPage {
+    right: 52px;
+    left: 15px;
+}
+
+.heading {
+    margin: 10px 20px 0 0;
+}
+
+.links div {
+    float: right;
+    margin-left: 9px;
+}
+
+.pi-arrow-left::before {
+    content: "\e91b" !important;
+}
+
+.pi-arrow-right::before {
+    content: "\e91a" !important;
+}
+
+.pi-angle-double-left::before {
+    content: "\e92e";
+}
+
+.pi-angle-double-right::before {
+    content: "\e92d";
+}
+
+.pi-angle-left::before {
+    content: "\e932";
+}
+
+.pi-angle-right::before {
+    content: "\e931";
+}
+
+.pi-chevron-left::before {
+    content: "\e901";
+}
+
+.pi-chevron-right::before {
+    content: "\e900";
+}
+
+.p-dropdown .p-dropdown-clear-icon {
+    right: initial !important;
+    left: 1.5rem !important;
+}
+
+.p-dropdown.p-dropdown-clearable .p-dropdown-label {
+    padding-right: 5px !important;
+    padding-left: 1.429rem;
+}
+
+.p-dropdown-panel .p-dropdown-header .p-dropdown-filter-icon {
+    right: initial !important;
+    left: 0.429rem;
+}
+
+.p-calendar .p-datepicker {
+    left: initial !important;
+    right: 0;
+}
+
+.p-toast-top-right {
+    right: initial !important;
+    left: 20px;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+    text-align: right !important;
+}
+
+.p-paginator .p-dropdown .p-dropdown-label {
+    padding-right: 5px !important;
+    padding-left: 0;
+}
+
+.p-dialog .p-dialog-footer {
+    text-align: left;
+}

@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Created="02/28/2022 09:59:42" ReportInfo.Modified="03/01/2022 17:26:35" ReportInfo.CreatorVersion="2016.1.0.0">
+  <Dictionary>
+    <XmlDataConnection Name="Connection" ConnectionString="rijcmlqmmfdjkQxfe1iwShBNGpud1ZMChDsG6CG1euwVEp/rykp1GhofvEhIb6/B4ViKOOHKPjIcU+eb8haTL/VMbC5I6+QH6LuhgnRS3raXvfLToXLD2iBn1gLiQ4BaVULQnvS5zcjybZOypZQPlq9dHfzjg==">
+      <TableDataSource Name="header" DataType="System.Int32" Enabled="true" TableName="header">
+        <Column Name="T_SITE_CODE" DataType="System.String"/>
+        <Column Name="T_COUNTRY_LANG1_NAME" DataType="System.String"/>
+        <Column Name="T_COUNTRY_LANG2_NAME" DataType="System.String"/>
+        <Column Name="T_MIN_LANG1_NAME" DataType="System.String"/>
+        <Column Name="T_MIN_LANG2_NAME" DataType="System.String"/>
+        <Column Name="T_SITE_LANG1_NAME" DataType="System.String"/>
+        <Column Name="T_SITE_LANG2_NAME" DataType="System.String"/>
+        <Column Name="T_LOGO_ID" DataType="System.String"/>
+        <Column Name="T_LOGO_NAME" DataType="System.String"/>
+        <Column Name="T_LOGO" DataType="System.Byte[]" BindableControl="Picture"/>
+        <Column Name="T_LCENCE_NO" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="master" DataType="System.Int32" Enabled="true" TableName="master">
+        <Column Name="T_SATURDAY" DataType="System.String"/>
+        <Column Name="T_SUNDAY" DataType="System.String"/>
+        <Column Name="T_MONDAY" DataType="System.String"/>
+        <Column Name="T_TUESDAY" DataType="System.String"/>
+        <Column Name="T_WEDNESDAY" DataType="System.String"/>
+        <Column Name="T_THURSDAY" DataType="System.String"/>
+        <Column Name="T_FRIDAY" DataType="System.String"/>
+        <Column Name="T_DAYS" DataType="System.String"/>
+        <Column Name="T_REMARKS_DAYS" DataType="System.String"/>
+        <Column Name="T_REMARKS" DataType="System.String"/>
+        <Column Name="T_ITEM_CODE" DataType="System.String"/>
+        <Column Name="T_RECEIPT_CODE" DataType="System.String"/>
+        <Column Name="STRENGTH" DataType="System.String"/>
+        <Column Name="T_DOSE_UNIT" DataType="System.String"/>
+        <Column Name="T_DOSE_TIME_DAILY" DataType="System.String"/>
+        <Column Name="T_DOSE_TIME_DAILY_DES" DataType="System.String"/>
+        <Column Name="T_DOSE_DURATION" DataType="System.String"/>
+        <Column Name="DOSE_DURATION" DataType="System.String"/>
+        <Column Name="T_QTY" DataType="System.Decimal"/>
+        <Column Name="T_ISSUE_DATE" DataType="System.DateTime"/>
+        <Column Name="T_ISSUE_UM" DataType="System.String"/>
+        <Column Name="T_ISSUE_UM1" DataType="System.String"/>
+        <Column Name="T_UM" DataType="System.String"/>
+        <Column Name="T_CP_DOSE" DataType="System.String"/>
+        <Column Name="T_ENTRY_DATE" DataType="System.DateTime"/>
+        <Column Name="T_DIAGNOSIS" DataType="System.String"/>
+        <Column Name="T_UPD_USER" DataType="System.String"/>
+        <Column Name="T_USER_NAME" DataType="System.String"/>
+        <Column Name="T_ORGN_DOC" DataType="System.String"/>
+        <Column Name="T_OPD_REQ_ITEM" DataType="System.String"/>
+        <Column Name="T_STK_LOC_CODE" DataType="System.String"/>
+        <Column Name="T_STK_LOC_NAME" DataType="System.String"/>
+        <Column Name="T_MORNING_DOSE_UNIT" DataType="System.String"/>
+        <Column Name="T_NOON_DOSE_UNIT" DataType="System.String"/>
+        <Column Name="T_NIGHT_DOSE_UNIT" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="patInfo" DataType="System.Int32" Enabled="true" TableName="patInfo">
+        <Column Name="T_PAT_NO" DataType="System.String"/>
+        <Column Name="T_PAT_NAME_ENG" DataType="System.String"/>
+        <Column Name="T_PAT_NAME_ARB" DataType="System.String"/>
+        <Column Name="T_X_RMC_CHRTNO" DataType="System.String"/>
+        <Column Name="T_X_HOSP1_PAT_NO" DataType="System.String"/>
+        <Column Name="T_X_HOSP2_PAT_NO" DataType="System.String"/>
+        <Column Name="T_X_HOSP3_PAT_NO" DataType="System.String"/>
+        <Column Name="T_X_HOSP4_PAT_NO" DataType="System.String"/>
+        <Column Name="T_X_HOSP5_PAT_NO" DataType="System.String"/>
+        <Column Name="T_X_HOSP6_PAT_NO" DataType="System.String"/>
+        <Column Name="T_X_HOSP7_PAT_NO" DataType="System.String"/>
+        <Column Name="T_PAYOR_Y" DataType="System.String"/>
+        <Column Name="T_PAYOR_DES" DataType="System.String"/>
+        <Column Name="T_GENDER" DataType="System.String"/>
+        <Column Name="T_GENDER_NAME" DataType="System.String"/>
+        <Column Name="YEAR" DataType="System.String"/>
+        <Column Name="T_NTNLTY_CODE" DataType="System.String"/>
+        <Column Name="T_NTNLTY_NAME" DataType="System.String"/>
+      </TableDataSource>
+      <TableDataSource Name="doctor" DataType="System.Int32" Enabled="true" TableName="doctor">
+        <Column Name="HDM_DOC_CODE" DataType="System.String"/>
+        <Column Name="DOC_NAME" DataType="System.String"/>
+        <Column Name="HDM_SPCLTY_CODE" DataType="System.String"/>
+        <Column Name="HDM_DOC_QUALIF" DataType="System.String"/>
+        <Column Name="HDM_POST" DataType="System.String"/>
+        <Column Name="HDM_CONS_SPECIALITY" DataType="System.String"/>
+        <Column Name="T_DIAGNOSIS" DataType="System.String"/>
+        <Column Name="T_EPISODE_NO" DataType="System.Decimal"/>
+      </TableDataSource>
+      <TableDataSource Name="clinic" DataType="System.Int32" Enabled="true" TableName="clinic">
+        <Column Name="T_CLINIC_CODE" DataType="System.String"/>
+        <Column Name="CLINIC_NAME" DataType="System.String"/>
+        <Column Name="T_APPT_DATE" DataType="System.DateTime"/>
+        <Column Name="DAY" DataType="System.String"/>
+        <Column Name="T_APPT_TIME" DataType="System.Int32"/>
+        <Column Name="T_PAT_NO" DataType="System.String"/>
+        <Column Name="T_APPT_NO" DataType="System.Int64"/>
+      </TableDataSource>
+    </XmlDataConnection>
+    <Parameter Name="MED_SEQ" DataType="System.String"/>
+  </Dictionary>
+  <ReportPage Name="Page1">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="288" Guides="278.4">
+      <TextObject Name="Text8" Left="501.45" Top="72.75" Width="209.35" Height="18.9" Text="[Date]" Format="Custom" Format.Format="dd-MMM-yy hh:mm tt" HorzAlign="Right" Font="Arial, 8pt"/>
+      <TextObject Name="Text7" Left="6.6" Top="85.95" Width="227.7" Height="18.9" Text="Medisys# R30180" Font="Arial, 8pt"/>
+      <TextObject Name="Text3" Left="6.6" Top="44.4" Width="227.7" Height="18.9" Text="[header.T_SITE_LANG2_NAME]" VertAlign="Center" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text6" Left="501.45" Top="44.4" Width="209.35" Height="18.9" Text="[header.T_SITE_LANG1_NAME]" HorzAlign="Right" VertAlign="Center" Font="Arial, 11pt, style=Bold"/>
+      <TextObject Name="Text2" Left="6.6" Top="25.5" Width="227.7" Height="18.9" Text="[header.T_MIN_LANG2_NAME]" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text5" Left="501.45" Top="25.5" Width="209.35" Height="18.9" Text="[header.T_MIN_LANG1_NAME]" HorzAlign="Right" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <TextObject Name="Text1" Left="6.6" Top="6.6" Width="227.7" Height="18.9" Text="[header.T_COUNTRY_LANG2_NAME]" VertAlign="Center" Font="Arial, 12pt, style=Bold"/>
+      <TextObject Name="Text4" Left="453.45" Top="6.6" Width="257.35" Height="18.9" Text="[header.T_COUNTRY_LANG1_NAME]" HorzAlign="Right" VertAlign="Center" Font="Arial, 14pt, style=Bold"/>
+      <PictureObject Name="Picture1" Left="312.45" Top="6.6" Width="94.5" Height="85.05" Image="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"/>
+      <TextObject Name="Text9" Left="6.6" Top="66.8" Width="96" Height="19.2" Text="LICENCE #"/>
+      <TextObject Name="Text10" Left="104.8" Top="66.8" Width="130.2" Height="19.2" Text="[header.T_LCENCE_NO]"/>
+      <TextObject Name="Text23" Left="115.8" Top="134.4" Width="96" Height="19.2" Text="[patInfo.T_PAT_NO]"/>
+      <TextObject Name="Text24" Top="134.4" Width="113" Height="19.2" Text="Pat. Computer# :"/>
+      <TextObject Name="Text25" Left="230.4" Top="134.4" Width="96" Height="19.2" Text="File # :"/>
+      <TextObject Name="Text26" Left="422.4" Top="134.4" Width="55" Height="19.2" Text="Name :"/>
+      <TextObject Name="Text27" Left="326.4" Top="134.4" Width="86" Height="19.2" Text="[patInfo.T_X_RMC_CHRTNO]"/>
+      <TextObject Name="Text28" Left="480" Top="134.4" Width="220.8" Height="19.2" Text="[patInfo.T_PAT_NAME_ENG]"/>
+      <TextObject Name="Text29" Top="158.6" Width="65" Height="19.2" Text="Gender :" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text30" Left="172.2" Top="158.6" Width="89" Height="19.2" Text="Nationality :" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text31" Left="499.2" Top="184.8" Width="44" Height="19.2" Text="Age :&#13;&#10;"/>
+      <TextObject Name="Text32" Left="69" Top="158.6" Width="96" Height="19.2" Text="[patInfo.T_GENDER_NAME]"/>
+      <TextObject Name="Text33" Left="264.8" Top="158.6" Width="106" Height="19.2" Text="[patInfo.T_NTNLTY_NAME]"/>
+      <TextObject Name="Text34" Left="547.2" Top="184.8" Width="90.2" Height="19.2" Text="[patInfo.YEAR]  Yrs"/>
+      <TextObject Name="Text35" Left="480" Top="153.6" Width="220.8" Height="19.2" Text="[patInfo.T_PAT_NAME_ARB]" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text36" Left="68.4" Top="189.6" Width="230.4" Height="19.2" Text="[doctor.DOC_NAME]"/>
+      <TextObject Name="Text37" Top="190.6" Width="65" Height="19.2" Text="Doctor :" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text38" Left="307.2" Top="188" Width="82" Height="19.2" Text="Speciality :" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text39" Left="393.6" Top="188" Width="96" Height="19.2" Text="[doctor.HDM_CONS_SPECIALITY]"/>
+      <TextObject Name="Text40" Left="19.2" Top="249.6" Width="96" Height="19.2" Text="Clinic Name :" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text41" Left="19.2" Top="230.4" Width="96" Height="19.2" Text="Discharge :" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text42" Left="115.2" Top="230.4" Width="153.6" Height="19.2" Text="[clinic.T_APPT_DATE]" Format="Date" Format.Format="d"/>
+      <TextObject Name="Text43" Left="115.2" Top="249.6" Width="307.2" Height="19.2" Text="[clinic.CLINIC_NAME]"/>
+      <TextObject Name="Text44" Left="431.4" Top="230.4" Width="48" Height="19.2" Text="Day :" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text45" Left="479.4" Top="230.4" Width="96" Height="19.2" Text="[clinic.DAY]"/>
+      <TextObject Name="Text46" Left="575.4" Top="230.4" Width="48" Height="19.2" Text="Time :" Font="Arial, 10pt, style=Bold"/>
+      <TextObject Name="Text47" Left="623.4" Top="230.4" Width="51" Height="19.2" Text="[clinic.T_APPT_TIME]"/>
+      <LineObject Name="Line3" Left="10" Top="220.8" Width="691.4"/>
+      <LineObject Name="Line4" Left="9.6" Top="278.4" Width="692.8"/>
+      <LineObject Name="Line5" Left="9.6" Top="220.8" Height="57.6"/>
+      <LineObject Name="Line6" Left="700.8" Top="220.8" Height="57.6"/>
+      <TextObject Name="Text55" Left="642.6" Top="182.4" Width="55" Height="19.2" Text="Weight:"/>
+      <TextObject Name="Text56" Left="134.4" Top="105.6" Width="460.8" Height="19.2" Text="Patient's Discharge Medication Information Report" HorzAlign="Center" Font="Arial, 10pt, style=Bold"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="292.04" Width="718.2" Height="19.2">
+      <TextObject Name="Text14" Width="256" Height="19.2" Border.Lines="All" Fill.Color="Gainsboro" Text="Generic Name"/>
+      <TextObject Name="Text16" Left="255.6" Width="74" Height="19.2" Border.Lines="All" Fill.Color="Gainsboro" Text="Dose"/>
+      <TextObject Name="Text12" Left="330.4" Width="108" Height="19.2" Border.Lines="All" Fill.Color="Gainsboro" Text="Time Daily"/>
+      <TextObject Name="Text18" Left="439.4" Width="91" Height="19.2" Border.Lines="All" Fill.Color="Gainsboro" Text="Duration"/>
+      <TextObject Name="Text20" Left="530.4" Width="85" Height="19.2" Border.Lines="All" Fill.Color="Gainsboro" Text="Start Date" Format="Custom" Format.Format="dd/MM/yyyy"/>
+      <TextObject Name="Text22" Left="614.4" Width="96" Height="19.2" Border.Lines="All" Fill.Color="Gainsboro" Text="Remarks"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="315.28" Width="718.2" Height="19.2" DataSource="master">
+      <TextObject Name="Text13" Width="256" Height="19.2" Border.Lines="All" Text="[master.T_OPD_REQ_ITEM]"/>
+      <TextObject Name="Text15" Left="255.6" Width="74" Height="19.2" Border.Lines="All" Text="[master.T_CP_DOSE]"/>
+      <TextObject Name="Text11" Left="330.4" Width="108" Height="19.2" Border.Lines="All" Text="[master.T_DOSE_TIME_DAILY_DES]"/>
+      <TextObject Name="Text17" Left="439.4" Width="91" Height="19.2" Border.Lines="All" Text="[master.DOSE_DURATION]"/>
+      <TextObject Name="Text19" Left="530.4" Width="85" Height="19.2" Border.Lines="All" Text="[master.T_ISSUE_DATE]" Format="Custom" Format.Format="dd/MM/yyyy"/>
+      <TextObject Name="Text21" Left="614.4" Width="96" Height="19.2" Border.Lines="All" Text="[master.T_REMARKS_DAYS]"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="338.52" Width="718.2" Height="82">
+      <TextObject Name="Text48" Left="384" Width="220.8" Height="19.2" Text="[doctor.DOC_NAME]" Font="Arial, 8pt"/>
+      <TextObject Name="Text49" Left="604.8" Width="96" Height="19.2" Text="[doctor.HDM_DOC_QUALIF]" Font="Arial, 8pt"/>
+      <TextObject Name="Text50" Left="499.2" Top="19.2" Width="163.2" Height="19.2" Text="[doctor.HDM_POST]" Font="Arial, 8pt"/>
+      <TextObject Name="Text51" Left="499.2" Top="38.4" Width="144" Height="19.2" Text="[doctor.HDM_CONS_SPECIALITY]" Font="Arial, 8pt"/>
+      <TextObject Name="Text52" Left="9.6" Top="62.8" Width="71.2" Height="19.2" Text="Printed On: " Font="Arial, 8pt"/>
+      <TextObject Name="Text53" Left="259.2" Top="62.8" Width="163.2" Height="19.2" Text="REPORT ID: R30180" Font="Arial, 8pt"/>
+      <TextObject Name="Text54" Left="82.6" Top="62.2" Width="122.95" Height="18.9" Text="[Date]" Format="Custom" Format.Format="dd-MMM-yy hh:mm tt" Font="Arial, 8pt"/>
+      <BarcodeObject Name="Barcode1" Left="499.2" Top="62.2" Width="167.5" Height="19.2" Text="[MED_SEQ]" ShowText="false" AllowExpressions="true" Barcode="Code128" Barcode.AutoEncode="true"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>

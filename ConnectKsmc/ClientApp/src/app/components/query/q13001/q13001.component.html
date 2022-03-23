@@ -1,0 +1,111 @@
+<!--<common formCode="Q13001" (permissionLoaded)="setPermission($event)" (clearClicked)="onClearClicked()" [isPrintVisible]="true" (printClicked)="onPrintClicked()" [isPrintVisible]="true" (printClicked)="onPrintClicked()">-->
+<common formCode="Q13001" (permissionLoaded)="setPermission($event)" (nextClicked)="onBtnNextClick()" [isNextVisible]="true" (printClicked)="onPrintClicked()" (clearClicked)="onClearClicked()" [isPrintVisible]="true">
+  <p-scrollPanel styleClass="scroll">
+    <form [formGroup]="userform">
+      <div class="content">
+        <table style="margin: 0 auto;">
+          <tr>
+            <td class="alnRt">
+              <label id="lblPatientNo" for="txtPatientNo"></label>
+            </td>
+            <td>
+              <input type="text" inputId="txtPatientNo" formControlName="txtPatientNo" pInputText readonly="readonly" style="width: 100px">
+            </td>
+            <td>
+              <input type="text" inputId="txtPatientName" formControlName="txtPatientName" pInputText readonly="readonly" style="width: 250px" />
+            </td>
+            <td width="50"></td>
+            <td class="alnRt">
+              <label id="lblRequestNo" for="txtRequestNo"></label>
+            </td>
+            <td>
+              <input type="text" inputId="txtRequestNo" formControlName="txtRequestNo" pInputText style="width: 150px" />
+            </td>
+            <td width="50"></td>
+            <td>
+              <input type="text" inputId="txtYear" formControlName="txtYear" pInputText readonly="readonly" style="width: 40px" />
+            </td>
+            <td class="alnRt">
+              <label id="lblY" for="txtYear"></label>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2"></td>
+            <td>
+              <input type="text" inputId="txtPatientArb" formControlName="txtPatientArb" pInputText readonly="readonly" style="width: 250px;text-align:right">
+            </td>
+            <td width="50"></td>
+            <td>
+              <label id="lblLab" for="ddlLab"></label>
+            </td>
+            <td>
+              <p-dropdown inputId="ddlLab" formControlName="ddlLab" [options]="labList" [resetFilterOnHide]="true" [style]="{'width':'150px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false" optionLabel="NAME" (onChange)="onLabChange()"></p-dropdown>
+              <!--<input type="text" inputId="ddlLab" formControlName="ddlLab" pInputText readonly="readonly" style="width: 150px" />-->
+            </td>
+            <td width="50"></td>
+            <td>
+              <input type="text" inputId="txtMonth" formControlName="txtMonth" pInputText readonly="readonly" style="width: 40px" />
+            </td>
+            <td class="alnLft">
+              <label id="lblM" for="txtMonth"></label>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="content">
+        <div class="ui-g">
+          <div class="ui-g-4" style="padding:0px 10px">
+            <p-table #dt [value]="requestList" [paginator]="true" [rows]="15" [rowsPerPageOptions]="[15,25,50]" [pageLinks]="10" selectionMode="single" [(selection)]="requestSelectedData">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width: 100px;"><label id="lblRequestNo">Request No</label></th>
+                  <th style="width: 120px;"><label id="lblRequestDate">Request Date</label></th>
+                  <th style="width: 150px;"><label id="lblLabLoc">Lab Location</label></th>
+                </tr>
+                <tr>
+                  <th><input pInputText type="text" (input)="dt.filter(getEventValue($event), 'T_REQUEST_NO', 'contains')" style="width: 100%;"></th>
+                  <th><input pInputText type="text" (input)="dt.filter(getEventValue($event), 'T_REQUEST_DATE', 'contains')" style="width: 100%;"></th>
+                  <th><input pInputText type="text" (input)="dt.filter(getEventValue($event), 'T_WS_NAME', 'contains')" style="width: 100%;"></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData>
+                <tr [pSelectableRow]="rowData" (click)="onRequestSelect(rowData)">
+                  <td>{{ rowData.T_REQUEST_NO }}</td>
+                  <td>{{ rowData.T_REQUEST_DATE|date:'dd/MM/yyyy' }}</td>
+                  <td>{{ rowData.T_WS_NAME }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+          <div class="ui-g-8">
+            <p-table #dt1 [value]="requestDetailList" [paginator]="true" [rows]="15" [rowsPerPageOptions]="[15,25,50]" [pageLinks]="10" >
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width: 200px;"><label id="lblAnalysis"></label></th>
+                  <th style="width: 80px;"><label id="lblResult"></label></th>
+                  <th style="width: 150px;"><label id="lblRange"></label></th>
+                  <th style="width: 200px;"><label id="lblNotes"></label></th>
+                  <th style="width: 80px;"><label id="lblPrvResult"></label></th>
+                </tr>
+                <tr>
+                  <th><input pInputText type="text" (input)="dt1.filter(getEventValue($event), 'ANALISYS', 'contains')" style="width: 100%;"></th>
+                  <th><input pInputText type="text" (input)="dt1.filter(getEventValue($event), 'T_RESULT_VALUE', 'contains')" style="width: 100%;"></th>
+                  <th><input pInputText type="text" (input)="dt1.filter(getEventValue($event), 'T_RANGE', 'contains')" style="width: 100%;"></th>
+                  <th><input pInputText type="text" (input)="dt1.filter(getEventValue($event), 'T_NOTES', 'contains')" style="width: 100%;"></th>
+                  <th><input pInputText type="text" (input)="dt1.filter(getEventValue($event), 'T_PREV_RESULT', 'contains')" style="width: 100%;"></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData>
+                <tr [pSelectableRow]="rowData">
+                  <td>{{ rowData.ANALISYS }}</td>
+                  <td>{{ rowData.T_RESULT_VALUE }}</td>
+                  <td>{{ rowData.T_RANGE }}</td>
+                  <td>{{ rowData.T_NOTES }}</td>
+                  <td>{{ rowData.T_PREV_RESULT }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+          </div>
+        </div>
+      </div>
+    </form>
