@@ -399,8 +399,26 @@ export class T06201Component implements OnInit {
   onClearClicked() {
   }
   onPrintClicked() {
-    var patNo = '00794873';
-    var visitDate = '11/07/2009';
-    window.open("./api/r06201/getReport?patNo=" + patNo + "&visitDate=" + visitDate, "popup", "location=1, status=1, scrollbars=1");
+    //var patNo = '00794873';
+    //var visitDate = '11/07/2009';
+    //window.open("./api/r06201/getReport?patNo=" + patNo + "&visitDate=" + visitDate, "popup", "location=1, status=1, scrollbars=1");
+
+    // var reqNo = '0011117999';// '0001807308';
+    // window.open("./api/r13015/getReport?reqNo=" + reqNo, "popup", "location=1, status=1, scrollbars=1");
+
+    //var reqNo = '0010820005';// '0001807308'; 0010770626
+    // window.open("./api/r13011/getReport?reqNo=" + reqNo, "popup", "location=1, status=1, scrollbars=1");
+
+    // var reqNo = '0010770637';// '0001807308'; 0010770626
+    //  window.open("./api/r13010/getReport?reqNo=" + reqNo, "popup", "location=1, status=1, scrollbars=1");
+
+    //var reqNo = '0011320322';
+    // window.open("./api/r13021/getReport?reqNo=" + reqNo, "popup", "location=1, status=1, scrollbars=1");
+
+    // var reqNo = '0010770410';
+    // window.open("./api/r13111/getReport?reqNo=" + reqNo, "popup", "location=1, status=1, scrollbars=1");
+    var reqNo = '0011334813';// '0001807308';
+    window.open("./api/r13115/getReport?reqNo=" + reqNo, "popup", "location=1, status=1, scrollbars=1");
+
   }
 }
