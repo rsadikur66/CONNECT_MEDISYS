@@ -38,6 +38,7 @@ export class Q13001Component implements OnInit {
   userLang!: string;
   siteCode!: string;
   version!: string;
+  nationality_code: string = '';
   displayPatientPopup: boolean = false;
   patientDetails: any = [];
   labels: any = [];
@@ -159,6 +160,7 @@ export class Q13001Component implements OnInit {
           this.userform.get('txtPatientArb')!.setValue(success.T_PAT_NAME_ARB);
           this.userform.get('txtYear')!.setValue(success.YEARS);
           this.userform.get('txtMonth')!.setValue(success.MONTHS);
+          this.nationality_code = success.T_NTNLTY_CODE;
         } else {
           var patNo: string = this.userform.get('txtPatientNo')!.value;
           this.makeEmpty();
@@ -174,4 +176,30 @@ export class Q13001Component implements OnInit {
   getEventValue($event: any): string {
     return $event.target.value;
   }
+
+  //sadik
+  onPrintMarriage() {
+    /*let T_REQUEST_NO = '0010783840';*/
+    var T_REQUEST_NO = this.userform.get('txtRequestNo')!.value;
+    this.q13001Service.getCountX(T_REQUEST_NO).subscribe((success: any) => {      
+      if (success.CntX >= 2) {
+        if (this.nationality_code == '01') {
+          window.open('./api/t06029/getReportT13166?T_REQUEST_NO=' + T_REQUEST_NO,'popup','location=1, status=1, scrollbars=1');
+        } else {
+          window.open('./api/q13001/getReportT13166A?T_REQUEST_NO=' + T_REQUEST_NO, 'popup', 'location=1, status=1, scrollbars=1');
+        }        
+      }
+    });    
+  }
+  onPrintMarriageNS() {
+    /*let T_REQUEST_NO = '0010783840';*/
+    var T_REQUEST_NO = this.userform.get('txtRequestNo')!.value;
+    this.q13001Service.getCountX(T_REQUEST_NO).subscribe((success: any) => {      
+      if (success.CntX >= 2) {
+          window.open('./api/q13001/getReportT13166A?T_REQUEST_NO=' + T_REQUEST_NO, 'popup', 'location=1, status=1, scrollbars=1');
+      }
+    });    
+  }
+
+  //sadik end
 }
