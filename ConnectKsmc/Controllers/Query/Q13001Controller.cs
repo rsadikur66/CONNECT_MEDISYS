@@ -90,5 +90,93 @@ namespace ConnectKsmc.Controllers.Query
                 return BadRequest(new { msg = ex.Message });
             }
         }
+
+        //sadik
+        [HttpGet("/api/q13001/getCountX")]
+        public IActionResult GetCountX(string T_REQUEST_NO)
+        {
+            string role = HttpContext.Session.GetString("ROLE_CODE");
+            var auth = q13001Dal.GetRolePermission("Q13001", role)?.T_QRY_ACC.ToString();
+            if (auth is null || auth != "1") return Unauthorized();
+            var data = q13001Dal.GetCountX(T_REQUEST_NO);
+            return Ok(data);
+        }
+
+
+
+        [HttpGet("/api/q13001/getReportT13166")]
+        public IActionResult CreateReportT13166(string T_REQUEST_NO)
+        {
+            var auth = q13001Dal.GetRolePermission("Q13001", HttpContext.Session.GetString("ROLE_CODE"))?.T_QRY_ACC.ToString();
+            if (auth == null || auth != "1") return Unauthorized();
+            try
+            {
+                using var report = new FastReport.Report();
+                DataTable dtReportHeader = q13001Dal.ReportHeader();
+                DataTable dtReportQueryOne = q13001Dal.ReportQueryOne(T_REQUEST_NO);
+                DataTable dtReportQuerySecond = q13001Dal.ReportQuerySecond(T_REQUEST_NO);
+                dtReportHeader.TableName = "R06209Header";
+                dtReportQueryOne.TableName = "R06209QueryOne";
+                dtReportQuerySecond.TableName = "R06209QuerySecond";
+                DataSet ds = new DataSet();
+                ds.Tables.Add(dtReportHeader);
+                ds.Tables.Add(dtReportQueryOne);
+                ds.Tables.Add(dtReportQuerySecond);
+                //ds.WriteXmlSchema($"{hostEnvironment.WebRootPath}/xml/R13166.xml");
+                report.Load($"{hostingEnvironment.WebRootPath}/reports/R13166.frx");
+                report.RegisterData(dtReportHeader, "R06209Header");
+                report.RegisterData(dtReportQueryOne, "R06209QueryOne");
+                report.RegisterData(dtReportQuerySecond, "R06209QuerySecond");
+                // report.RegisterData(ds,"ReportDataset");
+                report.Prepare();
+                using var ms = new MemoryStream();
+                var pdfExport = new PDFExport();
+                report.Export(pdfExport, ms);
+                return File(ms.ToArray(), "Application/PDF");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { msg = ex.Message });
+            }
+        }
+
+        [HttpGet("/api/q13001/getReportT13166A")]
+        public IActionResult CreateReportT13166A(string T_REQUEST_NO)
+        {
+            var auth = q13001Dal.GetRolePermission("Q13001", HttpContext.Session.GetString("ROLE_CODE"))?.T_QRY_ACC.ToString();
+            if (auth == null || auth != "1") return Unauthorized();
+            try
+            {
+                using var report = new FastReport.Report();
+
+                DataTable dtReportHeader = q13001Dal.ReportHeader();
+                DataTable dtReportQueryOne = q13001Dal.ReportQueryOne(T_REQUEST_NO);
+                DataTable dtReportQuerySecond66A = q13001Dal.ReportQuerySecondT13166A(T_REQUEST_NO);
+
+                dtReportHeader.TableName = "R06209Header";
+                dtReportQueryOne.TableName = "R06209QueryOne";
+                dtReportQuerySecond66A.TableName = "R06209QuerySecondT13166A";
+                DataSet ds = new DataSet();
+                ds.Tables.Add(dtReportHeader);
+                ds.Tables.Add(dtReportQueryOne);
+                ds.Tables.Add(dtReportQuerySecond66A);
+                //ds.WriteXmlSchema($"{hostEnvironment.WebRootPath}/xml/R13166A.xml");
+                report.Load($"{hostingEnvironment.WebRootPath}/reports/R13166A.frx");
+                report.RegisterData(dtReportHeader, "R06209Header");
+                report.RegisterData(dtReportQueryOne, "R06209QueryOne");
+                report.RegisterData(dtReportQuerySecond66A, "R06209QuerySecondT13166A");
+                // report.RegisterData(ds,"ReportDataset");
+                report.Prepare();
+                using var ms = new MemoryStream();
+                var pdfExport = new PDFExport();
+                report.Export(pdfExport, ms);
+                return File(ms.ToArray(), "Application/PDF");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { msg = ex.Message });
+            }
+
+        }
     }
 }
