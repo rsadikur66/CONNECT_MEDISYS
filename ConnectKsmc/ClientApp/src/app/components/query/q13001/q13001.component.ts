@@ -39,6 +39,7 @@ export class Q13001Component implements OnInit {
   siteCode!: string;
   version!: string;
   nationality_code: string = '';
+
   displayPatientPopup: boolean = false;
   patientDetails: any = [];
   labels: any = [];
@@ -95,7 +96,7 @@ export class Q13001Component implements OnInit {
         if (success.length > 0) {
           this.requestSelectedData = this.requestList[0];
           this.onRequestSelect(this.requestList[0]);
-        }
+        } 
         else {
           this.messageService.add({ severity: 'info', summary: 'Info!', detail: 'No data found' });
         }
@@ -128,23 +129,26 @@ export class Q13001Component implements OnInit {
     this.requestList = [];
   }
   onPrintClicked() {
-    var T_WS_CODE: any; var t_analysis_code: any;
+    debugger;
+    var T_WS_CODE = this.requestSelectedData.T_WS_CODE;
+    var labNo = this.requestSelectedData.T_LAB_NO == 'undefined' ? '' : this.requestSelectedData.T_LAB_NO;
+    var t_analysis_code: any;
     var REP_ID;
-    //if (T_WS_CODE == '02') {      REP_ID = 'R13021';    }
-    //else if (T_WS_CODE = '11') { REP_ID = 'R13111' }
-    //else if (T_WS_CODE = '10') {
-    //  if (t_analysis_code >= '1005' && t_analysis_code <= '1037') { REP_ID = 'R130103'; }
-    //  else if (t_analysis_code >= '1038' && t_analysis_code <= '1054') { REP_ID = 'R130104'; }
-    //  else if (t_analysis_code >= '10039' && t_analysis_code <= '10077') { REP_ID = 'R13010'; }
-    //  else if (t_analysis_code >= '10001' && t_analysis_code <= '10038') { REP_ID = 'R13011'; }
-    //}
-    //else {
-    //  REP_ID = '';
+    if (T_WS_CODE == '02') {      REP_ID = 'R13021';    }
+    else if (T_WS_CODE = '11') { REP_ID = 'R13111' }
+    else if (T_WS_CODE = '10') {
+      if (t_analysis_code >= '1005' && t_analysis_code <= '1037') { REP_ID = 'R130103'; }
+      else if (t_analysis_code >= '1038' && t_analysis_code <= '1054') { REP_ID = 'R130104'; }
+      else if (t_analysis_code >= '10039' && t_analysis_code <= '10077') { REP_ID = 'R13010'; }
+      else if (t_analysis_code >= '10001' && t_analysis_code <= '10038') { REP_ID = 'R13011'; }
+    }
+    else {
+      REP_ID = '';
       
-    //}
+    }
     if (this.requestSelectedData == null || this.requestSelectedData == undefined || this.requestSelectedData == '')
       return;
-    window.open("./api/q13001/getReport?reqInfo=" + this.requestSelectedData + "&reqNo=" + this.requestSelectedData.T_REQUEST_NO + "&labNo=" + this.requestSelectedData.T_LAB_NO + "&reportID=" + REP_ID, "popup", "location=1, status=1, scrollbars=1");
+    window.open("./api/q13001/getReport?reqInfo=" + this.requestSelectedData + "&reqNo=" + this.requestSelectedData.T_REQUEST_NO + "&labNo=" + labNo + "&reportID=" + REP_ID, "popup", "location=1, status=1, scrollbars=1");
   }
   onBtnNewClick() {
     this.makeEmpty();

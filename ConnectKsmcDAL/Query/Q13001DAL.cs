@@ -28,7 +28,7 @@ namespace ConnectKsmcDAL.Query
                 FROM T02003, T02006, T03001 WHERE T_GENDER = T_SEX_CODE(+) AND TO_NUMBER(T02003.T_NTNLTY_CODE) = TO_NUMBER(T03001.T_NTNLTY_CODE) AND T_PAT_NO = '{T_PAT_NO}'";
             return QuerySingle<dynamic>(query);
         }
-        public dynamic GetRequestInfo(string patNo, string lab, string userId, string roleCode)
+        public dynamic GetRequestInfo(string patNo, string , string userId, string roleCode)
         {
             string qry = $@"SELECT T_WS_CODE,T_MULTI_LOC FROM T13019 WHERE T_EMP_CODE='{userId}'";
             IEnumerable<dynamic> user_ws = QueryList<dynamic>(qry);
