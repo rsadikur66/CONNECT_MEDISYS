@@ -1,5 +1,5 @@
 <!--<common formCode="Q13001" (permissionLoaded)="setPermission($event)" (clearClicked)="onClearClicked()" [isPrintVisible]="true" (printClicked)="onPrintClicked()" [isPrintVisible]="true" (printClicked)="onPrintClicked()">-->
-<common formCode="Q13001" (permissionLoaded)="setPermission($event)" (nextClicked)="onBtnNextClick()" [isNextVisible]="true" (printClicked)="onPrintClicked()" (clearClicked)="onClearClicked()" [isPrintVisible]="true">
+<common formCode="Q13001" (permissionLoaded)="setPermission($event)" (nextClicked)="onBtnNextClick()" [isNextVisible]="true" (printClicked)="onPrintClicked()" (clearClicked)="onClearClicked()" [isPrintVisible]="true" [isPrint1Visible]="true"  [isPrint2Visible]="true"  (print1Clicked)="onPrintMarriage()" print1Title="Print Marriage"  (print2Clicked)="onPrintMarriageNS()" print2Title="Print Marriage NS" >
   <p-scrollPanel styleClass="scroll">
     <form [formGroup]="userform">
       <div class="content">
