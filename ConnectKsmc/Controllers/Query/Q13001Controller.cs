@@ -91,19 +91,30 @@ namespace ConnectKsmc.Controllers.Query
             }
         }
 
-        [HttpGet("/api/t06029/getReport")]
-        public IActionResult CreateReport(string T_REQUEST_NO)
+        //sadik
+        [HttpGet("/api/q13001/getCountX")]
+        public IActionResult GetCountX(string T_REQUEST_NO)
+        {
+            string role = HttpContext.Session.GetString("ROLE_CODE");
+            var auth = q13001Dal.GetRolePermission("Q13001", role)?.T_QRY_ACC.ToString();
+            if (auth is null || auth != "1") return Unauthorized();
+            var data = q13001Dal.GetCountX(T_REQUEST_NO);
+            return Ok(data);
+        }
+
+
+
+        [HttpGet("/api/q13001/getReportT13166")]
+        public IActionResult CreateReportT13166(string T_REQUEST_NO)
         {
             var auth = q13001Dal.GetRolePermission("Q13001", HttpContext.Session.GetString("ROLE_CODE"))?.T_QRY_ACC.ToString();
             if (auth == null || auth != "1") return Unauthorized();
             try
             {
                 using var report = new FastReport.Report();
-
                 DataTable dtReportHeader = q13001Dal.ReportHeader();
                 DataTable dtReportQueryOne = q13001Dal.ReportQueryOne(T_REQUEST_NO);
                 DataTable dtReportQuerySecond = q13001Dal.ReportQuerySecond(T_REQUEST_NO);
-
                 dtReportHeader.TableName = "R06209Header";
                 dtReportQueryOne.TableName = "R06209QueryOne";
                 dtReportQuerySecond.TableName = "R06209QuerySecond";
@@ -130,7 +141,7 @@ namespace ConnectKsmc.Controllers.Query
         }
 
         [HttpGet("/api/q13001/getReportT13166A")]
-        public IActionResult CreateReportT13166(string T_REQUEST_NO)
+        public IActionResult CreateReportT13166A(string T_REQUEST_NO)
         {
             var auth = q13001Dal.GetRolePermission("Q13001", HttpContext.Session.GetString("ROLE_CODE"))?.T_QRY_ACC.ToString();
             if (auth == null || auth != "1") return Unauthorized();

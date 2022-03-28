@@ -22,4 +22,10 @@ export class Q13001Service {
   getPatientInfromation() {
     return this.http.get('api/t28011/getPatients').pipe(map(response => response));
   }
+
+  //sadik
+  getCountX(T_REQUEST_NO: string) {
+    return this.http.get('api/q13001/getCountX', { params: { T_REQUEST_NO: T_REQUEST_NO} }).pipe(map(response => response));
+  }
+  //sadik end
 }

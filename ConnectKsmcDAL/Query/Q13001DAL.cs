@@ -23,12 +23,12 @@ namespace ConnectKsmcDAL.Query
         }
         public dynamic GetPatInfo(string Language, string T_PAT_NO, string T_SITE_CODE)
         {
-            var query = $@"SELECT PAT_NAME(T03001.T_PAT_NO, '2')  T_PAT_NAME,PAT_NAME(T03001.T_PAT_NO, '1')  T_PAT_NAME_ARB,T02006.T_LANG{Language}_NAME T_GENDER, TRUNC(MONTHS_BETWEEN(SYSDATE, T_BIRTH_DATE ) / 12, 0) YEARS, 
+            var query = $@"SELECT T02003.T_NTNLTY_CODE, PAT_NAME(T03001.T_PAT_NO, '2')  T_PAT_NAME,PAT_NAME(T03001.T_PAT_NO, '1')  T_PAT_NAME_ARB,T02006.T_LANG{Language}_NAME T_GENDER, TRUNC(MONTHS_BETWEEN(SYSDATE, T_BIRTH_DATE ) / 12, 0) YEARS, 
                 TRUNC(MOD(MONTHS_BETWEEN(SYSDATE, T_BIRTH_DATE), 12), 0) MONTHS,TRUNC(MOD(MONTHS_BETWEEN(SYSDATE, T_BIRTH_DATE), 30), 0) DAYS, T02003.T_LANG{Language}_NAME T_NATIONALITY 
                 FROM T02003, T02006, T03001 WHERE T_GENDER = T_SEX_CODE(+) AND TO_NUMBER(T02003.T_NTNLTY_CODE) = TO_NUMBER(T03001.T_NTNLTY_CODE) AND T_PAT_NO = '{T_PAT_NO}'";
             return QuerySingle<dynamic>(query);
         }
-        public dynamic GetRequestInfo(string patNo, string lab, string userId, string roleCode)
+        public dynamic GetRequestInfo(string patNo, string , string userId, string roleCode)
         {
             string qry = $@"SELECT T_WS_CODE,T_MULTI_LOC FROM T13019 WHERE T_EMP_CODE='{userId}'";
             IEnumerable<dynamic> user_ws = QueryList<dynamic>(qry);
@@ -173,5 +173,13 @@ namespace ConnectKsmcDAL.Query
         {
             return ReportQuery($@"SELECT v.*, CASE WHEN v.LAB_RESULT_TYPE = '1' THEN (SELECT DISTINCT T_NR_FROM || ' - ' || T_NR_TO FROM t13014 WHERE T_ANALYSIS_CODE = v.T_ANALYSIS_CODE AND t_ws_code = NVL(v.t_ws_code, t_ws_code)) WHEN v.LAB_RESULT_TYPE = '2' THEN (SELECT DISTINCT T_NR_FROM || ' - ' || T_NR_TO FROM t13014 WHERE T_ANALYSIS_CODE = v.T_ANALYSIS_CODE AND t_ws_code = NVL(v.t_ws_code, t_ws_code) AND t_gender = v.PRS_SEX_NUM1) WHEN v.LAB_RESULT_TYPE = '3' THEN (SELECT DISTINCT T_NR_FROM || ' - ' || T_NR_TO FROM t13014 WHERE T_ANALYSIS_CODE = v.T_ANALYSIS_CODE AND t_ws_code = NVL(v.T_WS_CODE, t_ws_code) AND to_number(nvl(v.CF_AGE1, 0) * 365) + to_number(nvl(v.CF_DAYS, 0)) BETWEEN ((t_year_from * 365) + t_days_from) AND ((t_year_to * 365) + t_days_to)) WHEN v.LAB_RESULT_TYPE = '4' THEN (SELECT DISTINCT T_NR_FROM || ' - ' || T_NR_TO FROM t13014 WHERE T_ANALYSIS_CODE = v.T_ANALYSIS_CODE AND t_ws_code = NVL(v.T_WS_CODE, T_WS_CODE) AND to_number(nvl(v.CF_AGE1, 0) * 365) + to_number(nvl(v.CF_DAYS, 0)) BETWEEN ((t_year_from * 365) + t_days_from) AND ((t_year_to * 365) + t_days_to) AND ROWNUM = 1) ELSE '' END normal_range FROM ( SELECT h.*, (SELECT TRUNC(SYSDATE) - h.CUR_DAY FROM dual) CF_DAYS FROM ( SELECT c.*, (SELECT ADD_MONTHS(c.CF_B_DATE, c.YEARS * 12 + c.MON) FROM dual) CUR_DAY FROM ( SELECT m.* , CASE WHEN m.CF_RESULT_VAL IS NULL THEN m.T_RESULT_VALUE || ' ' || m.CF_UNIT_MEAS ELSE m.CF_RESULT_VAL END CF_RESULT_VALUE, CASE WHEN m.LAB_ANALYSIS_DESC IS NOT NULL THEN m.LAB_ANALYSIS_DESC ELSE m.CF_RESULT_VAL END CF_ANALYSIS_RESULT, (SELECT trunc(MONTHS_BETWEEN(TRUNC(SYSDATE),m.CF_B_DATE) / 12) FROM dual) YEARS , cast((SELECT mod(MONTHS_BETWEEN(TRUNC(SYSDATE), m.CF_B_DATE) / 12, 12) FROM dual) AS NUMBER(10, 3)) MON, (SELECT TRUNC(MONTHS_BETWEEN(sysdate, m.CF_B_DATE) / 12, 0) FROM dual) CF_AGE1 FROM ( SELECT w.*, (SELECT t_lang2_name ||' ' || w.CF_UNIT_MEAS FROM t13006 WHERE t_RESULT_CODE = w.T_RESULT_VALUE ) CF_RESULT_VAL, CASE WHEN w.EXTERNAL_FLAG IS NULL THEN ( SELECT t_gender FROM t03001 WHERE T_PAT_NO = w.PRS_PAT_NO) ELSE (SELECT t_gender FROM t03003 WHERE T_TMP_PAT_NO = w.PRS_PAT_NO) END PRS_SEX_NUM1, CASE WHEN w.EXTERNAL_FLAG IS NULL THEN (SELECT t_birth_date FROM t03001 WHERE T_PAT_NO = w.PRS_PAT_NO) ELSE (SELECT t_birth_date FROM t03003 WHERE T_TMP_PAT_NO = w.PRS_PAT_NO) END CF_B_DATE FROM ( SELECT T13015.T_PAT_NO PRS_PAT_NO , T13015.T_EXTERNAL_FLAG EXTERNAL_FLAG , T13018.T_WS_CODE, T13018.T_ANALYSIS_CODE, T13018.T_RESULT_VALUE, T13018.T_NOTES, (SELECT t_user_name FROM t01009 WHERE t_emp_code = t13018.T_UPD_USER) user_name, t13018.T_UPD_DATE, HIJRAAH(t13018.T_UPD_DATE) hijri, (SELECT t_lang2_name FROM t13011 WHERE t_ANALYSIS_CODE = T13018.T_ANALYSIS_CODE AND t_WS_CODE = T13018.T_WS_CODE) LAB_ANALYSIS_DESC, (SELECT t_UM FROM t13011 WHERE T_ANALYSIS_CODE = T13018.T_ANALYSIS_CODE AND T_WS_CODE = '10') CF_UNIT_MEAS, (select t_result_type from t13011 where t_analysis_code = T13018.T_ANALYSIS_CODE and t_ws_code = T13018.T_WS_CODE) LAB_RESULT_TYPE FROM T13018,T13015 WHERE T13018.T_REQUEST_NO='{T_REQUEST_NO}' AND T_CLOSE_FLAG IS NOT NULL AND T_RESULT_VALUE IS NOT NULL AND T13018.T_ANALYSIS_CODE IN ('17011','17012','17013','17014', '17015','17016','17017','17022','17025', '17061','17071','17072','17073','17074','17075','17076','17077','17078', '17079','17080','17081','17082','17083','17084','17161','17162','17163','13005','13016','13024','13025','13017','13006','13008','13009','13012','13050','17085','17086','17087', '17088','17089','2816','1109','1110','13155','13179') AND T13015.T_REQUEST_NO = T13018.T_REQUEST_NO) w) m) c) h) v");
         }
+
+        //sadik
+        public dynamic GetCountX(string T_REQUEST_NO)
+        {
+            var query = $@"	select count(*) CntX  from t13016   where t_request_no = '{T_REQUEST_NO}'  and t_analysis_code in ('17047','17048','13123','1109','1110','2816')";
+            return QuerySingle<dynamic>(query);
+        }
+        //sadik end
     }
 }

@@ -38,6 +38,8 @@ export class Q13001Component implements OnInit {
   userLang!: string;
   siteCode!: string;
   version!: string;
+  nationality_code: string = '';
+
   displayPatientPopup: boolean = false;
   patientDetails: any = [];
   labels: any = [];
@@ -94,7 +96,7 @@ export class Q13001Component implements OnInit {
         if (success.length > 0) {
           this.requestSelectedData = this.requestList[0];
           this.onRequestSelect(this.requestList[0]);
-        }
+        } 
         else {
           this.messageService.add({ severity: 'info', summary: 'Info!', detail: 'No data found' });
         }
@@ -127,23 +129,26 @@ export class Q13001Component implements OnInit {
     this.requestList = [];
   }
   onPrintClicked() {
-    var T_WS_CODE: any; var t_analysis_code: any;
+    debugger;
+    var T_WS_CODE = this.requestSelectedData.T_WS_CODE;
+    var labNo = this.requestSelectedData.T_LAB_NO == 'undefined' ? '' : this.requestSelectedData.T_LAB_NO;
+    var t_analysis_code: any;
     var REP_ID;
-    //if (T_WS_CODE == '02') {      REP_ID = 'R13021';    }
-    //else if (T_WS_CODE = '11') { REP_ID = 'R13111' }
-    //else if (T_WS_CODE = '10') {
-    //  if (t_analysis_code >= '1005' && t_analysis_code <= '1037') { REP_ID = 'R130103'; }
-    //  else if (t_analysis_code >= '1038' && t_analysis_code <= '1054') { REP_ID = 'R130104'; }
-    //  else if (t_analysis_code >= '10039' && t_analysis_code <= '10077') { REP_ID = 'R13010'; }
-    //  else if (t_analysis_code >= '10001' && t_analysis_code <= '10038') { REP_ID = 'R13011'; }
-    //}
-    //else {
-    //  REP_ID = '';
+    if (T_WS_CODE == '02') {      REP_ID = 'R13021';    }
+    else if (T_WS_CODE = '11') { REP_ID = 'R13111' }
+    else if (T_WS_CODE = '10') {
+      if (t_analysis_code >= '1005' && t_analysis_code <= '1037') { REP_ID = 'R130103'; }
+      else if (t_analysis_code >= '1038' && t_analysis_code <= '1054') { REP_ID = 'R130104'; }
+      else if (t_analysis_code >= '10039' && t_analysis_code <= '10077') { REP_ID = 'R13010'; }
+      else if (t_analysis_code >= '10001' && t_analysis_code <= '10038') { REP_ID = 'R13011'; }
+    }
+    else {
+      REP_ID = '';
       
-    //}
+    }
     if (this.requestSelectedData == null || this.requestSelectedData == undefined || this.requestSelectedData == '')
       return;
-    window.open("./api/q13001/getReport?reqInfo=" + this.requestSelectedData + "&reqNo=" + this.requestSelectedData.T_REQUEST_NO + "&labNo=" + this.requestSelectedData.T_LAB_NO + "&reportID=" + REP_ID, "popup", "location=1, status=1, scrollbars=1");
+    window.open("./api/q13001/getReport?reqInfo=" + this.requestSelectedData + "&reqNo=" + this.requestSelectedData.T_REQUEST_NO + "&labNo=" + labNo + "&reportID=" + REP_ID, "popup", "location=1, status=1, scrollbars=1");
   }
   onBtnNewClick() {
     this.makeEmpty();
@@ -159,6 +164,7 @@ export class Q13001Component implements OnInit {
           this.userform.get('txtPatientArb')!.setValue(success.T_PAT_NAME_ARB);
           this.userform.get('txtYear')!.setValue(success.YEARS);
           this.userform.get('txtMonth')!.setValue(success.MONTHS);
+          this.nationality_code = success.T_NTNLTY_CODE;
         } else {
           var patNo: string = this.userform.get('txtPatientNo')!.value;
           this.makeEmpty();
@@ -174,4 +180,30 @@ export class Q13001Component implements OnInit {
   getEventValue($event: any): string {
     return $event.target.value;
   }
+
+  //sadik
+  onPrintMarriage() {
+    /*let T_REQUEST_NO = '0010783840';*/
+    var T_REQUEST_NO = this.userform.get('txtRequestNo')!.value;
+    this.q13001Service.getCountX(T_REQUEST_NO).subscribe((success: any) => {      
+      if (success.CntX >= 2) {
+        if (this.nationality_code == '01') {
+          window.open('./api/t06029/getReportT13166?T_REQUEST_NO=' + T_REQUEST_NO,'popup','location=1, status=1, scrollbars=1');
+        } else {
+          window.open('./api/q13001/getReportT13166A?T_REQUEST_NO=' + T_REQUEST_NO, 'popup', 'location=1, status=1, scrollbars=1');
+        }        
+      }
+    });    
+  }
+  onPrintMarriageNS() {
+    /*let T_REQUEST_NO = '0010783840';*/
+    var T_REQUEST_NO = this.userform.get('txtRequestNo')!.value;
+    this.q13001Service.getCountX(T_REQUEST_NO).subscribe((success: any) => {      
+      if (success.CntX >= 2) {
+          window.open('./api/q13001/getReportT13166A?T_REQUEST_NO=' + T_REQUEST_NO, 'popup', 'location=1, status=1, scrollbars=1');
+      }
+    });    
+  }
+
+  //sadik end
 }
