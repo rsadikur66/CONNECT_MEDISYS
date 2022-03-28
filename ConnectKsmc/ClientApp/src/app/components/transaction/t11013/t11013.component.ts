@@ -942,13 +942,16 @@ export class T11013Component implements OnInit {
     }
     else {
       if (type == "0008") {
-        window.open("./api/t11013/getRadiologyReport?orderNo=" + orderNo + "&radiologyType=" + "mamo", "popup", "location=1, status=1, scrollbars=1");
+       // window.open("./api/t11013/getRadiologyReport?orderNo=" + orderNo + "&radiologyType=" + "mamo", "popup", "location=1, status=1, scrollbars=1");
+       window.open("./api/r11011/getReport?orderNo=" + orderNo, "popup", "location=1, status=1, scrollbars=1");
       }
-      else if (type == "0002") {
-        window.open("./api/t11013/getRadiologyReport?orderNo=" + orderNo + "&radiologyType=" + "MRI", "popup", "location=1, status=1, scrollbars=1");
+      else if (type == "0002") {       
+        window.open("./api/r11018/getReport?orderNo=" + orderNo, "popup", "location=1, status=1, scrollbars=1");
+        // window.open("./api/t11013/getRadiologyReport?orderNo=" + orderNo + "&radiologyType=" + "MRI", "popup", "location=1, status=1, scrollbars=1");
       }
-      else {
-        window.open("./api/t11013/getRadiologyReport?orderNo=" + orderNo + "&radiologyType=" + "", "popup", "location=1, status=1, scrollbars=1");
+      else {          
+        window.open("./api/r11012/getReport?orderNo=" + orderNo, "popup", "location=1, status=1, scrollbars=1");
+       // window.open("./api/t11013/getRadiologyReport?orderNo=" + orderNo + "&radiologyType=" + "", "popup", "location=1, status=1, scrollbars=1");
       }
     }
   }

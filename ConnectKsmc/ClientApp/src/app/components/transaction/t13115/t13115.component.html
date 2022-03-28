@@ -1,6 +1,6 @@
 <common formCode="T13115" (permissionLoaded)="setPermission($event)" (saveClicked)="onSaveClicked()" (clearClicked)="onClearClicked()" [isPrintVisible]="true" (printClicked)="onPrintClicked()">
   <p-scrollPanel styleClass="scroll">
-    <div class="content">
+    <div class="content" style="width: 1280px">
       <form [formGroup]="userForm">
         <table border="0">
           <tr>
@@ -8,7 +8,7 @@
               <label id="lblRequestNo" for="txtRequestNo"></label>
             </td>
             <td>
-              <input type="text" id="txtRequestNo" formControlName="txtRequestNo" maxlength="10" autofocus pInputText pKeyFilter="pint" style="width: 100px" (blur)="onRequestNoBlur()" />
+              <input type="text" id="txtRequestNo" (dblclick)="onReqByPatDblClick()" formControlName="txtRequestNo" maxlength="10" autofocus pInputText pKeyFilter="pint" style="width: 100px" (blur)="!displayReqByPat && onRequestNoBlur()" />
             </td>
             <td>
               <label id="lblRequestDate" for="txtRequestDate"></label>
@@ -35,7 +35,7 @@
               <label id="lblPatNo" for="txtPatNo"></label>
             </td>
             <td>
-              <input type="text" id="txtPatNo" formControlName="txtPatNo" pInputText style="width: 100px" readonly="readonly" />
+              <input type="text" id="txtPatNo" formControlName="txtPatNo" pInputText style="width: 100px" />
             </td>
             <td colspan="3">
               <input type="text" id="txtPatName" formControlName="txtPatName" pInputText style="width: 330px" readonly="readonly" />
@@ -45,7 +45,6 @@
               <input type="text" id="txtYears" formControlName="txtYears" pInputText style="width: 31px" readonly="readonly" />
               <label id="lblMonths" for="txtMonths"></label> <input type="text" id="txtMonths" formControlName="txtMonths" pInputText style="width: 31px" readonly="readonly" />
             </td>
-
 
             <td>
               <label id="lblMStatus" for="txtMStatus"></label>
@@ -71,7 +70,7 @@
               <p-dropdown inputId="ddlPatType" formControlName="ddlPatType" [options]="patientTypes" optionLabel="PATIENT_TYPE" [resetFilterOnHide]="true"
                           [style]="{'width':'100%'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false" (onChange)="onPatTypeChange()"></p-dropdown>
             </td>
-            <td></td>
+            <td><label id="lblEpisode" for="txtEpisodeNo">Epi No</label></td>
             <td><input type="text" id="txtEpisodeNo" formControlName="txtEpisodeNo" pInputText style="width: 120px" readonly="readonly" /></td>
             <td>
               <label id="lblNationality" for="txtNationality">Nationality</label>
@@ -102,117 +101,252 @@
             </td>
             <td colspan="4">
               <input type="text" id="txtComments" formControlName="txtComments" pInputText style="width:435px" />
-            </td>
 
+            </td>
             <td></td>
             <td> </td>
             <td> </td>
           </tr>
-
         </table>
         <br />
         <table>
           <tr>
-            <td> <label id="lblWorkStation" for="txtComments">Lab Location</label></td>
+            <td> <label id="lblWorkStation" for="ddlWorkStation"></label></td>
             <td>
               <p-dropdown inputId="ddlWorkStation" formControlName="ddlWorkStation" [options]="workStation" optionLabel="NAME" [resetFilterOnHide]="true"
-                          [style]="{'width':'200px'}" appendTo="body" [showClear]="true" [autoDisplayFirst]="false" (onChange)="onWorkStationChange()"></p-dropdown>
+                          [style]="{'width':'200px'}" [filter]="true" appendTo="body" [showClear]="true" [autoDisplayFirst]="false" (onChange)="onWorkStationChange()"></p-dropdown>
             </td>
             <td><label id="lblSearchTestByName" for="txtSearchTestByName">Search Test By Name</label></td>
             <td>
-              <input type="text" id="txtSearchTestByName" formControlName="txtSearchTestByName" pInputText style="width:150px" />
+              <input type="text" id="txtSearchTestByName" formControlName="txtSearchTestByName" pInputText style="width:150px" (blur)="onSearchTestName()" />
+            </td>
+            <td>
             </td>
           </tr>
         </table>
-      </form> 
+        <p-dialog [(visible)]="showFollowup" [modal]="true">
+          <ng-template pTemplate="header">
+            Cervical Pap Smear
+          </ng-template>
+          <table>
+            <tr>
+              <td class="align-label"> <label id="lblPapLabNo" for="txtPapLabNo">{{onLabelLoad('lblPapLabNo')}}</label></td>
+              <td><input type="text" id="txtPapLabNo" formControlName="txtPapLabNo" pInputText /></td>
+              <td class="align-label"> <label id="lblPregnancy" for="chkPregnancy">{{onLabelLoad('lblPregnancy')}}</label> </td>
+              <td> <p-checkbox inputId="chkPregnancy" [binary]="true" formControlName="chkPregnancy" [(ngModel)]="chkPregnancy" (click)="onChkPregnancy()"></p-checkbox> </td>
+              <td class="align-label">  <label id="lblChemotherapy" for="chkChemotherapy">{{onLabelLoad('lblChemotherapy')}}</label>  </td>
+              <td> <p-checkbox inputId="chkChemotherapy" [binary]="true" formControlName="chkChemotherapy" [(ngModel)]="chkChemotherapy" (click)="onChkChemotherapy()"></p-checkbox>  </td>
+            </tr>
+            <tr>
+              <td class="align-label"> <label id="lblIndication" for="txtIndication">{{onLabelLoad('lblIndication')}} </label></td>
+              <td><input type="text" id="txtIndication" formControlName="txtIndication" pInputText /></td>
+              <td class="align-label"> <label id="lblContraceptivePills" for="chkContraceptivePills">{{onLabelLoad('lblContraceptivePills')}}</label> </td>
+              <td> <p-checkbox inputId="chkContraceptivePills" [binary]="true" formControlName="chkContraceptivePills" [(ngModel)]="chkContraceptivePills" (click)="onChkContraceptivePills()"></p-checkbox> </td>
+              <td class="align-label">  <label id="lblICUD" for="chkICUD">{{onLabelLoad('lblICUD')}}</label>  </td>
+              <td>  <p-checkbox inputId="chkICUD" [binary]="true" formControlName="chkICUD" [(ngModel)]="chkICUD" (click)="onChkICUD()"></p-checkbox>  </td>
+            </tr>
+            <tr>
+              <td class="align-label"> <label id="lblLMP" for="txtLMP">{{onLabelLoad('lblLMP')}} </label></td>
+              <td><input type="text" id="txtLMP" formControlName="txtLMP" pInputText /></td>
+              <td class="align-label"> <label id="lblHRT" for="chkHRT">{{onLabelLoad('lblHRT')}}</label> </td>
+              <td> <p-checkbox inputId="chkHRT" [binary]="true" formControlName="chkHRT" [(ngModel)]="chkHRT" (click)="onChkHRT()"></p-checkbox> </td>
+              <td class="align-label">  <label id="lblVaginalDischarge" for="chkVaginalDischarge">{{onLabelLoad('lblVaginalDischarge')}}</label>  </td>
+              <td>  <p-checkbox inputId="chkVaginalDischarge" [binary]="true" formControlName="chkVaginalDischarge" [(ngModel)]="chkVaginalDischarge" (click)="onChkVaginalDischarge()"></p-checkbox>  </td>
+            </tr>
+            <tr>
+              <td class="align-label"> <label id="lblSpectrumExam" for="txtSpectrumExam">{{onLabelLoad('lblSpectrumExam')}} </label></td>
+              <td><input type="text" id="txtSpectrumExam" formControlName="txtSpectrumExam" pInputText /></td>
+              <td class="align-label"> <label id="lblPostPertum" for="chkPostPertum">{{onLabelLoad('lblPostPertum')}}</label> </td>
+              <td> <p-checkbox inputId="chkPostPertum" [binary]="true" formControlName="chkPostPertum" [(ngModel)]="chkPostPertum" (click)="onChkPostPertum()"></p-checkbox> </td>
+              <td class="align-label">  <label id="lblAbnormalBleeding" for="chkAbnormalBleeding">{{onLabelLoad('lblAbnormalBleeding')}}</label>  </td>
+              <td>  <p-checkbox inputId="chkAbnormalBleeding" [binary]="true" formControlName="chkAbnormalBleeding" [(ngModel)]="chkAbnormalBleeding" (click)="onChkAbnormalBleeding()"></p-checkbox>  </td>
+            </tr>
+            <tr>
+              <td class="align-label"> <label id="lblColposcopicFinding" for="txtColposcopicFinding">{{onLabelLoad('lblColposcopicFinding')}}</label></td>
+              <td><input type="text" id="txtColposcopicFinding" formControlName="txtColposcopicFinding" pInputText /></td>
+              <td class="align-label"> <label id="lblPostMenopause" for="chkPostMenopause">{{onLabelLoad('lblPostMenopause')}}</label> </td>
+              <td><p-checkbox inputId="chkPostMenopause" [binary]="true" formControlName="chkPostMenopause" [(ngModel)]="chkPostMenopause" (click)="onChkPostMenopause()"></p-checkbox> </td>
+              <td></td>
+              <td></td>
+            </tr>
+          </table>
+          <ng-template pTemplate="footer">
+            <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" label="Close" (click)="showFollowup=false"></button>
+          </ng-template>
+        </p-dialog>
+      </form>
       <hr />
-        <div style="position:relative; width:100%;overflow:auto;">
-          <div style="position: relative; width: 30%; float: left;">
-            <p-table #dt1 [value]="labData" [scrollable]="true" scrollHeight="260px" [resizableColumns]="true">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th style="max-width:10%;"></th>
-                  <th style="width:90%;text-align:center"><label id="lblAnalysis">Analysis</label></th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
-                <tr [pSelectableRow]="rowData" style="height:20px">
-                  <td pEditableColumn style="max-width: 10%;">
-                    <p-cellEditor>
-                      <ng-template pTemplate="input">
-                        <p-checkbox [(ngModel)]="rowData.IS_CHECKED" value="1"></p-checkbox>
-                      </ng-template>
-                      <ng-template pTemplate="output">
-                        <p-checkbox [(ngModel)]="rowData.IS_CHECKED" value="1"></p-checkbox>
-                      </ng-template>
-                    </p-cellEditor>
-                  </td>
-                  <td style="width:90%;">{{ rowData.ANALYSIS_NAME }}</td>
-                </tr>
-              </ng-template>
-            </p-table>
-          </div>
-          <div style="position: relative; width: 5%; float: left; ">
-            <table border="0" style="vertical-align:middle;text-align:center">
-              <tr style="height:100px"><td></td></tr>
+      <div style="position:relative; width:100%;overflow:auto;">
+        <div style="position: relative; width: 20%; float: left;">
+          <p-table #dt1 [value]="labData" [scrollable]="true" scrollHeight="230px" [resizableColumns]="true">
+            <ng-template pTemplate="header">
               <tr>
-                <td><button (click)="onRightArrowClick()" style="height:10px;cursor:pointer;border:1px solid gray;border-radius:2px;height: 25px;width:40px"><b>>></b></button></td>
+                <th style="max-width:10%;"></th>
+                <th style="width:90%;text-align:center"><label id="lblAnalysis">{{onLabelLoad('lblAnalysisRD')}}</label></th>
               </tr>
-              <tr style="height:10px"><td></td></tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+              <tr [pSelectableRow]="rowData" style="height:20px">
+                <td pEditableColumn style="max-width: 10%;">
+                  <p-cellEditor>
+                    <ng-template pTemplate="input">
+                      <p-checkbox [(ngModel)]="rowData.IS_CHECKED" value="1"></p-checkbox>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                      <p-checkbox [(ngModel)]="rowData.IS_CHECKED" value="1"></p-checkbox>
+                    </ng-template>
+                  </p-cellEditor>
+                </td>
+                <td style="width:90%;">{{ rowData.ANALYSIS_NAME }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </div>
+        <div style="position: relative; width: 5%; float: left; ">
+          <table border="0" style="vertical-align:middle;text-align:center">
+            <tr style="height:100px"><td></td></tr>
+            <tr>
+              <td><button (click)="onRightArrowClick()" style="height:10px;cursor:pointer;border:1px solid gray;border-radius:2px;height: 25px;width:40px"><b>>></b></button></td>
+            </tr>
+            <tr style="height:10px"><td></td></tr>
+            <tr>
+              <td><button (click)="onLeftArrowClick()" style="height:10px;cursor:pointer;border:1px solid gray;border-radius:2px;height: 25px;width:40px"><b><<</b></button></td>
+            </tr>
+          </table>
+        </div>
+        <div style="position: relative; width: 75%; float: left;">
+          <p-table #dt [value]="RequestData" selectionMode="single" [resizableColumns]="true" [scrollable]="true" scrollHeight="230px">
+            <ng-template pTemplate="header">
               <tr>
-                <td><button (click)="onLeftArrowClick()" style="height:10px;cursor:pointer;border:1px solid gray;border-radius:2px;height: 25px;width:40px"><b><<</b></button></td>
+                <th colspan="2" style="max-width: 19%;"><label id="lblWorkstationRD"></label></th>
+                <th colspan="2" style="max-width: 30%;"><label id="lblAnalysisRD"></label></th>
+                <th style="max-width: 10%;"><label id="lblTBDiagnosisRD"></label></th>
+                <th style="max-width: 21%;"><label id="lblCommentsRD"></label></th>
+                <th colspan="2" style="max-width: 20%;"><label id="lblNatureOfORRD"></label></th>
               </tr>
-            </table>
-          </div>
-          <div style="position: relative; width: 65%; float: left; ">
-            <p-table #dt [value]="RequestData" [paginator]="true" [rows]="12" selectionMode="single" [resizableColumns]="true" [scrollable]="true" scrollHeight="260px">
-              <ng-template pTemplate="header">
-                <tr>
-                  <th colspan="2" style="width:22%;text-align:center;" >Worksation</th>
-                  
-                  <th colspan="2" style="text-align:center"><label id="lblAnalysis">Analysis</label></th>
-                  <th  style="text-align:center">TB Diagnosis</th>
-                  <th style="text-align:center">Comments</th>
-                  <th colspan="2" style="text-align:center">nature of or</th>
-                </tr>
-              </ng-template>
-              <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
-                <tr [pSelectableRow]="rowData" style="height:20px">
-                  <td style="width:5%;text-align:center" >{{ rowData.T_WS_CODE }}</td>
-                  <td style="width:17%;">{{ rowData.WS_NAME }}</td>
-                  <td style="width:5%;text-align:center" >{{ rowData.T_ANALYSIS_CODE }}</td>
-                  <td style="width:17%;">{{ rowData.ANALYSIS_NAME }}</td>
-                  <td pEditableColumn style="width:12%;">
-                    <p-cellEditor>
-                      <ng-template pTemplate="input">
-                        <p-dropdown [options]="diagList" [(ngModel)]="rowData.T_TB_DIAG1" [style]="{'width':'100%'}" (onChange)="onTextChange(rowIndex)"
-                                    [showClear]="true" placeholder="Select.." [resetFilterOnHide]="true"></p-dropdown>
-                      </ng-template>
-                      <ng-template pTemplate="output">
-                        {{rowData.T_TB_DIAG1}}
-                      </ng-template>
-                    </p-cellEditor>
-                  </td>
-                  <td pEditableColumn style="width:22%;">
-                    <p-cellEditor>
-                      <ng-template pTemplate="input">
-                        <input type="text" pInputText [(ngModel)]="rowData.T_ANALYSIS_LINE" />
-                      </ng-template>
-                      <ng-template pTemplate="output">
-                        {{rowData.COMMENT}}
-                      </ng-template>
-                    </p-cellEditor>
-                  </td>
-                  <td style="width:5%;" (dblclick)="onSiteDblClick(rowIndex)">{{ rowData.T_SPECIMEN_CODE }}</td>
-                  <td style="width:17%;">{{ rowData.SPECIMEN_NAME }}</td>
-                </tr>
-              </ng-template>
-            </p-table>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-rowIndex="rowIndex">
+              <tr [pSelectableRow]="rowData" style="height:20px" (click)="onRowClick(rowData)">
+                <td style="max-width: 4%;" (dblclick)="rowData.IS_UPDATE=='0' && onWSDblClick(rowIndex)"> {{ rowData.T_WS_CODE }} </td>
+                <td style="max-width: 15%;"> {{ rowData.WS_NAME }} </td>
+                <td style="max-width: 5%;" (dblclick)="rowData.IS_UPDATE=='0' && onAnalysisDblClick(rowIndex)"> {{ rowData.T_ANALYSIS_CODE }} </td>
+                <td style="max-width: 25%; min-width: 25%;"> {{ rowData.ANALYSIS_NAME }} </td>
+                <td style="max-width: 10%; padding:0px !important; min-width: 10%;"><p-dropdown [options]="diagList" [readonly]="rowData.IS_UPDATE=='1'" (onChange)="onTextChange(rowIndex,getEventValue($event))" [(ngModel)]="rowData.T_TB_DIAG" [ngModelOptions]="{standalone: true}" [style]="{width:'95px'}"></p-dropdown></td>
+                <td style="max-width: 21%; padding:0px !important"><input type="text" [readonly]="rowData.IS_UPDATE=='1'" [(ngModel)]="rowData.COMMENTS" [ngModelOptions]="{standalone: true}" pInputText [style]="{width:'200px'}" /></td>
+                <td style="max-width:5%;" (dblclick)="rowData.IS_UPDATE=='0' && onSpecimenDblClick(rowIndex)"> {{ rowData.T_SPECIMEN_CODE }} </td>
+                <td style="max-width: 15%;"> {{ rowData.SPECIMEN_NAME }} </td>
+              </tr>
+            </ng-template>
+          </p-table>
+          <table>
+            <tr>
+              <td>
+                <button pButton class="p-button-danger p-button-outlined" style="padding: 0 3px !important" label="Cervical Pap Smear" (click)="showFollowup=true"></button>
+              </td>
+            </tr>
+          </table>
 
-          </div>
+          <p-dialog header="List of Work Station" [(visible)]="displayWS" [modal]="true" [style]="{width:'350px'}">
+            <p-table #dtWS [value]="workStation" [paginator]="true" [rows]="10" selectionMode="single" [(selection)]="wsSelectedData">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width: 250px;"><label id="lblName">{{onLabelLoad('lblName')}}</label></th>
+                  <th style="width: 50px;"><label id="lblCode"></label>{{onLabelLoad('lblCode')}}</th>
+                </tr>
+                <tr>
+                  <th><input pInputText type="text" (input)="dtWS.filter(getEventValue($event), 'NAME', 'contains')" style="width: 100%;"></th>
+                  <th><input pInputText type="text" (input)="dtWS.filter(getEventValue($event), 'CODE', 'contains')" style="width: 100%;"></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData>
+                <tr (dblclick)="onWSRowDblClick(rowData)" [pSelectableRow]="rowData">
+                  <td>{{ rowData.NAME }}</td>
+                  <td>{{ rowData.CODE }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+            <p-footer>
+              <button type="button" pButton icon="pi pi-check" class="ui-button-secondary" (click)="onWSOkClick()" label="Ok"></button>
+              <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" (click)="displayWS=false" label="Cancel"></button>
+            </p-footer>
+          </p-dialog>
+          <p-dialog header="List of Analysis" [(visible)]="displayAnalysis" [modal]="true" [style]="{width:'350px'}">
+            <p-table #dtAna [value]="analysis" [paginator]="true" [rows]="10" selectionMode="single" [(selection)]="analysisSelectedData">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width: 250px;"><label id="lblName">{{onLabelLoad('lblName')}}</label></th>
+                  <th style="width: 50px;"><label id="lblCode">{{onLabelLoad('lblCode')}}</label></th>
+                </tr>
+                <tr>
+                  <th><input pInputText type="text" (input)="dtAna.filter(getEventValue($event), 'NAME', 'contains')" style="width: 100%;"></th>
+                  <th><input pInputText type="text" (input)="dtAna.filter(getEventValue($event), 'CODE', 'contains')" style="width: 100%;"></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData>
+                <tr (dblclick)="onAnalysisRowDblClick(rowData)" [pSelectableRow]="rowData">
+                  <td>{{ rowData.NAME }}</td>
+                  <td>{{ rowData.CODE }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+            <p-footer>
+              <button type="button" pButton icon="pi pi-check" class="ui-button-secondary" (click)="onAnalysisOkClick()" label="Ok"></button>
+              <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" (click)="displayAnalysis=false" label="Cancel"></button>
+            </p-footer>
+          </p-dialog>
+          <p-dialog header="List of Specimen" [(visible)]="displaySpecimen" [modal]="true" [style]="{width:'350px'}">
+            <p-table #dtSpecimen [value]="specimen" [paginator]="true" [rows]="10" selectionMode="single" [(selection)]="specimenSelectedData">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width: 250px;"><label id="lblName">{{onLabelLoad('lblName')}}</label></th>
+                  <th style="width: 50px;"><label id="lblCode">{{onLabelLoad('lblCode')}}</label></th>
+                </tr>
+                <tr>
+                  <th><input pInputText type="text" (input)="dtSpecimen.filter(getEventValue($event), 'NAME', 'contains')" style="width: 100%;"></th>
+                  <th><input pInputText type="text" (input)="dtSpecimen.filter(getEventValue($event), 'CODE', 'contains')" style="width: 100%;"></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData>
+                <tr (dblclick)="onSpecimenRowDblClick(rowData)" [pSelectableRow]="rowData">
+                  <td>{{ rowData.NAME }}</td>
+                  <td>{{ rowData.CODE }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+            <p-footer>
+              <button type="button" pButton icon="pi pi-check" class="ui-button-secondary" (click)="onSpecimenOkClick()" label="Ok"></button>
+              <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" (click)="displaySpecimen=false" label="Cancel"></button>
+            </p-footer>
+          </p-dialog>
+          <p-dialog header="Request List for Patient " [(visible)]="displayReqByPat" [modal]="true" [style]="{width:'350px'}">
+            <p-table #dtReqByPat [value]="ReqListByPat" [paginator]="true" [rows]="10" selectionMode="single" [(selection)]="reqListSelectedData">
+              <ng-template pTemplate="header">
+                <tr>
+                  <th style="width: 130px;"><label id="lblName">{{onLabelLoad('lblRequestNo')}}</label></th>
+                  <th style="width: 100px;"><label id="lblCode"></label>{{onLabelLoad('lblRequestDate')}}</th>
+                  <th style="width: 100px;"><label id="lblCode"></label>{{onLabelLoad('lblRequestTime')}}</th>
+                </tr>
+                <tr>
+                  <th><input pInputText type="text" (input)="dtReqByPat.filter(getEventValue($event), 'T_REQUEST_NO', 'contains')" style="width: 100%;"></th>
+                  <th><input pInputText type="text" (input)="dtReqByPat.filter(getEventValue($event), 'T_REQUEST_DATE', 'contains')" style="width: 100%;"></th>
+                  <th><input pInputText type="text" (input)="dtReqByPat.filter(getEventValue($event), 'T_REQUEST_TIME', 'contains')" style="width: 100%;"></th>
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-rowData>
+                <tr (dblclick)="onReqByPatRowDblClick(rowData)" [pSelectableRow]="rowData">
+                  <td>{{ rowData.T_REQUEST_NO }}</td>
+                  <td>{{ rowData.T_REQUEST_DATE }}</td>
+                  <td>{{ rowData.T_REQUEST_TIME }}</td>
+                </tr>
+              </ng-template>
+            </p-table>
+            <p-footer>
+              <button type="button" pButton icon="pi pi-check" class="ui-button-secondary" (click)="onReqByPatOkClick()" label="Ok"></button>
+              <button type="button" pButton icon="pi pi-times" class="ui-button-secondary" (click)="displayReqByPat=false" label="Cancel"></button>
+            </p-footer>
+          </p-dialog>
         </div>
       </div>
-    
-    
-   </p-scrollPanel>
+    </div>
+  </p-scrollPanel>
 </common>
